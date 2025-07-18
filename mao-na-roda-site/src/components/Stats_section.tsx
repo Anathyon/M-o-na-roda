@@ -80,14 +80,14 @@ export default function StatsSection() {
 
   return (
     <section
-      className="stats-section py-20 relative overflow-hidden top-[6.5rem] flex"
+      className="stats-section py-20 relative overflow-hidden top-[6rem] flex"
       style={{
-        background: "linear-gradient(135deg, #f8faff 0%, #ffffff 100%)",
+        background: "background: inear-gradient(135deg, #d1d1d1 0%, #e7e7e7 100%)",
       }}
     >
       <div className="w-full mx-auto" style={{ maxWidth: "75rem", padding: "0 5%" }}>
         <div className="section-header text-center mb-12">
-          <h2 className="section-title text-[2.5rem] font-extrabold text-gray-900 mb-2">
+          <h2 className="section-title text-[2.5rem] font-extrabold text-gray-900 p-4">
             Números que Impressionam
           </h2>
         </div>

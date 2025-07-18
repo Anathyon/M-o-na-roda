@@ -146,7 +146,7 @@ export default function Hero() {
                       <img
                         src="/Mao-na-roda-logo.jpg"
                         alt="Mão na Roda"
-                        className="w-full h-full object-contain rounded-full"
+                        className="w-full h-full object-contain rounded-r-lg"
                       />
                     </div>
                     
