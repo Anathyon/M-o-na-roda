@@ -1,0 +1,28 @@
+@import "tailwindcss"; 
+
+*{
+   box-sizing: border-box;
+   padding: 0%;
+   margin: 0%;
+}
+
+body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #212529;
+            background: #e4e4e4;
+            max-width: 100dvw;
+            font-size: 1rem;
+        }
+
+@media (max-width: 480px) {
+
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+      
+}
+
+@media (min-width: 1025px) {
+      
+}        
