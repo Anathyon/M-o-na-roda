@@ -1,7 +1,7 @@
 
 export default function Footer() {
   return (
-    <footer className="footer-new w-full overflow-hidden">
+    <footer className="footer-new w-full overflow-hidden relative top-[6rem]">
       <div className="footer-main w-full overflow-hidden bg-[#1E79F7]">
         <div className="container mx-auto" style={{ maxWidth: "75rem", padding: "0 5%" }}>
           <div className="footer-top flex flex-wrap justify-between items-center gap-8 mb-16">

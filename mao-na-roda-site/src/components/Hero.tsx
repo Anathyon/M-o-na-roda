@@ -71,7 +71,7 @@ export default function Hero() {
               </p>
             </div>
            
-            <div className="flex flex-wrap gap-[0.8em] justify-center md:justify-start mb-[1em] relative left-10">
+            <div className="flex flex-wrap gap-[0.8em] justify-center md:justify-start mb-[1em] relative left-24  ">
               <a
                 href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
                 className="flex items-center gap-[0.75em] rounded-full font-semibold transition-all"
@@ -180,10 +180,12 @@ export default function Hero() {
                       >
                         <i className={service.icon}></i>
                       </div>
+                      
                       <div className="flex-1 min-w-0">
                         <div className="font-semibold truncate text-xs">{service.title}</div>
                         <div className="text-[0.6em] text-gray-500 truncate">A partir de {service.price}</div>
                       </div>
+
                     </div>
                   ))}
                 </div>

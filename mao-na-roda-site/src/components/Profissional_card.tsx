@@ -1,7 +1,7 @@
 export default function AdvantageProfessionalCard() {
   return (
     <div
-      className="advantage-card-modern professional-card fade-in relative mb-16"
+      className="advantage-card-modern professional-card fade-in relative mb-16 top-[6rem]"
       style={{
         maxWidth: "1000px",
         margin: "0 auto 4rem",

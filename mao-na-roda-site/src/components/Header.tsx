@@ -69,7 +69,7 @@ export default function Header() {
                     <div className="flex flex-row gap-4 order-2 justify-center" style={{ width: '170%' }}>
                         <a
                             href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
-                            className="flex items-center gap-2 rounded-full border-2 border-white text-white font-semibold transition-all text-[0.95rem] bg-transparent hover:bg-white/10"
+                            className="flex items-center gap-2 rounded-full border-2 border-gray-300 text-white font-semibold transition-all text-[0.95rem] bg-transparent hover:bg-white/10"
                             style={{
                                 boxShadow: '0 0.25rem 0.94rem rgba(30,121,247,0.3)',
                                 padding: '0.5rem 1.25rem'

@@ -9,6 +9,7 @@ import Advantages from './components/Advantages'
 import Cliente_card from './components/Cliente_card'
 import Profissional_card from './components/Profissional_card'
 import Faq from './components/Faq'
+import Final_CTA from './components/Final_CTA'
 import Footer from './components/Footer'
 
 
@@ -26,6 +27,7 @@ export default function App() {
       <Cliente_card/>
       <Profissional_card/>
       <Faq/>
+      <Final_CTA/>
       <Footer/>
     </>
   )

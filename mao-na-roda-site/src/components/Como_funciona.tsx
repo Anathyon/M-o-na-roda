@@ -25,7 +25,7 @@ export default function HowItWorks() {
   return (
     <section
       id="como-funciona"
-      className="py-24 bg-gradient-to-br from-[#fafbff] via-[#f8f9fa] to-white relative"
+      className="py-24 bg-gradient-to-br from-[#fafbff] via-[#f8f9fa] to-white relative top-[6rem]"
     >
       <div className="w-full mx-auto" style={{ maxWidth: "75rem", padding: "0 5%" }}>
         <div className="text-center mb-12">

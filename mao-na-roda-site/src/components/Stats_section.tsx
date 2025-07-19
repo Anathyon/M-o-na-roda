@@ -1,19 +1,19 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 
 const stats = [
   {
     icon: "fas fa-users",
-    number: 50000,
+    number: 30000,
     label: "Clientes Atendidos",
     subtitle: "Famílias em São Paulo e região metropolitana",
     suffix: "K+",
   },
   {
     icon: "fas fa-user-check",
-    number: 2000,
+    number: 10000,
     label: "Profissionais",
     subtitle: "Com antecedentes e referências verificadas",
-    suffix: "",
+    suffix: "K+",
   },
   {
     icon: "fas fa-shield-alt",
@@ -29,7 +29,7 @@ const stats = [
     subtitle: "Tempo médio para encontrar um profissional",
     suffix: "",
   },
-]
+];
 
 function animateCountUp(
   ref: React.RefObject<HTMLDivElement | null>,
@@ -63,7 +63,8 @@ export default function StatsSection() {
   const ref1 = useRef<HTMLDivElement>(null);
   const ref2 = useRef<HTMLDivElement>(null);
   const ref3 = useRef<HTMLDivElement>(null);
-  const refs = [ref0, ref1, ref2, ref3];
+
+  const refs = useMemo(() => [ref0, ref1, ref2, ref3], []);
 
   useEffect(() => {
     const cleanups: Array<() => void> = [];
@@ -74,45 +75,45 @@ export default function StatsSection() {
     });
 
     return () => cleanups.forEach((fn) => fn && fn());
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [refs]);
 
   return (
     <section
-      className="stats-section py-20 relative overflow-hidden top-[6rem] flex"
+      className="stats-section py-20 relative overflow-hidden top-[6rem] flex justify-center items-center"
       style={{
-        background: "background: inear-gradient(135deg, #d1d1d1 0%, #e7e7e7 100%)",
+        background: "linear-gradient(135deg, #d1d1d1 0%, #e7e7e7 100%)",
+        padding: "3% 0",
       }}
     >
       <div className="w-full mx-auto" style={{ maxWidth: "75rem", padding: "0 5%" }}>
         <div className="section-header text-center mb-12">
-          <h2 className="section-title text-[2.5rem] font-extrabold text-gray-900 p-4">
+          <h2 className="section-title text-[2.5rem] font-extrabold text-shadow-gray-900 text-gray-700 p-4">
             Números que Impressionam
           </h2>
         </div>
-        <div className="stats-grid flex flex-wrap justify-center gap-12 relative z-10">
+
+        <div className="stats-grid w-auto flex flex-wrap justify-center gap-12 relative z-10" style={{ padding: "1rem 2rem" }}>
           {stats.map((stat, i) => (
             <div
               key={stat.label}
-              className="stats-card flex-1 min-w-[200px] max-w-[280px] text-center relative"
+              className="stats-card flex-1 min-w-[12.5rem] max-w-[17.5rem] text-center relative"
               style={{
                 background: "linear-gradient(135deg, rgba(30, 121, 247, 0.05), rgba(30, 121, 247, 0.1))",
                 padding: "3rem 2rem",
-                borderRadius: "20px",
-                boxShadow: "0 20px 40px rgba(30, 121, 247, 0.15)",
+                borderRadius: "1.25rem",
+                boxShadow: "0 1.25rem 2.5rem rgba(30, 121, 247, 0.15)",
               }}
             >
               <div
-                className="stats-icon mx-auto mb-8 flex items-center justify-center"
+                className="stats-icon mx-auto mb-8 flex items-center justify-center relative left-[19%]"
                 style={{
-                  width: "100px",
-                  height: "100px",
+                  width: "6.25rem",   
+                  height: "6.25rem",
                   background: "white",
                   borderRadius: "50%",
                   fontSize: "2.5rem",
                   color: "#1E79F7",
-                  boxShadow: "0 15px 35px rgba(30, 121, 247, 0.2)",
+                  boxShadow: "0 0.9375rem 2.1875rem rgba(30, 121, 247, 0.2)",
                 }}
               >
                 <i className={stat.icon}></i>

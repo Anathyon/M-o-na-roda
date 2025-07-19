@@ -37,7 +37,7 @@ export default function FAQSection() {
   return (
     <section
       id="faq"
-      className="faq-section py-24 relative overflow-hidden"
+      className="top-[6rem] faq-section py-24 relative overflow-hidden"
       style={{
         background:
           "linear-gradient(135deg, #F8FAFF 0%, #E3F2FD 50%, #F8FAFF 100%)",

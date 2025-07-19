@@ -2,7 +2,7 @@ export default function AdvantagesSection() {
   return (
     <section
       id="sobre"
-      className="advantages py-[100px] bg-white relative overflow-hidden"
+      className="advantages py-[100px] bg-white relative overflow-hidden top-[6rem]"
     >
       <div className="container mx-auto" style={{ maxWidth: "75rem", padding: "0 5%" }}>
         <div className="section-header text-center mb-8">
