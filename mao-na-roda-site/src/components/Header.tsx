@@ -1,10 +1,29 @@
+import { useEffect } from "react";
+
 export default function Header() {
+    useEffect(() => {
+        const onScroll = () => {
+            const header = document.querySelector("header");
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.style.background = "linear-gradient(135deg, #1E79F7, #0D6EFD)";
+                    header.style.boxShadow = "0 2px 20px rgba(30, 121, 247, 0.3)";
+                } else {
+                    header.style.background = "linear-gradient(135deg, #1E79F7, #0D6EFD)";
+                    header.style.boxShadow = "0 2px 10px rgba(30, 121, 247, 0.2)";
+                }
+            }
+        };
+        window.addEventListener("scroll", onScroll);
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
+
     return (
         <header
             className="fixed top-0 w-full z-[1000] border-b border-white/20"
             style={{
                 background: 'linear-gradient(135deg, #1E79F7, #0D6EFD)',
-                backdropFilter: 'blur(0.625rem)', // 10px
+                backdropFilter: 'blur(0.625rem)',
                 padding: '1rem 0'
             }}
         >
@@ -99,5 +118,4 @@ export default function Header() {
                 </div>
             </div>
         </header>
-    );
-}
+    )}

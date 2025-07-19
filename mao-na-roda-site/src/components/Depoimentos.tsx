@@ -88,6 +88,7 @@ export default function TestimonialsSection() {
       style={{
         background:
           "linear-gradient(135deg, #E8F5E8 0%, #F0FFF0 50%, #E8F5E8 100%)",
+          marginTop: "3%"
       }}
     >
       {/* SVG background pattern */}
