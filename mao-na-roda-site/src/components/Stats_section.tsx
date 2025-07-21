@@ -96,7 +96,7 @@ export default function StatsSection() {
           {stats.map((stat, i) => (
             <div
               key={stat.label}
-              className="stats-card flex-1 min-w-[12.5rem] max-w-[17.5rem] text-center relative"
+              className="stats-card flex-1 w-auto text-center relative"
               style={{
                 background: "linear-gradient(135deg, rgba(30, 121, 247, 0.05), rgba(30, 121, 247, 0.1))",
                 padding: "3rem 2rem",
