@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const services = [
   {
@@ -101,27 +101,41 @@ const services = [
 
 export default function ServicesMenuGrid() {
   const [modal, setModal] = useState<null | typeof services[0]>(null);
+ 
+
+  useEffect(() => {
+    if (modal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [modal]);
 
   return (
     <>
       <section
         id="servicos"
-        className="py-32 bg-gradient-to-br from-[#fafbff] via-[#f8f9fa] to-white relative top-[6rem] gap-14"
+        className="bg-gradient-to-br from-[#fafbff] via-[#f8f9fa] to-white relative top-[6rem] gap-14"
+        style={{ margin: "2% 0" }}
       >
-        <div className="w-full mx-auto" style={{ maxWidth: "75rem", padding: "0 5%" }}>
+        <div className="w-full mx-auto" style={{ maxWidth: "75rem", padding: "2% 5%" }}>
           <div className="text-center mb-10">
-            <h2 className="text-4xl font-extrabold text-gray-900 mb-2">Nossos Serviços</h2>
-            <p className="text-lg text-gray-500 max-w-xl mx-auto">
+            <h2 className="text-4xl font-extrabold text-gray-900 mb-2 relative left-24">Nossos Serviços</h2>
+            <p className="text-lg text-gray-500 max-w-xl mx-auto relative left-80" style={{ padding: "1rem 0" }} >
               Profissionais qualificados para todas as suas necessidades
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto relative left-36">
             {services.map((service) => (
               <button
                 key={service.category}
                 className="service-category-card relative bg-white p-10 rounded-2xl text-center shadow-lg border-2 border-transparent transition-all duration-300 cursor-pointer overflow-hidden group"
                 style={{
                   boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
+                  padding: "1%"
                 }}
                 onClick={() => setModal(service)}
               >
@@ -155,20 +169,24 @@ export default function ServicesMenuGrid() {
                 <p className="text-gray-500 text-base relative z-10 group-hover:text-gray-800 transition-colors duration-300">
                   {service.desc}
                 </p>
-                <style>{`
-                  .group:hover .service-icon-container {
-                    background: ${service.gradient};
-                    transform: scale(1.1);
-                    box-shadow: 0 10px 30px ${service.color}33;
-                  }
-                  .group:hover .service-icon-container i {
-                    color: white !important;
-                    transform: scale(1.1);
-                  }
-                  .group:hover h3 {
-                    color: ${service.color} !important;
-                  }
-                `}</style>
+              <style>{`
+                      .group:hover .service-icon-container {
+                        background: ${service.gradient};
+                        transform: scale(1.1);
+                        box-shadow: 0 10px 30px ${service.color}33;
+                      }
+                      .group:hover .service-icon-container i {
+                        color: white !important;
+                        background: rgba(255,255,255,0.25);
+                        border-radius: 50%;
+                        padding: 0.3em;
+                        transform: scale(1.1);
+                        transition: background 0.3s;
+                      }
+                      .group:hover h3 {
+                        color: ${service.color} !important;
+                      }
+            `}</style>
               </button>
             ))}
           </div>
@@ -182,15 +200,16 @@ export default function ServicesMenuGrid() {
           onClick={() => setModal(null)}
         >
           <div
-            className="bg-white rounded-2xl shadow-2xl max-w-[95vw] w-[350px] sm:w-[420px] p-6 relative"
+            className="bg-white rounded-2xl shadow-2xl max-w-[95vw] w-[350px] sm:w-[420px] relative"
             style={{
               boxShadow: "0 8px 32px rgba(30,121,247,0.18)",
               border: `2px solid ${modal.color}`,
+              padding: "1rem"
             }}
             onClick={e => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-bold text-xl text-gray-900">{modal.title}</h2>
+              <h2 className="font-bold text-xl text-gray-900 relative left-[42%]">{modal.title}</h2>
               <button
                 className="text-gray-500 text-xl font-bold"
                 onClick={() => setModal(null)}
@@ -199,9 +218,9 @@ export default function ServicesMenuGrid() {
                 ×
               </button>
             </div>
-            <p className="text-gray-600 mb-4">{modal.desc}</p>
-            <h4 className="font-semibold text-gray-800 mb-2">Serviços Inclusos:</h4>
-            <ul className="mb-6">
+            <p className="text-gray-600 mb-4 flex justify-center">{modal.desc}</p>
+            <h4 className="font-semibold text-gray-800 mb-2 flex justify-center">Serviços Inclusos:</h4>
+            <ul className="flex flex-col items-center" style={{ gap: "0.5rem", paddingBottom:"2%" }}>
               {modal.services.map((item) => (
                 <li
                   key={item}
@@ -219,9 +238,12 @@ export default function ServicesMenuGrid() {
               href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full text-center bg-[#1E79F7] text-white font-bold py-3 rounded-lg text-base mt-2 transition hover:bg-[#0D6EFD]"
+              className="block w-auto text-center bg-[#1E79F7] text-white font-bold py-3 rounded-lg text-base mt-2 transition hover:bg-[#0D6EFD]"
+              style={{
+                padding: "3% 0"
+              }}
             >
-              <i className="fas fa-mobile-alt mr-2"></i>
+              <i className="fas fa-mobile-alt" style={{marginRight:"2%"}}></i>
               Solicitar Serviço
             </a>
           </div>
