@@ -16,6 +16,14 @@ body {
         }
 
 @media (max-width: 480px) {
+   /* HEADER STYLES */
+
+   .header-nav {
+    display: none !important;
+  }
+  .sidebar-mobile {
+    display: block !important;
+  }
 
    /* HERO SECTION STYLES */
 
@@ -71,9 +79,7 @@ body {
     gap: 0.3em !important;
     padding: 0.3em !important;
   }
-   
-  
-   
+      
    /* STATS SECTION STYLES */
 
    .stats-section {
@@ -112,6 +118,14 @@ body {
 
 @media (min-width: 481px) and (max-width: 1024px) {
    
+   /* HEADER STYLES */
+   
+   .header-nav {
+    display: flex !important;
+  }
+  .sidebar-mobile {
+    display: none !important;
+  }
    /* HERO SECTION STYLES */
 
    .hero-text {
