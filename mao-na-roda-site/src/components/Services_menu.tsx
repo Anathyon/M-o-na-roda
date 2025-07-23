@@ -130,65 +130,65 @@ export default function ServicesMenuGrid() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto relative left-36">
             {services.map((service) => (
-              <button
-                key={service.category}
-                className="service-category-card relative bg-white p-10 rounded-2xl text-center shadow-lg border-2 border-transparent transition-all duration-300 cursor-pointer overflow-hidden group"
-                style={{
-                  boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
-                  padding: "1%"
-                }}
-                onClick={() => setModal(service)}
-              >
-                {/* Hover gradient overlay */}
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                <button
+                  key={service.category}
+                  className="service-category-card relative bg-white p-10 rounded-2xl text-center shadow-lg border-2 border-transparent transition-all duration-300 cursor-pointer overflow-hidden group"
                   style={{
-                    background: service.gradient,
-                    zIndex: 1,
+                    boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
+                    padding: "1%"
                   }}
-                />
-                <div
-                  className="service-icon-container mx-auto mb-6 flex items-center justify-center rounded-full transition-all duration-300 relative z-10"
-                  style={{
-                    width: 80,
-                    height: 80,
-                    background: "linear-gradient(135deg, #f8f9fa, #e9ecef)",
-                    boxShadow: "0 4px 16px rgba(30,121,247,0.08)",
-                  }}
+                  onClick={() => setModal(service)}
                 >
-                  <i
-                    className={`${service.icon} text-[2rem] transition-all duration-300`}
+                  {/* Hover gradient overlay */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                     style={{
-                      color: service.color,
+                      background: service.gradient,
+                      zIndex: 1,
                     }}
                   />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2 relative z-10 group-hover:text-[#1E79F7] transition-colors duration-300">
-                  {service.title}
-                </h3>
-                <p className="text-gray-500 text-base relative z-10 group-hover:text-gray-800 transition-colors duration-300">
-                  {service.desc}
-                </p>
-              <style>{`
-                      .group:hover .service-icon-container {
-                        background: ${service.gradient};
-                        transform: scale(1.1);
-                        box-shadow: 0 10px 30px ${service.color}33;
-                      }
-                      .group:hover .service-icon-container i {
-                        color: white !important;
-                        background: rgba(255,255,255,0.25);
-                        border-radius: 50%;
-                        padding: 0.3em;
-                        transform: scale(1.1);
-                        transition: background 0.3s;
-                      }
-                      .group:hover h3 {
-                        color: ${service.color} !important;
-                      }
-            `}</style>
-              </button>
-            ))}
+                  <div
+                    className="service-icon-container mx-auto mb-6 flex items-center justify-center rounded-full transition-all duration-300 relative z-10"
+                    style={{
+                      width: 80,
+                      height: 80,
+                      background: "linear-gradient(135deg, #f8f9fa, #e9ecef)",
+                      boxShadow: "0 4px 16px rgba(30,121,247,0.08)",
+                    }}
+                  >
+                    <i
+                      className={`${service.icon} text-[2rem] transition-all duration-300`}
+                      style={{
+                        color: service.color,
+                      }}
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2 relative z-10 group-hover:text-[#1E79F7] transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-500 text-base relative z-10 group-hover:text-gray-800 transition-colors duration-300">
+                    {service.desc}
+                  </p>
+                  <style>{`
+                    .group:hover .service-icon-container {
+                      background: ${service.gradient};
+                      transform: scale(1.1);
+                      box-shadow: 0 10px 30px ${service.color}33;
+                    }
+                    .group:hover .service-icon-container i {
+                      color: ${service.color} !important;
+                      background: rgba(255,255,255,0.25);
+                      border-radius: 50%;
+                      padding: 0.3em;
+                      transform: scale(1.1);
+                      transition: background 0.3s;
+                    }
+                    .group:hover h3 {
+                      color: ${service.color} !important;
+                    }
+                  `}</style>
+                </button>
+              ))}
           </div>
         </div>
       </section>
@@ -209,15 +209,21 @@ export default function ServicesMenuGrid() {
             onClick={e => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-bold text-xl text-gray-900 relative left-[42%]">{modal.title}</h2>
+              
+              <div className="flex items-center justify-center w-full">
+              <h2 className="font-bold text-xl text-gray-900">{modal.title}</h2>
+              </div>
+              
               <button
                 className="text-gray-500 text-xl font-bold"
                 onClick={() => setModal(null)}
                 aria-label="Fechar"
               >
                 ×
+              
               </button>
             </div>
+
             <p className="text-gray-600 mb-4 flex justify-center">{modal.desc}</p>
             <h4 className="font-semibold text-gray-800 mb-2 flex justify-center">Serviços Inclusos:</h4>
             <ul className="flex flex-col items-center" style={{ gap: "0.5rem", paddingBottom:"2%" }}>

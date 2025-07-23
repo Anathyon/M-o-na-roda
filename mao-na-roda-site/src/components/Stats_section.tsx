@@ -5,7 +5,7 @@ const stats = [
     icon: "fas fa-users",
     number: 30000,
     label: "Clientes Atendidos",
-    subtitle: "Famílias em São Paulo e região metropolitana",
+    subtitle: "Famílias em todo o Brasil",
     suffix: "K+",
   },
   {

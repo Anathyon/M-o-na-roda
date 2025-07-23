@@ -142,7 +142,7 @@ export default function Header() {
                     <a href="#servicos" className="text-blue-700 font-semibold text-lg py-2 border-b border-gray-100" onClick={() => setSidebarOpen(false)}>
                         Serviços
                     </a>
-                    <a href="#como-funciona" className="text-blue-700 font-semibold text-lg py-2 border-b border-gray-100" onClick={() => setSidebarOpen(false)}>
+                    <a href="#como-funciona" className="text-blue-700 font-semibold text-lg py-2 border-b border-gray-100 w-auto" onClick={() => setSidebarOpen(false)}>
                         Como Funciona
                     </a>
                 </nav>

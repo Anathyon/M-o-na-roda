@@ -27,26 +27,34 @@ export default function HowItWorks() {
       id="como-funciona"
       className="py-24 bg-gradient-to-br from-[#fafbff] via-[#f8f9fa] to-white relative top-[6rem]"
     >
-      <div className="w-full mx-auto" style={{ maxWidth: "75rem", padding: "0 5%" }}>
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full font-semibold text-[#1E79F7] bg-white border-2 border-[#1E79F7] mb-4 shadow"
+      <div className="w-full mx-auto" style={{ maxWidth: "75rem", padding: "2% 5%" }}>
+        
+        <div className="text-center mb-12 flex flex-col items-center justify-center relative left-16">
+
+          <div className="inline-flex items-center gap-2 rounded-full font-semibold text-[#1E79F7] bg-white border-2 border-[#1E79F7] shadow"
             style={{
               fontSize: "1rem",
               boxShadow: "0 4px 15px rgba(30,121,247,0.08)",
+              padding:"0.7%",
+              marginBottom:"1.5%"
             }}
           >
             <i className="fas fa-cogs"></i>
             Como Funciona
           </div>
+
           <h2 className="text-4xl font-extrabold text-gray-900 mb-2">Simples, Rápido e Eficiente</h2>
-          <p className="text-lg text-gray-500 max-w-xl mx-auto">
+
+          <p className="text-lg text-gray-500 max-w-xl mx-auto relative ">
             Encontre o profissional ideal em apenas 3 passos
           </p>
+
         </div>
+
         <div className="flex flex-col md:flex-row items-center justify-center gap-0 md:gap-8 relative">
           {steps.map((step, i) => (
             <React.Fragment key={step.number}>
-              <div className="flex flex-col items-center text-center relative z-10">
+              <div className="flex flex-col items-center text-center relative z-10 left-20">
                 <div
                   className="flex items-center justify-center rounded-full mb-4 relative"
                   style={{
@@ -65,19 +73,22 @@ export default function HowItWorks() {
                     style={{
                       fontSize: "1.1rem",
                       border: "2px solid #fff",
+                      margin:"2% 5% 10% 8%"
                     }}
                   >
                     {step.number}
                   </span>
                 </div>
-                <div className="bg-white rounded-xl px-6 py-6 shadow-md border border-gray-100 w-[250px] md:w-[220px]">
+                
+                <div className="bg-white rounded-xl px-6 py-6 shadow-md border border-gray-100 w-[250px] md:w-[220px]" style={{padding: "auto"}}>
                   <h3 className="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
                   <p className="text-gray-500 text-base">{step.desc}</p>
                 </div>
+
               </div>
               {i < steps.length - 1 && (
                 <div
-                  className="hidden md:block"
+                  className="hidden md:block relative left-20"
                   style={{
                     width: 60,
                     height: 4,

@@ -31,45 +31,66 @@ export default function Hero() {
             </div>
            
             <h1
-              className="font-black mb-[1em] leading-tight text-gray-900 relative left-10 border-b-4 border-blue-400 pb-6 w-[80%]"
-              style={{
-                fontSize: "clamp(2rem, 5vw, 3.5rem)",
-              }}
-            >
-              Precisa de um profissional{" "}
-              <span
-                className="highlight"
-                style={{
-                  background: "linear-gradient(135deg, #1E79F7, #0D6EFD)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                AGORA?
-              </span>
-            
-            </h1>
-            
-            <p className=" text-gray-500 text-base sm:text-lg leading-relaxed max-w-[90%] sm:max-w-full relative left-10" style={{ margin: "1rem 0" }}>
-              <strong className="text-gray-900">+50.000 famílias brasileiras</strong> já resolveram seus problemas domésticos com nossa rede de profissionais verificados.{" "}
-              <span style={{ color: "#1E79F7", fontWeight: 600 }}>Atendimento rápido, serviço garantido!</span>
-            </p>
-            
-            <div
-              className=" text-sm sm:text-base w-full sm:w-auto relative left-10"
-              style={{
-                background: "rgba(30, 121, 247, 0.1)",
-                padding: "1.2em",
-                borderRadius: "1em",
-                borderLeft: "0.4em solid #1E79F7",
-                marginBottom: "1.5em",
-              }}
-            >
-              <p className="m-0 text-gray-800">
-                <strong>📱 Dois apps, duas soluções:</strong> App Cliente para quem precisa de serviços e App Profissional para prestadores!
-              </p>
-            </div>
+  className="font-black mb-[1em] leading-tight text-gray-900 relative left-10 border-b-4 border-blue-400 pb-6 w-[80%]"
+  style={{
+    fontSize: "clamp(2rem, 5vw, 3.5rem)",
+  }}
+>
+  Encontre ou ofereça serviços com facilidade{" "}
+  <span
+    className="highlight"
+    style={{
+      background: "linear-gradient(135deg, #1E79F7, #0D6EFD)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      backgroundClip: "text",
+    }}
+  >
+    AGORA!
+  </span>
+</h1>
+
+<p className="text-gray-500 text-base sm:text-lg leading-relaxed max-w-[90%] sm:max-w-full relative left-10" style={{ margin: "1rem 0" }}>
+  <strong className="text-blue-700">Mão na Roda</strong> conecta 
+  <span style={{ color: "#1E79F7", fontWeight: 600 }}> clientes</span> que precisam de serviços domésticos com <span style={{  backgroundImage: "linear-gradient(rebeccapurple, steelblue, turquoise)",
+  color: "black",
+  backgroundClip: "text",
+  WebkitTextFillColor: "transparent"}}>profissionais</span> qualificados e verificados. 
+  <br />
+  <span style={{ color: "#1E79F7", fontWeight: 600 }}>App Cliente:</span>
+   Solicite serviços de forma rápida e segura.<br />
+
+<span style={{
+  backgroundImage: "linear-gradient(rebeccapurple, steelblue, turquoise)",
+  color: "black",
+  backgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  fontWeight: 600
+}}>App Profissional:</span> Cadastre-se, receba oportunidades e aumente sua renda!
+
+</p>
+
+<div
+  className="text-sm sm:text-base w-full sm:w-auto relative left-10"
+  style={{
+    background: "rgba(30, 121, 247, 0.1)",
+    padding: "1.2em",
+    borderRadius: "1em",
+    borderLeft: "0.4em solid #1E79F7",
+    marginBottom: "1.5em",
+  }}
+>
+  <p className="m-0 text-gray-800">
+    <strong>📱 Dois apps, duas soluções:</strong> 
+    <span style={{ color: "#1E79F7", fontWeight: 600 }}> App Cliente</span> para quem busca serviços e 
+    <span style={{  
+                   backgroundImage: "linear-gradient(rebeccapurple, steelblue, turquoise)",
+                   color: "black",
+                   backgroundClip: "text",
+                   WebkitTextFillColor: "transparent", fontWeight: 600 }}> App Profissional
+                  </span> para quem quer trabalhar!
+  </p>
+</div>
            
             <div className="flex flex-wrap gap-[0.8em] justify-center md:justify-start mb-[1em] relative left-24  ">
               <a
