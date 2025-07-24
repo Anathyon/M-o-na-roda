@@ -1,5 +1,4 @@
-
-  const testimonials = [
+const testimonials = [
   {
     name: "Mariana Silva",
     avatar: "M",
@@ -9,7 +8,8 @@
     badgeTextColor: "#0369A1",
     quote:
       "Minha geladeira parou de funcionar e encontrei um técnico em refrigeração pelo app. Em 2 horas estava funcionando perfeitamente! Excelente profissional.",
-    starsColor: "#10B981",
+    type: "cliente",
+    starsColor: "#F59E0B",
     cardBg: "linear-gradient(135deg, #1E79F7, #0D6EFD)",
     quoteIconBg: "linear-gradient(135deg, #1E79F7, #0D6EFD)",
   },
@@ -22,9 +22,10 @@
     badgeTextColor: "#F59E0B",
     quote:
       "Contratei um eletricista para instalar um chuveiro elétrico. Chegou no horário, trabalho impecável e preço muito justo. Super recomendo!",
-    starsColor: "#10B981",
+    type: "cliente",
+    starsColor: "#F59E0B",
     cardBg: "linear-gradient(135deg, #17A2B8, #0B8FAA)",
-    quoteIconBg: "linear-gradient(135deg, #17A2B8, #0B8FAA)",
+    quoteIconBg: "#1E79F7",
   },
   {
     name: "Ana Santos",
@@ -32,11 +33,12 @@
     service: "Hidráulica",
     badgeIcon: "fas fa-tint",
     badgeColor: "linear-gradient(135deg, #4FC3F7, #29B6F6)",
-    badgeTextColor: "#1E79F7",
+    badgeTextColor: "#e6e6e6",
     quote:
       "Vazamento no banheiro resolvido em 1 hora! O encanador foi muito profissional e deixou tudo funcionando perfeitamente. Serviço de qualidade!",
+    type: "cliente",
     starsColor: "#F59E0B",
-    cardBg: "#fff",
+    cardBg: "#3d31e4",
     quoteIconBg: "#1E79F7",
   },
   {
@@ -45,24 +47,26 @@
     service: "Marcenaria",
     badgeIcon: "fas fa-hammer",
     badgeColor: "linear-gradient(135deg, #8D6E63, #795548)",
-    badgeTextColor: "#1E79F7",
+    badgeTextColor: "#cfcc00",
     quote:
-      "Precisava de um marceneiro para fazer um móvel sob medida. O resultado ficou perfeito! Trabalho artesanal e acabamento impecável.",
+      "Como profissional, recebi várias oportunidades pelo app. Os clientes são claros nas solicitações e o pagamento é garantido. Recomendo para quem quer aumentar a renda!",
+    type: "profissional",
     starsColor: "#F59E0B",
-    cardBg: "#fff",
+    cardBg: "#aa700b",
     quoteIconBg: "#1E79F7",
   },
   {
     name: "Fernanda Lima",
     avatar: "F",
-    service: "Ar Condicionado",
-    badgeIcon: "fas fa-wind",
-    badgeColor: "linear-gradient(135deg, #81C784, #66BB6A)",
-    badgeTextColor: "#1E79F7",
+    service: "Carpintaria",
+    badgeIcon: "fas fa-tools",
+    badgeColor: "linear-gradient(135deg, #ff5c5c, #f75454)",
+    badgeTextColor: "#ccdae9",
     quote:
-      "Ar condicionado com problema? Encontrei um técnico especializado pelo app. Diagnóstico preciso e reparo rápido. Recomendo muito!",
+      "Sou carpinteira e uso o app para encontrar novos clientes. O sistema facilita o contato e agiliza o serviço. Muito bom para profissionais!",
+    type: "profissional",
     starsColor: "#F59E0B",
-    cardBg: "#fff",
+    cardBg: "#d35710",
     quoteIconBg: "#1E79F7",
   },
   {
@@ -71,11 +75,12 @@
     service: "Instalação",
     badgeIcon: "fas fa-plug",
     badgeColor: "linear-gradient(135deg, #FFD700, #FFA500)",
-    badgeTextColor: "#1E79F7",
+    badgeTextColor: "#d35710",
     quote:
-      "Instalação elétrica completa no meu escritório. O eletricista foi muito cuidadoso, seguiu todas as normas de segurança. Trabalho perfeito!",
+      "Encontrei ótimos clientes pelo app e consegui fechar vários serviços de instalação elétrica. Recomendo para quem quer trabalhar com segurança e praticidade.",
+    type: "profissional",
     starsColor: "#F59E0B",
-    cardBg: "#fff",
+    cardBg: "#c90c0c",
     quoteIconBg: "#1E79F7",
   },
 ];
@@ -88,7 +93,7 @@ export default function TestimonialsSection() {
       style={{
         background:
           "linear-gradient(135deg, #E8F5E8 0%, #F0FFF0 50%, #E8F5E8 100%)",
-          marginTop: "3%"
+        marginTop: "3%"
       }}
     >
       {/* SVG background pattern */}
@@ -100,7 +105,7 @@ export default function TestimonialsSection() {
             "url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><defs><pattern id=\"stars-pattern\" width=\"30\" height=\"30\" patternUnits=\"userSpaceOnUse\"><circle cx=\"15\" cy=\"15\" r=\"0.5\" fill=\"%231E79F7\"/><circle cx=\"5\" cy=\"25\" r=\"0.3\" fill=\"%231E79F7\"/><circle cx=\"25\" cy=\"8\" r=\"0.4\" fill=\"%231E79F7\"/></pattern></defs><rect width=\"100\" height=\"100\" fill=\"url(%23stars-pattern)\"/></svg>')",
         }}
       />
-      <div className="w-full mx-auto relative z-10" style={{ maxWidth: "75rem", padding: "0 5%" }}>
+      <div className="w-full mx-auto relative z-10 left-20" style={{ maxWidth: "75rem", padding: "2% 5%" }}>
         <div className="text-center mb-16 relative z-10">
           <div
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold mb-6 shadow"
@@ -110,6 +115,7 @@ export default function TestimonialsSection() {
               borderRadius: "2rem",
               boxShadow: "0 0.5rem 1.5rem rgba(30, 121, 247, 0.3)",
               border: "2px solid rgba(255,255,255,0.2)",
+              padding: "1%",
             }}
           >
             <i className="fas fa-star text-[1.1rem]"></i>
@@ -132,17 +138,17 @@ export default function TestimonialsSection() {
                 backgroundClip: "text",
               }}
             >
-              clientes dizem
+              usuários dizem
             </span>
           </h2>
           <p
-            className="text-lg mx-auto mb-12"
+            className="text-lg mx-auto"
             style={{
               color: "#6C757D",
-              maxWidth: "700px",
+              marginBottom:"2%",
             }}
           >
-            Mais de 50.000 famílias brasileiras já transformaram seus lares com a Mão na Roda
+            Mais de 50.000 famílias e profissionais já usam a Mão na Roda para transformar seus lares e suas carreiras.
           </p>
         </div>
         <div
@@ -242,7 +248,7 @@ export default function TestimonialsSection() {
                   </h4>
                   <div className="flex items-center gap-2">
                     <div
-                      className="author-badge flex items-center gap-1 font-semibold"
+                      className="author-badge flex items-center gap-1 font-semibold w-auto"
                       style={{
                         background: t.badgeColor,
                         color: t.badgeTextColor,
@@ -253,6 +259,14 @@ export default function TestimonialsSection() {
                     >
                       <i className={t.badgeIcon} style={{ fontSize: "0.8rem" }}></i>
                       <span>{t.service}</span>
+                      <span style={{
+                        fontWeight: 400,
+                        fontSize: "0.8em",
+                        marginLeft: "0.5em",
+                        opacity: 0.7
+                      }}>
+                        {t.type === "profissional" ? "Profissional" : "Cliente"}
+                      </span>
                     </div>
                   </div>
                 </div>

@@ -1,6 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-const services = [
+type Service = {
+  icon: string;
+  title: string;
+  desc: string;
+  category: string;
+  color: string;
+  gradient: string;
+  services: string[];
+};
+
+const services: Service[] = [
   {
     icon: "fas fa-bolt",
     title: "Elétrica",
@@ -100,8 +110,9 @@ const services = [
 ];
 
 export default function ServicesMenuGrid() {
-  const [modal, setModal] = useState<null | typeof services[0]>(null);
- 
+  const [modal, setModal] = useState<Service | null>(null);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (modal) {
@@ -114,6 +125,17 @@ export default function ServicesMenuGrid() {
     };
   }, [modal]);
 
+  // Detecta se está em mobile
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 480;
+
+  // Carousel handlers
+  const handlePrev = () => {
+    setCarouselIndex((prev) => (prev === 0 ? services.length - 1 : prev - 1));
+  };
+  const handleNext = () => {
+    setCarouselIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
+  };
+
   return (
     <>
       <section
@@ -124,12 +146,109 @@ export default function ServicesMenuGrid() {
         <div className="w-full mx-auto" style={{ maxWidth: "75rem", padding: "2% 5%" }}>
           <div className="text-center mb-10">
             <h2 className="text-4xl font-extrabold text-gray-900 mb-2 relative left-24">Nossos Serviços</h2>
-            <p className="text-lg text-gray-500 max-w-xl mx-auto relative left-80" style={{ padding: "1rem 0" }} >
+            <p className="text-lg text-gray-500 max-w-xl mx-auto relative left-80" style={{ padding: "1rem 0" }}>
               Profissionais qualificados para todas as suas necessidades
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto relative left-36">
-            {services.map((service) => (
+          {/* MOBILE CAROUSEL */}
+          {isMobile ? (
+            <div className="relative flex flex-col items-center" style={{ minHeight: "340px" }}>
+              <div className="flex items-center justify-center w-full" ref={carouselRef}>
+                <button
+                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow px-2 py-2 z-10"
+                  onClick={handlePrev}
+                  aria-label="Anterior"
+                  style={{ border: "1px solid #eee" }}
+                >
+                  <i className="fas fa-chevron-left text-[#1E79F7]"></i>
+                </button>
+                <button
+                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow px-2 py-2 z-10"
+                  onClick={handleNext}
+                  aria-label="Próximo"
+                  style={{ border: "1px solid #eee" }}
+                >
+                  <i className="fas fa-chevron-right text-[#1E79F7]"></i>
+                </button>
+                <div
+                  className="w-full flex justify-center transition-all duration-500"
+                  style={{ minHeight: "320px" }}
+                >
+                  <button
+                    key={services[carouselIndex].category}
+                    className="service-category-card relative bg-white p-8 rounded-2xl text-center shadow-lg border-2 border-transparent transition-all duration-300 cursor-pointer overflow-hidden group"
+                    style={{
+                      boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
+                      minWidth: "90vw",
+                      maxWidth: "95vw",
+                    }}
+                    onClick={() => setModal(services[carouselIndex])}
+                  >
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      style={{
+                        background: services[carouselIndex].gradient,
+                        zIndex: 1,
+                      }}
+                    />
+                    <div
+                      className="service-icon-container mx-auto mb-6 flex items-center justify-center rounded-full transition-all duration-300 relative z-10"
+                      style={{
+                        width: 64,
+                        height: 64,
+                        background: "linear-gradient(135deg, #f8f9fa, #e9ecef)",
+                        boxShadow: "0 4px 16px rgba(30,121,247,0.08)",
+                      }}
+                    >
+                      <i
+                        className={`${services[carouselIndex].icon} text-[2rem] transition-all duration-300`}
+                        style={{
+                          color: services[carouselIndex].color,
+                        }}
+                      />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 relative z-10 group-hover:text-[#1E79F7] transition-colors duration-300">
+                      {services[carouselIndex].title}
+                    </h3>
+                    <p className="text-gray-500 text-base relative z-10 group-hover:text-gray-800 transition-colors duration-300">
+                      {services[carouselIndex].desc}
+                    </p>
+                    <style>{`
+                      .group:hover .service-icon-container {
+                        background: ${services[carouselIndex].gradient};
+                        transform: scale(1.1);
+                        box-shadow: 0 10px 30px ${services[carouselIndex].color}33;
+                      }
+                      .group:hover .service-icon-container i {
+                        color: ${services[carouselIndex].color} !important;
+                        background: rgba(255,255,255,0.25);
+                        border-radius: 50%;
+                        padding: 0.3em;
+                        transform: scale(1.1);
+                        transition: background 0.3s;
+                      }
+                      .group:hover h3 {
+                        color: ${services[carouselIndex].color} !important;
+                      }
+                    `}</style>
+                  </button>
+                </div>
+              </div>
+              {/* Indicadores */}
+              <div className="flex justify-center gap-2 mt-4">
+                {services.map((_, idx) => (
+                  <span
+                    key={idx}
+                    className={`block w-3 h-3 rounded-full ${carouselIndex === idx ? "bg-[#1E79F7]" : "bg-gray-300"}`}
+                    style={{ transition: "background 0.3s" }}
+                  />
+                ))}
+              </div>
+            </div>
+          ) : (
+            // DESKTOP/TABLET GRID
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto relative left-36">
+              {services.map((service) => (
                 <button
                   key={service.category}
                   className="service-category-card relative bg-white p-10 rounded-2xl text-center shadow-lg border-2 border-transparent transition-all duration-300 cursor-pointer overflow-hidden group"
@@ -139,7 +258,6 @@ export default function ServicesMenuGrid() {
                   }}
                   onClick={() => setModal(service)}
                 >
-                  {/* Hover gradient overlay */}
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                     style={{
@@ -189,7 +307,8 @@ export default function ServicesMenuGrid() {
                   `}</style>
                 </button>
               ))}
-          </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -209,25 +328,21 @@ export default function ServicesMenuGrid() {
             onClick={e => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
-              
               <div className="flex items-center justify-center w-full">
-              <h2 className="font-bold text-xl text-gray-900">{modal.title}</h2>
+                <h2 className="font-bold text-xl text-gray-900">{modal.title}</h2>
               </div>
-              
               <button
                 className="text-gray-500 text-xl font-bold"
                 onClick={() => setModal(null)}
                 aria-label="Fechar"
               >
                 ×
-              
               </button>
             </div>
-
             <p className="text-gray-600 mb-4 flex justify-center">{modal.desc}</p>
             <h4 className="font-semibold text-gray-800 mb-2 flex justify-center">Serviços Inclusos:</h4>
             <ul className="flex flex-col items-center" style={{ gap: "0.5rem", paddingBottom:"2%" }}>
-              {modal.services.map((item) => (
+              {modal.services.map((item: string) => (
                 <li
                   key={item}
                   className="flex items-center gap-2 mb-2 p-2 bg-[#f8f9fa] rounded-lg"
@@ -256,5 +371,5 @@ export default function ServicesMenuGrid() {
         </div>
       )}
     </>
-  )
+  );
 }
