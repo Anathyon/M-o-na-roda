@@ -148,7 +148,7 @@ export default function ClientCard() {
           </p>
           <div className="flex flex-col gap-4 mt-8 w-full items-center md:items-start">
             <a
-              href="#"
+              href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
               className="advantage-btn-modern w-full md:w-auto"
               style={{
                 background: "linear-gradient(135deg, #1E79F7, #0D6EFD)",

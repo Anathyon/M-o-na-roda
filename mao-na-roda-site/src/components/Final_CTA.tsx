@@ -59,7 +59,7 @@ export default function FinalCTASection() {
             </div>
             <div className="final-cta-buttons flex flex-col sm:flex-row gap-4 md:gap-6 flex-wrap md:justify-start items-center md:items-start w-full" style={{marginTop:"2%"}}>
               <a
-                href="#"
+                href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
                 className="final-cta-btn flex items-center gap-3 text-[#ffffff] px-6 py-4 rounded-xl shadow-lg border-2 border-[#fff] transition-all hover:-translate-y-1 hover:shadow-2xl w-full sm:w-auto justify-center"
                 style={{
                   background:
