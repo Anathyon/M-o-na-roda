@@ -2,7 +2,6 @@ import { useEffect } from "react";
 
 export default function ClientCard() {
   useEffect(() => {
-    // Adiciona animação flutuante nos ícones
     const icons = document.querySelectorAll(".floating-icon");
     icons.forEach((icon, idx) => {
       (icon as HTMLElement).style.animation = `floatY 3s ease-in-out infinite`;
@@ -124,7 +123,7 @@ export default function ClientCard() {
         </div>
       </div>
       <div className="card-content grid md:grid-cols-2 gap-8 md:gap-16 p-6 md:p-16 relative z-10" style={{ padding: "2rem 1rem" }}>
-        <div className="card-left flex flex-col justify-center items-center md:items-start">
+        <div className="card-left flex flex-col justify-center items-center md:items-start relative left-3">
           <div
             className="advantage-badge-modern mb-6"
             style={{
