@@ -19,69 +19,7 @@ body {
         }
 
 @media (max-width: 480px) {
-   /* HEADER STYLES */
-
-   .header-nav {
-    display: none !important;
-  }
-  .sidebar-mobile {
-    display: block !important;
-  }
-
-   /* HERO SECTION STYLES */
-
-   .hero-text {
-    max-width: 95vw;
-    padding: 0 0.5rem;
-    text-align: center;
-    left: 0 !important;
-  }
-  .hero-text h1 {
-    font-size: 2rem !important;
-    width: 100% !important;
-    left: 0 !important;
-    padding-bottom: 1rem !important;
-    border-bottom-width: 2px !important;
-  }
-  .hero-text > div,
-  .hero-text p,
-  .hero-text .text-sm,
-  .hero-text .flex {
-    left: 0 !important;
-    width: 100% !important;
-    margin: 0 auto !important;
-    text-align: center !important;
-  }
-  .hero-visual {
-    margin-top: 2rem;
-    min-width: 180px;
-    max-width: 95vw;
-  }
-  .phone-mockup {
-    width: 10rem !important;
-    min-width: 160px !important;
-    border-radius: 1.2em !important;
-    padding: 0.3em !important;
-  }
-  .phone-screen {
-    border-radius: 1em !important;
-    padding: 0.6em 0.2em 0.2em !important;
-  }
-  .app-header {
-    font-size: 1.1rem !important;
-    padding-left: 0.5em !important;
-  }
-  .app-icon,
-  .service-icon {
-    width: 1.2em !important;
-    height: 1.2em !important;
-    font-size: 0.7em !important;
-  }
-  .service-card {
-    font-size: 1rem !important;
-    gap: 0.3em !important;
-    padding: 0.3em !important;
-  }
+  
       
    /* STATS SECTION STYLES */
 
@@ -263,56 +201,7 @@ body {
 
 @media (min-width: 481px) and (max-width: 1024px) {
    
-   /* HEADER STYLES */
-   
-   .header-nav {
-    display: flex !important;
-  }
-  .sidebar-mobile {
-    display: none !important;
-  }
-   /* HERO SECTION STYLES */
-
-   .hero-text {
-    max-width: 80vw;
-    padding: 0 1rem;
-    left: 0 !important;
-  }
-  .hero-text h1 {
-    font-size: 2.5rem !important;
-    width: 90% !important;
-    left: 0 !important;
-    padding-bottom: 1.2rem !important;
-    border-bottom-width: 3px !important;
-  }
-  .hero-visual {
-    min-width: 200px;
-    max-width: 350px;
-  }
-  .phone-mockup {
-    width: 12rem !important;
-    border-radius: 1.5em !important;
-    padding: 0.5em !important;
-  }
-  .phone-screen {
-    border-radius: 1.2em !important;
-    padding: 0.8em 0.3em 0.3em !important;
-  }
-  .app-header {
-    font-size: 1.2rem !important;
-    padding-left: 1em !important;
-  }
-  .app-icon,
-  .service-icon {
-    width: 1.6em !important;
-    height: 1.6em !important;
-    font-size: 0.75em !important;
-  }
-  .service-card {
-    font-size: 1.2rem !important;
-    gap: 0.4em !important;
-    padding: 0.4em !important;
-  }
+  
 
    /* STATS SECTION STYLES */
    .stats-section {

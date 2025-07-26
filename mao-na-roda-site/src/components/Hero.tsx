@@ -71,7 +71,7 @@ export default function Hero() {
 </p>
 
 <div
-  className="text-sm sm:text-base w-full sm:w-auto relative left-10"
+  className="container-solu text-sm sm:text-base w-full sm:w-auto relative left-10"
   style={{
     background: "rgba(30, 121, 247, 0.1)",
     padding: "1.2em",
@@ -92,7 +92,7 @@ export default function Hero() {
   </p>
 </div>
            
-            <div className="flex flex-wrap gap-[0.8em] justify-center md:justify-start mb-[1em] relative left-24  ">
+            <div className="container-bts-download flex flex-wrap gap-[0.8em] justify-center md:justify-start mb-[1em] relative left-24  ">
               <a
                 href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
                 className="flex items-center gap-[0.75em] rounded-full font-semibold transition-all"
@@ -217,16 +217,180 @@ export default function Hero() {
       </div>
 
       {/* Keyframes */}
-      <style>{`
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-0.6rem); }
-        }
-        @keyframes float {
-          0%, 100% { transform: rotate(-10deg) translateY(0); }
-          50% { transform: rotate(-10deg) translateY(-0.6rem); }
-        }
-      `}</style>
+        <style>{`
+          @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-0.6rem); }
+          }
+          @keyframes float {
+            0%, 100% { transform: rotate(-10deg) translateY(0); }
+            50% { transform: rotate(-10deg) translateY(-0.6rem); }
+          }
+          @media (max-width: 480px) {
+            .hero-text {
+              max-width: 98vw;
+              padding: 0 0.5rem;
+              text-align: center;
+              left: 0 !important;
+              align-items: center !important;
+            }
+            .hero-text h1 {
+              font-size: 1.5rem !important;
+              width: 100% !important;
+              left: 0 !important;
+              padding-bottom: 0.8rem !important;
+              border-bottom-width: 2px !important;
+              margin-left: 0 !important;
+              margin-right: 0 !important;
+            }
+            .hero-text > div,
+            .hero-text p,
+            .hero-text .text-sm,
+            .hero-text .flex {
+              left: 0 !important;
+              width: 100% !important;
+              margin: 0 auto !important;
+              text-align: center !important;
+            }
+            .container-bts-download {
+              position: static !important;
+              left: 0 !important;
+              justify-content: center !important;
+              width: 100% !important;
+              margin-left: 0 !important;
+              margin-right: 0 !important;
+            }
+            .container-solu {
+              margin: 0 0 !important;
+              left: 0 !important;
+            }
+            .hero-visual {
+              margin-top: 2rem;
+              min-width: 160px;
+              max-width: 95vw;
+              justify-content: center !important;
+            }
+            .phone-mockup {
+              width: 9rem !important;
+              min-width: 140px !important;
+              border-radius: 1em !important;
+              padding: 0.2em !important;
+              margin: 0 auto !important;
+            }
+            .phone-screen {
+              border-radius: 0.8em !important;
+              padding: 0.4em 0.1em 0.1em !important;
+            }
+            .app-header {
+              font-size: 1rem !important;
+              padding-left: 0.3em !important;
+            }
+            .app-icon,
+            .service-icon {
+              width: 1em !important;
+              height: 1em !important;
+              font-size: 0.65em !important;
+            }
+            .service-card {
+              font-size: 0.9rem !important;
+              gap: 0.2em !important;
+              padding: 0.2em !important;
+            }
+            .hero-text .flex.flex-wrap {
+              justify-content: center !important;
+              left: 0 !important;
+              gap: 0.5em !important;
+            }
+          }
+          @media (min-width: 481px) and (max-width: 1024px) {
+            .hero-text {
+              max-width: 90vw;
+              padding: 0 1rem;
+              left: 0 !important;
+              align-items: flex-start !important;
+            }
+            .hero-text h1 {
+              font-size: 2.1rem !important;
+              width: 95% !important;
+              left: 0 !important;
+              padding-bottom: 1rem !important;
+              border-bottom-width: 3px !important;
+              margin-left: 0 !important;
+              margin-right: 0 !important;
+            }
+            .hero-text > div,
+            .hero-text p,
+            .hero-text .text-sm,
+            .hero-text .flex {
+              left: 0 !important;
+              width: 100% !important;
+              margin-left: 0 !important;
+              margin-right: 0 !important;
+              text-align: left !important;
+            }
+            .container-bts-download {
+              position: static !important;
+              left: 0 !important;
+              justify-content: flex-start !important;
+              width: 100% !important;
+              margin-left: 0 !important;
+              margin-right: 0 !important;
+            }
+            .container-solu {
+              margin: 0 0 1.5em 0 !important;
+              left: 0 !important;
+            }
+            .hero-visual {
+              min-width: 180px;
+              max-width: 350px;
+              justify-content: center !important;
+            }
+            .phone-mockup {
+              width: 11rem !important;
+              border-radius: 1.2em !important;
+              padding: 0.4em !important;
+              margin: 0 auto !important;
+            }
+            .phone-screen {
+              border-radius: 1em !important;
+              padding: 0.6em 0.2em 0.2em !important;
+            }
+            .app-header {
+              font-size: 1.1rem !important;
+              padding-left: 0.7em !important;
+            }
+            .app-icon,
+            .service-icon {
+              width: 1.3em !important;
+              height: 1.3em !important;
+              font-size: 0.7em !important;
+            }
+            .service-card {
+              font-size: 1.05rem !important;
+              gap: 0.3em !important;
+              padding: 0.3em !important;
+            }
+            .hero-text .flex.flex-wrap {
+              justify-content: flex-start !important;
+              left: 0 !important;
+              gap: 0.7em !important;
+            }
+            #home{
+              top:-1%; 
+            }  
+          }
+          @media (min-width: 1025px) {
+            .hero-text {
+              max-width: 40vw;
+              left: 10px;
+              align-items: flex-start !important;
+            }
+            .hero-visual {
+              min-width: 240px;
+              max-width: 420px;
+            }
+          }
+        `}</style>
     </article>
   );
 }
