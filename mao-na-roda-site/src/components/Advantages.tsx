@@ -15,6 +15,60 @@ export default function AdvantagesSection() {
           </p>
         </div>
       </div>
+      <style>{`
+       
+        @media (max-width: 480px) {
+                .advantages {
+                  padding: 2rem 0.5rem !important;
+                  border-radius: 2rem !important;
+                  margin: 2rem 0 3rem 0 !important;
+                }
+                .advantages .container {
+                  padding: 0 0.5rem !important;
+                  width: 100vw !important;
+                }
+                .advantages .section-header {
+                  left: 0 !important;
+                  width: 100% !important;
+                  padding: 0 !important;
+                }
+                .advantages .section-title {
+                  font-size: 2rem !important;
+                  margin-bottom: 0.8rem !important;
+                }
+                .advantages .section-subtitle {
+                  font-size: 1rem !important;
+                  max-width: 95vw !important;
+                  margin-bottom: 1rem !important;
+                }
+        }
+              
+        @media (min-width: 481px) and (max-width: 1024px) {
+                .advantages {
+                  padding: 2.5rem 1rem !important;
+                  border-radius: 3rem !important;
+                  margin: 3rem 0 4rem 0 !important;
+                }
+                .advantages .container {
+                  padding: 0 1rem !important;
+                  width: 90vw !important;
+                }
+                .advantages .section-header {
+                  left: 0 !important;
+                  width: 100% !important;
+                  padding: 0 !important;
+                }
+                .advantages .section-title {
+                  font-size: 2.5rem !important;
+                  margin-bottom: 1rem !important;
+                }
+                .advantages .section-subtitle {
+                  font-size: 1.2rem !important;
+                  max-width: 80vw !important;
+                  margin-bottom: 1.2rem !important;
+                }
+       }
+`}</style>
     </section>
   );
 }

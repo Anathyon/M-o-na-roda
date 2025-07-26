@@ -275,6 +275,83 @@ export default function TestimonialsSection() {
           ))}
         </div>
       </div>
+      <style>{`
+        @media (max-width: 480px) {    
+                #depoimentos {
+                padding: 2rem 0.5rem !important;
+                margin-top: 1rem !important;
+              }
+              #depoimentos .text-center {
+                padding: 0 0.5rem !important;
+              }
+              #depoimentos h2 {
+                font-size: 2rem !important;
+                margin-bottom: 0.8rem !important;
+              }
+              #depoimentos p {
+                font-size: 1rem !important;
+                margin-bottom: 1rem !important;
+                max-width: 95vw !important;
+              }
+              #depoimentos .grid {
+                gap: 1.2rem !important;
+                grid-template-columns: 1fr !important;
+              }
+              .testimonial-card {
+                padding: 1.2rem !important;
+                min-width: 0 !important;
+                max-width: 98vw !important;
+                margin: 0 auto !important;
+              }
+              .testimonial-author > div {
+                width: 2.2rem !important;
+                height: 2.2rem !important;
+                font-size: 0.95rem !important;
+              }
+              .author-badge {
+                font-size: 0.8rem !important;
+                padding: 0.15rem 0.5rem !important;
+              }
+        }
+                  @media (min-width: 481px) and (max-width: 1024px) {                        
+                            #depoimentos {
+                            padding: 2.5rem 1rem !important;
+                            margin-top: 2rem !important;
+                          }
+                          #depoimentos .text-center {
+                            padding: 0 1rem !important;
+                          }
+                          #depoimentos h2 {
+                            font-size: 2.5rem !important;
+                            margin-bottom: 1rem !important;
+                          }
+                          #depoimentos p {
+                            font-size: 1.15rem !important;
+                            margin-bottom: 1.2rem !important;
+                            max-width: 80vw !important;
+                          }
+                          #depoimentos .grid {
+                            gap: 1.5rem !important;
+                            grid-template-columns: repeat(2, 1fr) !important;
+                          }
+                          .testimonial-card {
+                            padding: 1.5rem !important;
+                            min-width: 160px !important;
+                            max-width: 45vw !important;
+                            margin: 0 auto !important;
+                          }
+                          .testimonial-author > div {
+                            width: 2.5rem !important;
+                            height: 2.5rem !important;
+                            font-size: 1rem !important;
+                          }
+                          .author-badge {
+                            font-size: 0.85rem !important;
+                            padding: 0.2rem 0.7rem !important;
+                          }
+                  }  
+        
+      `}</style>
     </section>
   );
 }

@@ -159,6 +159,75 @@ export default function StatsSection() {
           ))}
         </div>
       </div>
+      <style>{`@media (max-width: 480px) {
+            .stats-section {
+              padding: 2rem 0.5rem;
+            }
+            .stats-grid {
+              gap: 1.5rem;
+              padding: 0.5rem 0.2rem;
+              flex-direction: column;
+              align-items: center;
+            }
+            .stats-card {
+              max-width: 95vw;
+              min-width: 0;
+              padding: 2rem 1rem;
+              font-size: 0.95rem;
+            }
+            .stats-icon {
+              width: 3.5rem;
+              height: 3.5rem;
+              font-size: 1.5rem;
+              margin-bottom: 1rem;
+            }
+            .stats-number {
+              font-size: 2.2rem;
+              margin-bottom: 0.5rem;
+            }
+            .stats-label {
+              font-size: 1.1rem;
+              margin-bottom: 0.5rem;
+            }
+            .stats-subtitle {
+              font-size: 0.95rem;
+            }
+
+      @media (min-width: 481px) and (max-width: 1024px) {
+ 
+          .stats-section {
+            padding: 2.5rem 1rem;
+          }
+          .stats-grid {
+            gap: 2rem;
+            padding: 1rem 0.5rem;
+          }
+          .stats-card {
+            max-width: 45vw;
+            min-width: 180px;
+            padding: 2.2rem 1.2rem;
+            font-size: 1rem;
+          }
+          .stats-icon {
+            width: 4.5rem;
+            height: 4.5rem;
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+          }
+          .stats-number {
+            font-size: 3rem;
+            margin-bottom: 0.7rem;
+          }
+          .stats-label {
+            font-size: 1.2rem;
+            margin-bottom: 0.7rem;
+          }
+          .stats-subtitle {
+            font-size: 1rem;
+          }
+      }
+      }`}</style>
+
     </section>
   );
 }

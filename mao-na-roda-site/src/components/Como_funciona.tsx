@@ -112,6 +112,107 @@ export default function HowItWorks() {
           ))}
         </div>
       </div>
+      <style>{`
+        @media (max-width: 480px) { 
+                  #como-funciona {
+                    padding: 2rem 0.5rem !important;
+                  }
+                  #como-funciona .text-center {
+                    left: 0 !important;
+                    padding: 0 0.5rem !important;
+                  }
+                  #como-funciona h2 {
+                    font-size: 2rem !important;
+                    margin-bottom: 0.8rem !important;
+                  }
+                  #como-funciona p {
+                    font-size: 1rem !important;
+                    margin-bottom: 1rem !important;
+                  }
+                  #como-funciona .flex-col {
+                    gap: 1.2rem !important;
+                  }
+                  #como-funciona .flex-col > div {
+                    left: 0 !important;
+                    width: 100% !important;
+                    max-width: 95vw !important;
+                    margin: 0 auto !important;
+                  }
+                  #como-funciona .rounded-full {
+                    width: 56px !important;
+                    height: 56px !important;
+                    font-size: 1.3rem !important;
+                    margin-bottom: 0.5rem !important;
+                  }
+                  #como-funciona .absolute {
+                    width: 2rem !important;
+                    height: 2rem !important;
+                    font-size: 0.9rem !important;
+                    right: -0.7rem !important;
+                    bottom: -0.7rem !important;
+                  }
+                  #como-funciona .bg-white {
+                    padding: 1rem 0.5rem !important;
+                    width: 95vw !important;
+                    min-width: 0 !important;
+                    box-sizing: border-box !important;
+                  }
+                  #como-funciona .block.md\\:hidden {
+                    width: 0.3rem !important;
+                    height: 2rem !important;
+                    margin: 0.5rem auto !important;
+                  }
+          }
+            @media (min-width: 481px) and (max-width: 1024px) {
+                #como-funciona {
+                  padding: 2.5rem 1rem !important;
+                }
+                #como-funciona .text-center {
+                  left: 0 !important;
+                  padding: 0 1rem !important;
+                }
+                #como-funciona h2 {
+                  font-size: 2.5rem !important;
+                  margin-bottom: 1rem !important;
+                }
+                #como-funciona p {
+                  font-size: 1.2rem !important;
+                  margin-bottom: 1.2rem !important;
+                }
+                #como-funciona .flex-col {
+                  gap: 1.5rem !important;
+                }
+                #como-funciona .flex-col > div {
+                  left: 0 !important;
+                  width: 80vw !important;
+                  max-width: 350px !important;
+                  margin: 0 auto !important;
+                }
+                #como-funciona .rounded-full {
+                  width: 64px !important;
+                  height: 64px !important;
+                  font-size: 1.5rem !important;
+                  margin-bottom: 0.7rem !important;
+                }
+                #como-funciona .absolute {
+                  width: 2.5rem !important;
+                  height: 2.5rem !important;
+                  font-size: 1rem !important;
+                  right: -1rem !important;
+                  bottom: -1rem !important;
+                }
+                #como-funciona .bg-white {
+                  padding: 1.2rem 1rem !important;
+                  width: 80vw !important;
+                  min-width: 0 !important;
+                  box-sizing: border-box !important;
+                }
+                #como-funciona .block.md\\:hidden {
+                  width: 0.4rem !important;
+                  height: 2.5rem !important;
+                  margin: 0.7rem auto !important;
+            }     
+      `}</style>
     </section>
-  );
+  )
 }

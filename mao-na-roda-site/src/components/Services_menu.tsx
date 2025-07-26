@@ -370,6 +370,56 @@ export default function ServicesMenuGrid() {
           </div>
         </div>
       )}
+      <style>{`
+          @media (max-width: 480px) {
+             .service-category-card {
+              min-width: 0;
+              max-width: 98vw;
+              padding: 1.2rem 0.5rem !important;
+              font-size: 0.95rem;
+            }
+            .service-icon-container {
+              width: 48px !important;
+              height: 48px !important;
+              font-size: 1.3rem !important;
+              margin-bottom: 0.7rem !important;
+            }
+            .service-category-card h3 {
+              font-size: 1.1rem !important;
+              margin-bottom: 0.3rem !important;
+            }
+            .service-category-card p {
+              font-size: 0.95rem !important;
+            }
+            .service-category-card {
+              margin-bottom: 1rem !important;
+            }
+            .service-category-card:last-child {
+              margin-bottom: 0 !important;
+            }
+          }
+          @media (min-width: 481px) and (max-width: 1024px) {
+                  .service-category-card {
+                  min-width: 160px;
+                  max-width: 45vw;
+                  padding: 1.5rem 1rem !important;
+                  font-size: 1rem;
+                }
+                .service-icon-container {
+                  width: 64px !important;
+                  height: 64px !important;
+                  font-size: 1.7rem !important;
+                  margin-bottom: 1rem !important;
+                }
+                .service-category-card h3 {
+                  font-size: 1.15rem !important;
+                  margin-bottom: 0.4rem !important;
+                }
+                .service-category-card p {
+                   font-size: 1rem !important;
+                }
+          }       
+  `}</style>
     </>
   );
 }
