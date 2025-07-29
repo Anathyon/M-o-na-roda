@@ -275,10 +275,12 @@ export default function Header() {
                         padding-left: 1.2rem !important;
                         padding-right: 1.2rem !important;
                         padding-bottom: 1.2rem !important;
+                        z-index: 99999999 !important;
                     }
                     .sidebar-btn-app, .sidebar-btn-pro {
                         font-size: 1rem !important;
                         padding: 0.7rem 1rem !important;
+                        z-index: 99999999 !important;
                     }
                 }
                 /* TABLET */
