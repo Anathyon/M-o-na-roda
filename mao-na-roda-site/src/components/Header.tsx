@@ -323,7 +323,7 @@ export default function Header() {
                         gap: 1vw !important;
                     }
                     .header-btn-app, .header-btn-pro {
-                        font-size: 1rem !important;
+                        font-size: 0.9rem !important;
                         padding: 0.6rem 1.1rem !important;
                     }
                     .header-menu-toggle {
