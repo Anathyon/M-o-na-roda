@@ -415,7 +415,12 @@ export default function Hero() {
               min-width: 240px;
               max-width: 420px;
             }
+            #home {
+              top: 1.6% !important;
+              padding 3% !important;
+            }
           }
+            
         `}</style>
     </article>
   );
