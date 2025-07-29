@@ -31,7 +31,7 @@ export default function Header() {
                 }}
             >
                 <div
-                    className="flex justify-between items-center w-full mx-auto"
+                    className="container-header flex justify-between items-center w-full mx-auto"
                     style={{ maxWidth: '75rem', padding: '0 5%' }}
                 >
                     {/* Logo */}
@@ -200,6 +200,11 @@ export default function Header() {
                     .sidebar-mobile {
                         display: none !important;
                     }
+                    
+                    header{
+                        width: 81% !important;
+                        overflow: hidden !important;
+                    }    
                 }
                 @media (min-width: 1025px) {
                     /* Desktop: nada extra, já está coberto */
