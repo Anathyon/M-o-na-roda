@@ -17,7 +17,6 @@ export default function Header() {
             }
         } else {
             setSidebarOpen(false);
-            // Para links externos, deixa o comportamento padrão
         }
     };
 
@@ -214,12 +213,15 @@ export default function Header() {
                         </a>
                     </div>
                 </div>
-                {/* Overlay para fechar ao clicar fora */}
+            </aside>
+            {/* Overlay para fechar ao clicar fora, fica atrás do menu */}
+            {sidebarOpen && (
                 <div
-                    className={`sidebar-overlay fixed inset-0 bg-black/40 z-[1999] ${sidebarOpen ? "block" : "hidden"}`}
+                    className="sidebar-overlay fixed inset-0 bg-black/40 z-[1500] md:hidden"
+                    style={{ pointerEvents: "auto" }}
                     onClick={() => setSidebarOpen(false)}
                 />
-            </aside>
+            )}
 
             <style>{`
                 /* MOBILE */
@@ -254,6 +256,7 @@ export default function Header() {
                         max-width: 100vw !important;
                         border-radius: 0 !important;
                         padding: 0 !important;
+                        z-index: 2000 !important;
                     }
                     .sidebar-header {
                         padding: 1rem 1.2rem !important;
@@ -275,12 +278,15 @@ export default function Header() {
                         padding-left: 1.2rem !important;
                         padding-right: 1.2rem !important;
                         padding-bottom: 1.2rem !important;
-                        z-index: 99999999 !important;
+                        z-index: 2001 !important;
                     }
                     .sidebar-btn-app, .sidebar-btn-pro {
                         font-size: 1rem !important;
                         padding: 0.7rem 1rem !important;
-                        z-index: 99999999 !important;
+                        z-index: 2001 !important;
+                    }
+                    .sidebar-overlay {
+                        z-index: 1500 !important;
                     }
                 }
                 /* TABLET */
