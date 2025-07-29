@@ -12,7 +12,7 @@ export default function Hero() {
       }}
     >
       <div className="w-full mx-auto max-w-[90rem] px-[5vw]">
-        <div className="container-textos grid grid-cols-1 md:grid-cols-2 gap-[2rem] items-center relative z-10 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-[2rem] items-center relative z-10 w-full">
           {/* Texto */}
           <div className="hero-text flex flex-col justify-center text-center md:text-left items-center md:items-start">
             <div
@@ -95,7 +95,7 @@ export default function Hero() {
             <div className="container-bts-download flex flex-wrap gap-[0.8em] justify-center md:justify-start mb-[1em] relative left-24  ">
               <a
                 href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
-                className="flex items-center gap-[0.75em] rounded-full font-semibold transition-all text-center"
+                className="flex items-center gap-[0.75em] rounded-full font-semibold transition-all"
                 style={{
                   background: "linear-gradient(135deg, #1E79F7, #0D6EFD)",
                   color: "white",
@@ -110,7 +110,7 @@ export default function Hero() {
               </a>
               <a
                 href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodaprofissional&hl=pt_BR"
-                className="flex items-center gap-[0.75em] rounded-full font-semibold transition-all text-center"
+                className="flex items-center gap-[0.75em] rounded-full font-semibold transition-all"
                 style={{
                   background: "linear-gradient(135deg, #3B82F6, #1E40AF)",
                   color: "white",
@@ -234,13 +234,6 @@ export default function Hero() {
               left: 0 !important;
               align-items: center !important;
             }
-            .container-textos{
-              padding: 5% 0 !important;
-              
-            }   
-            #home{
-              top: 1% !important;
-            }  
             .hero-text h1 {
               font-size: 1.5rem !important;
               width: 100% !important;
@@ -313,12 +306,12 @@ export default function Hero() {
             .hero-text {
               max-width: 90vw;
               padding: 0 1rem;
-              left: 10% !important;
+              left: 0 !important;
               align-items: flex-start !important;
             }
             .hero-text h1 {
               font-size: 2.1rem !important;
-              width: 100% !important;
+              width: 95% !important;
               left: 0 !important;
               padding-bottom: 1rem !important;
               border-bottom-width: 3px !important;
@@ -335,10 +328,6 @@ export default function Hero() {
               margin-right: 0 !important;
               text-align: left !important;
             }
-            .container-textos{
-              bottom: 10% !important;
-              left: 5% !important;
-            }  
             .container-bts-download {
               position: static !important;
               left: 0 !important;
@@ -385,26 +374,11 @@ export default function Hero() {
               justify-content: flex-start !important;
               left: 0 !important;
               gap: 0.7em !important;
-            } 
+            }
             #home{
-              top:1.1%; 
-              height: 30dvh !important;
-              width: 100dvw !important;
+              top:-1%; 
             }  
           }
-          
-          @media (min-width: 1024px) {
-             .container-textos{
-              bottom: 40% !important;
-              left: 5% !important;
-            }  
-             #home{
-              top:1%; 
-              height: auto !important;
-              width: 100dvw !important;
-            }    
-          }
-
           @media (min-width: 1025px) {
             .hero-text {
               max-width: 40vw;
@@ -415,12 +389,7 @@ export default function Hero() {
               min-width: 240px;
               max-width: 420px;
             }
-            #home {
-              top: 1.6% !important;
-              padding 3% !important;
-            }
           }
-            
         `}</style>
     </article>
   );
