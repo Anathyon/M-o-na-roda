@@ -151,7 +151,7 @@ export default function Header() {
                 }}
             >
                 <div className="sidebar-content flex flex-col h-full">
-                    {/* <div className="sidebar-header flex items-center justify-between px-6 py-4 border-b border-white/20" style={{ padding: "2%" }}> */}
+                    <div className="sidebar-header flex items-center justify-between px-6 py-4 border-b border-white/20" style={{ padding: "2%" }}>
                         <div className="sidebar-logo flex items-center gap-2 font-extrabold text-white text-xl">
                             <img src="/Mao-na-roda-logo.jpg" alt="Logo" className="w-8 h-8 object-contain rounded-lg bg-white" />
                             Mão na Roda
@@ -163,7 +163,7 @@ export default function Header() {
                         >
                             <i className="fas fa-times"></i>
                         </button>
-                    {/* </div> */}
+                    </div>
                     <nav className="sidebar-links flex flex-col gap-2 px-6 py-6" style={{ padding: "5%" }}>
                         <a
                             href="#home"
