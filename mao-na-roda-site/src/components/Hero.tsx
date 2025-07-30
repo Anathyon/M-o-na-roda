@@ -226,6 +226,7 @@ export default function Hero() {
         @keyframes bounce {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-0.6rem); }
+          top: 2% !important;
         }
         @keyframes float {
           0%, 100% { transform: rotate(-10deg) translateY(0); }
