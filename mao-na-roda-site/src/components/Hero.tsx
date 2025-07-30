@@ -226,7 +226,6 @@ export default function Hero() {
         @keyframes bounce {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-0.6rem); }
-          top: 200% !important;
         }
         @keyframes float {
           0%, 100% { transform: rotate(-10deg) translateY(0); }
@@ -237,6 +236,7 @@ export default function Hero() {
           .hero-article {
             padding-top: 2.5rem !important;
             padding-bottom: 2.5rem !important;
+            top: 5% !important;
           }
           .hero-grid {
             gap: 1.2rem !important;
