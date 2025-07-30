@@ -125,7 +125,7 @@ export default function ServicesMenuGrid() {
     };
   }, [modal]);
 
-  // Detecta se está em mobile
+  // Responsivo: detecta mobile
   const isMobile = typeof window !== "undefined" && window.innerWidth <= 480;
 
   // Carousel handlers
@@ -140,102 +140,96 @@ export default function ServicesMenuGrid() {
     <>
       <section
         id="servicos"
-        className="bg-gradient-to-br from-[#fafbff] via-[#f8f9fa] to-white relative top-[6rem] gap-14"
+        className="services-section-main bg-gradient-to-br from-[#fafbff] via-[#f8f9fa] to-white relative top-[6rem] gap-14"
         style={{ margin: "2% 0" }}
       >
-        <div className="w-full mx-auto" style={{ maxWidth: "75rem", padding: "2% 5%" }}>
-          <div className="text-center mb-10">
-            <h2 className="text-4xl font-extrabold text-gray-900 mb-2 relative left-24">Nossos Serviços</h2>
-            <p className="text-lg text-gray-500 max-w-xl mx-auto relative left-80" style={{ padding: "1rem 0" }}>
+        <div className="services-section-container w-full mx-auto" style={{ maxWidth: "75rem", padding: "2% 5%" }}>
+          <div className="services-section-header text-center mb-10">
+            <h2 className="services-section-title text-4xl font-extrabold text-gray-900 mb-2">
+              Nossos Serviços
+            </h2>
+            <p className="services-section-subtitle text-lg text-gray-500 max-w-xl mx-auto" style={{ padding: "1rem 0" }}>
               Profissionais qualificados para todas as suas necessidades
             </p>
           </div>
           {/* MOBILE CAROUSEL */}
           {isMobile ? (
-            <div className="relative flex flex-col items-center" style={{ minHeight: "340px" }}>
-              <div className="flex items-center justify-center w-full" ref={carouselRef}>
+            <div className="services-carousel-wrapper flex flex-col items-center w-full relative" style={{ minHeight: "370px" }}>
+              <div className="services-carousel-controls flex w-full justify-between items-center mb-4 px-2 relative z-20">
                 <button
-                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow px-2 py-2 z-10"
+                  className="services-carousel-btn bg-white rounded-full shadow-lg flex items-center justify-center"
+                  style={{
+                    width: 54,
+                    height: 54,
+                    fontSize: "2rem",
+                    border: "1.5px solid #e0e0e0",
+                    marginRight: "0.5rem",
+                  }}
                   onClick={handlePrev}
                   aria-label="Anterior"
-                  style={{ border: "1px solid #eee" }}
                 >
                   <i className="fas fa-chevron-left text-[#1E79F7]"></i>
                 </button>
                 <button
-                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow px-2 py-2 z-10"
+                  className="services-carousel-btn bg-white rounded-full shadow-lg flex items-center justify-center"
+                  style={{
+                    width: 54,
+                    height: 54,
+                    fontSize: "2rem",
+                    border: "1.5px solid #e0e0e0",
+                    marginLeft: "0.5rem",
+                  }}
                   onClick={handleNext}
                   aria-label="Próximo"
-                  style={{ border: "1px solid #eee" }}
                 >
                   <i className="fas fa-chevron-right text-[#1E79F7]"></i>
                 </button>
-                <div
-                  className="w-full flex justify-center transition-all duration-500"
-                  style={{ minHeight: "320px" }}
+              </div>
+              <div className="services-carousel-card-wrapper flex justify-center w-full relative z-10" ref={carouselRef}>
+                <button
+                  key={services[carouselIndex].category}
+                  className="services-carousel-card bg-white rounded-2xl text-center shadow-lg border-2 border-transparent transition-all duration-300 cursor-pointer overflow-hidden group flex flex-col items-center"
+                  style={{
+                    boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
+                    minWidth: "90vw",
+                    maxWidth: "95vw",
+                    padding: "2.2rem 1.2rem",
+                  }}
+                  onClick={() => setModal(services[carouselIndex])}
                 >
-                  <button
-                    key={services[carouselIndex].category}
-                    className="service-category-card relative bg-white p-8 rounded-2xl text-center shadow-lg border-2 border-transparent transition-all duration-300 cursor-pointer overflow-hidden group"
+                  <div
+                    className="services-carousel-gradient absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                     style={{
-                      boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
-                      minWidth: "90vw",
-                      maxWidth: "95vw",
+                      background: services[carouselIndex].gradient,
+                      zIndex: 1,
                     }}
-                    onClick={() => setModal(services[carouselIndex])}
+                  />
+                  <div
+                    className="services-carousel-icon mx-auto mb-6 flex items-center justify-center rounded-full transition-all duration-300 relative z-10"
+                    style={{
+                      width: 60,
+                      height: 60,
+                      background: "linear-gradient(135deg, #f8f9fa, #e9ecef)",
+                      boxShadow: "0 4px 16px rgba(30,121,247,0.08)",
+                    }}
                   >
-                    <div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    <i
+                      className={`${services[carouselIndex].icon} text-[2rem] transition-all duration-300`}
                       style={{
-                        background: services[carouselIndex].gradient,
-                        zIndex: 1,
+                        color: services[carouselIndex].color,
                       }}
                     />
-                    <div
-                      className="service-icon-container mx-auto mb-6 flex items-center justify-center rounded-full transition-all duration-300 relative z-10"
-                      style={{
-                        width: 64,
-                        height: 64,
-                        background: "linear-gradient(135deg, #f8f9fa, #e9ecef)",
-                        boxShadow: "0 4px 16px rgba(30,121,247,0.08)",
-                      }}
-                    >
-                      <i
-                        className={`${services[carouselIndex].icon} text-[2rem] transition-all duration-300`}
-                        style={{
-                          color: services[carouselIndex].color,
-                        }}
-                      />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 relative z-10 group-hover:text-[#1E79F7] transition-colors duration-300">
-                      {services[carouselIndex].title}
-                    </h3>
-                    <p className="text-gray-500 text-base relative z-10 group-hover:text-gray-800 transition-colors duration-300">
-                      {services[carouselIndex].desc}
-                    </p>
-                    <style>{`
-                      .group:hover .service-icon-container {
-                        background: ${services[carouselIndex].gradient};
-                        transform: scale(1.1);
-                        box-shadow: 0 10px 30px ${services[carouselIndex].color}33;
-                      }
-                      .group:hover .service-icon-container i {
-                        color: ${services[carouselIndex].color} !important;
-                        background: rgba(255,255,255,0.25);
-                        border-radius: 50%;
-                        padding: 0.3em;
-                        transform: scale(1.1);
-                        transition: background 0.3s;
-                      }
-                      .group:hover h3 {
-                        color: ${services[carouselIndex].color} !important;
-                      }
-                    `}</style>
-                  </button>
-                </div>
+                  </div>
+                  <h3 className="services-carousel-title text-xl font-bold text-gray-900 mb-2 relative z-10 group-hover:text-[#1E79F7] transition-colors duration-300">
+                    {services[carouselIndex].title}
+                  </h3>
+                  <p className="services-carousel-desc text-gray-500 text-base relative z-10 group-hover:text-gray-800 transition-colors duration-300">
+                    {services[carouselIndex].desc}
+                  </p>
+                </button>
               </div>
               {/* Indicadores */}
-              <div className="flex justify-center gap-2 mt-4">
+              <div className="services-carousel-indicators flex justify-center gap-2 mt-5">
                 {services.map((_, idx) => (
                   <span
                     key={idx}
@@ -247,29 +241,29 @@ export default function ServicesMenuGrid() {
             </div>
           ) : (
             // DESKTOP/TABLET GRID
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto relative left-36">
+            <div className="services-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {services.map((service) => (
                 <button
                   key={service.category}
-                  className="service-category-card relative bg-white p-10 rounded-2xl text-center shadow-lg border-2 border-transparent transition-all duration-300 cursor-pointer overflow-hidden group"
+                  className="services-grid-card bg-white rounded-2xl text-center shadow-lg border-2 border-transparent transition-all duration-300 cursor-pointer overflow-hidden group flex flex-col items-center"
                   style={{
                     boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
-                    padding: "1%"
+                    padding: "2.2rem 1.2rem",
                   }}
                   onClick={() => setModal(service)}
                 >
                   <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    className="services-grid-gradient absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                     style={{
                       background: service.gradient,
                       zIndex: 1,
                     }}
                   />
                   <div
-                    className="service-icon-container mx-auto mb-6 flex items-center justify-center rounded-full transition-all duration-300 relative z-10"
+                    className="services-grid-icon mx-auto mb-6 flex items-center justify-center rounded-full transition-all duration-300 relative z-10"
                     style={{
-                      width: 80,
-                      height: 80,
+                      width: 70,
+                      height: 70,
                       background: "linear-gradient(135deg, #f8f9fa, #e9ecef)",
                       boxShadow: "0 4px 16px rgba(30,121,247,0.08)",
                     }}
@@ -281,30 +275,12 @@ export default function ServicesMenuGrid() {
                       }}
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 relative z-10 group-hover:text-[#1E79F7] transition-colors duration-300">
+                  <h3 className="services-grid-title text-xl font-bold text-gray-900 mb-2 relative z-10 group-hover:text-[#1E79F7] transition-colors duration-300">
                     {service.title}
                   </h3>
-                  <p className="text-gray-500 text-base relative z-10 group-hover:text-gray-800 transition-colors duration-300">
+                  <p className="services-grid-desc text-gray-500 text-base relative z-10 group-hover:text-gray-800 transition-colors duration-300">
                     {service.desc}
                   </p>
-                  <style>{`
-                    .group:hover .service-icon-container {
-                      background: ${service.gradient};
-                      transform: scale(1.1);
-                      box-shadow: 0 10px 30px ${service.color}33;
-                    }
-                    .group:hover .service-icon-container i {
-                      color: ${service.color} !important;
-                      background: rgba(255,255,255,0.25);
-                      border-radius: 50%;
-                      padding: 0.3em;
-                      transform: scale(1.1);
-                      transition: background 0.3s;
-                    }
-                    .group:hover h3 {
-                      color: ${service.color} !important;
-                    }
-                  `}</style>
                 </button>
               ))}
             </div>
@@ -315,11 +291,11 @@ export default function ServicesMenuGrid() {
       {/* Modal */}
       {modal && (
         <div
-          className="fixed inset-0 z-[3000] flex items-center justify-center bg-black/40"
+          className="services-modal-overlay fixed inset-0 z-[3000] flex items-center justify-center bg-black/40"
           onClick={() => setModal(null)}
         >
           <div
-            className="bg-white rounded-2xl shadow-2xl max-w-[95vw] w-[350px] sm:w-[420px] relative"
+            className="services-modal-content bg-white rounded-2xl shadow-2xl max-w-[95vw] w-[350px] sm:w-[420px] relative"
             style={{
               boxShadow: "0 8px 32px rgba(30,121,247,0.18)",
               border: `2px solid ${modal.color}`,
@@ -327,7 +303,7 @@ export default function ServicesMenuGrid() {
             }}
             onClick={e => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between mb-4">
+            <div className="services-modal-header flex items-center justify-between mb-4">
               <div className="flex items-center justify-center w-full">
                 <h2 className="font-bold text-xl text-gray-900">{modal.title}</h2>
               </div>
@@ -339,9 +315,9 @@ export default function ServicesMenuGrid() {
                 ×
               </button>
             </div>
-            <p className="text-gray-600 mb-4 flex justify-center">{modal.desc}</p>
-            <h4 className="font-semibold text-gray-800 mb-2 flex justify-center">Serviços Inclusos:</h4>
-            <ul className="flex flex-col items-center" style={{ gap: "0.5rem", paddingBottom:"2%" }}>
+            <p className="services-modal-desc text-gray-600 mb-4 flex justify-center">{modal.desc}</p>
+            <h4 className="services-modal-list-title font-semibold text-gray-800 mb-2 flex justify-center">Serviços Inclusos:</h4>
+            <ul className="services-modal-list flex flex-col items-center" style={{ gap: "0.5rem", paddingBottom:"2%" }}>
               {modal.services.map((item: string) => (
                 <li
                   key={item}
@@ -359,7 +335,7 @@ export default function ServicesMenuGrid() {
               href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-auto text-center bg-[#1E79F7] text-white font-bold py-3 rounded-lg text-base mt-2 transition hover:bg-[#0D6EFD]"
+              className="services-modal-btn block w-auto text-center bg-[#1E79F7] text-white font-bold py-3 rounded-lg text-base mt-2 transition hover:bg-[#0D6EFD]"
               style={{
                 padding: "3% 0"
               }}
@@ -371,55 +347,175 @@ export default function ServicesMenuGrid() {
         </div>
       )}
       <style>{`
-          @media (max-width: 480px) {
-             .service-category-card {
-              min-width: 0;
-              max-width: 98vw;
-              padding: 1.2rem 0.5rem !important;
-              font-size: 0.95rem;
-            }
-            .service-icon-container {
-              width: 48px !important;
-              height: 48px !important;
-              font-size: 1.3rem !important;
-              margin-bottom: 0.7rem !important;
-            }
-            .service-category-card h3 {
-              font-size: 1.1rem !important;
-              margin-bottom: 0.3rem !important;
-            }
-            .service-category-card p {
-              font-size: 0.95rem !important;
-            }
-            .service-category-card {
-              margin-bottom: 1rem !important;
-            }
-            .service-category-card:last-child {
-              margin-bottom: 0 !important;
-            }
+        /* MOBILE */
+        @media (max-width: 480px) {
+          .services-section-main {
+            padding: 2rem 0.5rem !important;
           }
-          @media (min-width: 481px) and (max-width: 1024px) {
-                  .service-category-card {
-                  min-width: 160px;
-                  max-width: 45vw;
-                  padding: 1.5rem 1rem !important;
-                  font-size: 1rem;
-                }
-                .service-icon-container {
-                  width: 64px !important;
-                  height: 64px !important;
-                  font-size: 1.7rem !important;
-                  margin-bottom: 1rem !important;
-                }
-                .service-category-card h3 {
-                  font-size: 1.15rem !important;
-                  margin-bottom: 0.4rem !important;
-                }
-                .service-category-card p {
-                   font-size: 1rem !important;
-                }
-          }       
-  `}</style>
+          .services-section-container {
+            padding: 0 0.5rem !important;
+            max-width: 100vw !important;
+          }
+          .services-section-header {
+            margin-bottom: 2rem !important;
+          }
+          .services-section-title {
+            font-size: 2rem !important;
+            padding: 0.5rem 0 !important;
+            text-align: center !important;
+          }
+          .services-section-subtitle {
+            font-size: 1.1rem !important;
+            text-align: center !important;
+            padding: 0.5rem 0 !important;
+          }
+          .services-carousel-wrapper {
+            min-height: 370px !important;
+            width: 100vw !important;
+          }
+          .services-carousel-controls {
+            margin-bottom: 0.5rem !important;
+            padding: 0 0.5rem !important;
+            width: 100vw !important;
+            justify-content: space-between !important;
+          }
+          .services-carousel-btn {
+            width: 54px !important;
+            height: 54px !important;
+            font-size: 2rem !important;
+            box-shadow: 0 2px 10px rgba(30,121,247,0.08) !important;
+          }
+          .services-carousel-card-wrapper {
+            width: 100vw !important;
+            justify-content: center !important;
+            align-items: center !important;
+          }
+          .services-carousel-card {
+            min-width: 90vw !important;
+            max-width: 95vw !important;
+            padding: 2.2rem 1.2rem !important;
+            margin: 0 auto !important;
+            border-radius: 1.2rem !important;
+            font-size: 1rem !important;
+          }
+          .services-carousel-icon {
+            width: 3.2rem !important;
+            height: 3.2rem !important;
+            font-size: 1.5rem !important;
+            margin-bottom: 1rem !important;
+          }
+          .services-carousel-title {
+            font-size: 1.2rem !important;
+            margin-bottom: 0.3rem !important;
+          }
+          .services-carousel-desc {
+            font-size: 1rem !important;
+          }
+          .services-carousel-indicators {
+            margin-top: 1.2rem !important;
+          }
+        }
+        /* TABLET */
+        @media (min-width: 481px) and (max-width: 1024px) {
+          .services-section-main {
+            padding: 2.5rem 1rem !important;
+          }
+          .services-section-container {
+            padding: 0 1.5rem !important;
+            max-width: 98vw !important;
+          }
+          .services-section-header {
+            margin-bottom: 2.5rem !important;
+          }
+          .services-section-title {
+            font-size: 2.3rem !important;
+            padding: 0.7rem 0 !important;
+            text-align: center !important;
+          }
+          .services-section-subtitle {
+            font-size: 1.2rem !important;
+            text-align: center !important;
+            padding: 0.7rem 0 !important;
+          }
+          .services-grid {
+            gap: 2rem !important;
+            padding: 1rem 0.5rem !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            max-width: 90vw !important;
+          }
+          .services-grid-card {
+            min-width: 180px !important;
+            max-width: 45vw !important;
+            padding: 2rem 1.2rem !important;
+            font-size: 1.05rem !important;
+            margin: 0.5rem auto !important;
+            border-radius: 1.1rem !important;
+          }
+          .services-grid-icon {
+            width: 3.7rem !important;
+            height: 3.7rem !important;
+            font-size: 1.7rem !important;
+            margin-bottom: 1rem !important;
+          }
+          .services-grid-title {
+            font-size: 1.15rem !important;
+            margin-bottom: 0.4rem !important;
+          }
+          .services-grid-desc {
+            font-size: 1rem !important;
+          }
+        }
+        /* DESKTOP */
+        @media (min-width: 1025px) {
+          .services-section-main {
+            padding: 3% 0 !important;
+          }
+          .services-section-container {
+            padding: 0 5% !important;
+            max-width: 75rem !important;
+          }
+          .services-section-header {
+            margin-bottom: 3rem !important;
+          }
+          .services-section-title {
+            font-size: 2.5rem !important;
+            padding: 1rem 0 !important;
+            text-align: center !important;
+          }
+          .services-section-subtitle {
+            font-size: 1.3rem !important;
+            text-align: center !important;
+            padding: 1rem 0 !important;
+          }
+          .services-grid {
+            gap: 2.5rem !important;
+            padding: 1rem 2rem !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            max-width: 70vw !important;
+          }
+          .services-grid-card {
+            min-width: 220px !important;
+            max-width: 340px !important;
+            padding: 2.2rem 1.2rem !important;
+            font-size: 1.1rem !important;
+            margin: 1rem auto !important;
+            border-radius: 1.25rem !important;
+          }
+          .services-grid-icon {
+            width: 4.4rem !important;
+            height: 4.4rem !important;
+            font-size: 2rem !important;
+            margin-bottom: 1.2rem !important;
+          }
+          .services-grid-title {
+            font-size: 1.3rem !important;
+            margin-bottom: 0.7rem !important;
+          }
+          .services-grid-desc {
+            font-size: 1.1rem !important;
+          }
+        }
+      `}</style>
     </>
   );
 }
