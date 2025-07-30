@@ -141,7 +141,7 @@ export default function Header() {
 
             {/* Sidebar Mobile */}
             <aside
-                className={`sidebar-mobile fixed top-0 left-0 h-full w-[80vw] max-w-[320px] bg-gradient-to-br from-[#1E79F7] to-[#0D6EFD] shadow-2xl z-[99999] transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:hidden`}
+                className={`sidebar-mobile fixed top-0 left-0 h-full w-[80vw] max-w-[320px] bg-gradient-to-br from-[#1E79F7] to-[#0D6EFD] shadow-2xl z-[99] transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:hidden`}
                 style={{
                     borderTopRightRadius: "1.5rem",
                     borderBottomRightRadius: "1.5rem",
@@ -157,7 +157,7 @@ export default function Header() {
                             Mão na Roda
                         </div>
                         <button
-                            className="sidebar-close text-white text-2xl"
+                            className="sidebar-close text-white text-2xl z-[999999]"
                             onClick={() => setSidebarOpen(false)}
                             aria-label="Fechar menu"
                         >
@@ -167,21 +167,21 @@ export default function Header() {
                     <nav className="sidebar-links flex flex-col gap-2 px-6 py-6" style={{ padding: "5%" }}>
                         <a
                             href="#home"
-                            className="sidebar-link text-white font-semibold text-lg py-2 rounded-lg hover:bg-white/10 transition"
+                            className="sidebar-link text-white font-semibold text-lg py-2 rounded-lg hover:bg-white/10 transition z-[999999]"
                             onClick={e => handleNavClick(e, "#home")}
                         >
                             Home
                         </a>
                         <a
                             href="#servicos"
-                            className="sidebar-link text-white font-semibold text-lg py-2 rounded-lg hover:bg-white/10 transition"
+                            className="sidebar-link text-white font-semibold text-lg py-2 rounded-lg hover:bg-white/10 transition z-[999999]"
                             onClick={e => handleNavClick(e, "#servicos")}
                         >
                             Serviços
                         </a>
                         <a
                             href="#como-funciona"
-                            className="sidebar-link text-white font-semibold text-lg py-2 rounded-lg hover:bg-white/10 transition"
+                            className="sidebar-link text-white font-semibold text-lg py-2 rounded-lg hover:bg-white/10 transition z-[999999]"
                             onClick={e => handleNavClick(e, "#como-funciona")}
                         >
                             Como Funciona
@@ -190,7 +190,7 @@ export default function Header() {
                     <div className="sidebar-btns flex flex-col gap-3 px-6 mt-auto pb-8">
                         <a
                             href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
-                            className="sidebar-btn-app flex items-center gap-2 rounded-full border-2 border-white text-white font-semibold transition-all text-base bg-transparent hover:bg-white/10 px-4 py-3"
+                            className="sidebar-btn-app flex items-center gap-2 rounded-full border-2 border-white text-white font-semibold transition-all text-base bg-transparent hover:bg-white/10 px-4 py-3 z-[999999]"
                             style={{ padding: '0.75rem 1.25rem' }}
                             target="_blank" rel="noopener noreferrer"
                             onClick={() => setSidebarOpen(false)}
@@ -200,7 +200,7 @@ export default function Header() {
                         </a>
                         <a
                             href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodaprofissional&hl=pt_BR"
-                            className="sidebar-btn-pro flex items-center gap-2 rounded-full text-white font-semibold transition-all text-base"
+                            className="sidebar-btn-pro flex items-center gap-2 rounded-full text-white font-semibold transition-all text-base z-[999999]"
                             style={{
                                 background: 'linear-gradient(135deg, #3B82F6, #1E40AF)',
                                 boxShadow: '0 0.25rem 0.94rem rgba(30,121,247,0.3)',

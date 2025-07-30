@@ -236,7 +236,6 @@ export default function Hero() {
           .hero-article {
             padding-top: 2.5rem !important;
             padding-bottom: 2.5rem !important;
-            top: 5% !important;
           }
           .hero-grid {
             gap: 1.2rem !important;
