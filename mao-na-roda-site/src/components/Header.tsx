@@ -100,7 +100,7 @@ export default function Header() {
                                 Como Funciona
                             </a>
                         </div>
-                        <div className="header-btns md:flex flex-row gap-4 order-2 justify-center hidden md:flex">
+                        <div className="header-btns md:flex flex-row gap-4 order-2 justify-center hidden md:flex w-full">
                             <a
                                 href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
                                 className="header-btn-app flex items-center gap-2 rounded-full border-2 border-gray-300 text-white font-semibold transition-all text-[0.95rem] bg-transparent hover:bg-white/10"
