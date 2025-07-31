@@ -10,41 +10,11 @@ export default function ClientCard() {
   }, []);
 
   return (
-    <div
-      className="advantage-card-modern client-card fade-in relative mb-16 top-[6rem]"
-      style={{
-        maxWidth: "1000px",
-        margin: "0 auto 4rem",
-        background: "white",
-        borderRadius: "30px",
-        boxShadow: "0 20px 60px rgba(0,0,0,0.1)",
-        position: "relative",
-        overflow: "hidden",
-        transition: "all 0.4s ease",
-      }}
-    >
+    <div className="client-card-main">
       {/* Floating icons */}
-      <div className="card-background absolute inset-0 pointer-events-none">
-        <div className="floating-elements w-full h-full">
-          <div
-            className="floating-icon"
-            style={{
-              position: "absolute",
-              top: "20%",
-              left: "10%",
-              width: 40,
-              height: 40,
-              background: "rgba(255,255,255,0.8)",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#1E79F7",
-              fontSize: "1.2rem",
-              boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
-              backdropFilter: "blur(10px)",
-            }}
-          >
+      <div className="client-card-bg">
+        <div className="floating-elements">
+          <div className="floating-icon client-logo">
             <img
               src="/Mao-na-roda-logo.jpg"
               alt="Mão na Roda"
@@ -56,155 +26,56 @@ export default function ClientCard() {
               }}
             />
           </div>
-          <div
-            className="floating-icon"
-            style={{
-              position: "absolute",
-              top: "60%",
-              left: "85%",
-              width: 40,
-              height: 40,
-              background: "rgba(255,255,255,0.8)",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#1E79F7",
-              fontSize: "1.2rem",
-              boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
-              backdropFilter: "blur(10px)",
-            }}
-          >
-            <i className="fas fa-tools"></i>
-          </div>
-          <div
-            className="floating-icon"
-            style={{
-              position: "absolute",
-              top: "30%",
-              left: "80%",
-              width: 40,
-              height: 40,
-              background: "rgba(255,255,255,0.8)",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#1E79F7",
-              fontSize: "1.2rem",
-              boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
-              backdropFilter: "blur(10px)",
-            }}
-          >
-            <i className="fas fa-star"></i>
-          </div>
-          {/* Elemento sem ícone: adicionado ícone de usuário */}
-          <div
-            className="floating-icon"
-            style={{
-              position: "absolute",
-              top: "80%",
-              left: "15%",
-              width: 40,
-              height: 40,
-              background: "rgba(255,255,255,0.8)",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#1E79F7",
-              fontSize: "1.2rem",
-              boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
-              backdropFilter: "blur(10px)",
-            }}
-          >
-            <i className="fas fa-user"></i>
-          </div>
+          <div className="floating-icon"><i className="fas fa-tools"></i></div>
+          <div className="floating-icon"><i className="fas fa-star"></i></div>
+          <div className="floating-icon"><i className="fas fa-user"></i></div>
         </div>
       </div>
-      <div className="card-content grid md:grid-cols-2 gap-8 md:gap-16 p-6 md:p-16 relative z-10" style={{ padding: "2rem 1rem" }}>
-        <div className="card-left flex flex-col justify-center items-center md:items-start relative left-3">
-          <div
-            className="advantage-badge-modern mb-6"
-            style={{
-              background: "linear-gradient(135deg, #1E79F7, #0D6EFD)",
-              color: "white",
-              padding: "0.8rem 2rem",
-              borderRadius: "50px",
-              fontWeight: 700,
-              fontSize: "0.9rem",
-              marginBottom: "2rem",
-              boxShadow: "0 8px 25px rgba(30, 121, 247, 0.3)",
-              textTransform: "uppercase",
-              letterSpacing: "1px",
-              display: "inline-block",
-            }}
-          >
-            Para Clientes
-          </div>
-          <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4 text-center md:text-left">Seguro e Confiável</h3>
-          <p className="text-base md:text-lg text-gray-500 mb-8 text-center md:text-left">
+      <div className="client-card-content">
+        <div className="client-card-left">
+          <div className="client-badge">Para Clientes</div>
+          <h3 className="client-title">Seguro e Confiável</h3>
+          <p className="client-desc">
             Receba ajuda especializada para todos os reparos e projetos em sua casa. Garanta serviços de qualidade e um lar impecável.
           </p>
-          <div className="flex flex-col gap-4 mt-8 w-full items-center md:items-start">
+          <div className="client-card-actions">
             <a
               href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
-              className="advantage-btn-modern w-full md:w-auto"
-              style={{
-                background: "linear-gradient(135deg, #1E79F7, #0D6EFD)",
-                color: "white",
-                padding: "1.2rem 2rem",
-                borderRadius: "50px",
-                fontWeight: 700,
-                fontSize: "1.1rem",
-                boxShadow: "0 10px 30px rgba(30, 121, 247, 0.3)",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "1rem",
-                marginBottom: 0,
-                justifyContent: "center",
-              }}
+              className="client-btn"
             >
               <i className="fas fa-download"></i>
               <span>Baixar App Cliente</span>
             </a>
-            <div
-              style={{
-                fontSize: "0.9rem",
-                color: "#6C757D",
-                textAlign: "center",
-                opacity: 0.8,
-              }}
-            >
+            <div className="client-app-note">
               📱 App exclusivo para quem precisa de serviços
             </div>
           </div>
         </div>
-        <div className="card-right w-full">
-          <div className="feature-grid grid grid-cols-2 gap-4 md:gap-6 relative top-[20%] right-[10%]">
-            <div className="feature-item-modern bg-white p-4 md:p-6 rounded-2xl text-center shadow border border-blue-100 animate-fade-in-up" style={{animationDelay: "0.1s", padding:"2%"}}>
-              <div className="feature-icon mx-auto mb-2 md:mb-4 bg-gradient-to-br from-[#1E79F7] to-[#0D6EFD] rounded-xl flex items-center justify-center w-[40px] md:w-[50px] h-[40px] md:h-[50px] text-white text-lg md:text-xl shadow">
+        <div className="client-card-right">
+          <div className="client-feature-grid">
+            <div className="client-feature-item">
+              <div className="client-feature-icon">
                 <i className="fas fa-check-circle"></i>
               </div>
-              <span className="text-gray-900 font-semibold text-sm md:text-base">Profissionais verificados</span>
+              <span>Profissionais verificados</span>
             </div>
-            <div className="feature-item-modern bg-white p-4 md:p-6 rounded-2xl text-center shadow border border-blue-100 animate-fade-in-up" style={{ animationDelay: "0.2s", padding:"2%" }}>
-              <div className="feature-icon mx-auto mb-2 md:mb-4 bg-gradient-to-br from-[#1E79F7] to-[#0D6EFD] rounded-xl flex items-center justify-center w-[40px] md:w-[50px] h-[40px] md:h-[50px] text-white text-lg md:text-xl shadow">
+            <div className="client-feature-item">
+              <div className="client-feature-icon">
                 <i className="fas fa-dollar-sign"></i>
               </div>
-              <span className="text-gray-900 font-semibold text-sm md:text-base">Preços transparentes</span>
+              <span>Preços transparentes</span>
             </div>
-            <div className="feature-item-modern bg-white p-4 md:p-6 rounded-2xl text-center shadow border border-blue-100 animate-fade-in-up" style={{ animationDelay: "0.4s", padding:"2%" }}>
-              <div className="feature-icon mx-auto mb-2 md:mb-4 bg-gradient-to-br from-[#1E79F7] to-[#0D6EFD] rounded-xl flex items-center justify-center w-[40px] md:w-[50px] h-[40px] md:h-[50px] text-white text-lg md:text-xl shadow">
+            <div className="client-feature-item">
+              <div className="client-feature-icon">
                 <i className="fas fa-calendar-check"></i>
               </div>
-              <span className="text-gray-900 font-semibold text-sm md:text-base">Agendamento fácil</span>
+              <span>Agendamento fácil</span>
             </div>
-            <div className="feature-item-modern bg-white p-4 md:p-6 rounded-2xl text-center shadow border border-blue-100 animate-fade-in-up" style={{ animationDelay: "0.6s", padding:"2%" }}>
-              <div className="feature-icon mx-auto mb-2 md:mb-4 bg-gradient-to-br from-[#1E79F7] to-[#0D6EFD] rounded-xl flex items-center justify-center w-[40px] md:w-[50px] h-[40px] md:h-[50px] text-white text-lg md:text-xl shadow">
+            <div className="client-feature-item">
+              <div className="client-feature-icon">
                 <i className="fas fa-lock"></i>
               </div>
-              <span className="text-gray-900 font-semibold text-sm md:text-base">Pagamento seguro</span>
+              <span>Pagamento seguro</span>
             </div>
           </div>
         </div>
@@ -218,45 +89,201 @@ export default function ClientCard() {
           0% { transform: rotate(0deg);}
           100% { transform: rotate(360deg);}
         }
-        .animate-fade-in-up {
-          opacity: 0;
-          transform: translateY(30px);
-          animation: fadeInUp 0.8s forwards;
+        .client-card-main {
+          max-width: 1000px;
+          margin: 4rem auto 4rem auto;
+          background: #fff;
+          border-radius: 2rem;
+          box-shadow: 0 20px 60px rgba(0,0,0,0.10);
+          overflow: hidden;
+          position: relative;
+          top: 6rem;
+          transition: all 0.4s;
         }
-        @keyframes fadeInUp {
-          to {
-            opacity: 1;
-            transform: translateY(0);
+        .client-card-bg {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          z-index: 1;
+        }
+        .floating-elements {
+          width: 100%;
+          height: 100%;
+          position: relative;
+        }
+        .floating-icon {
+          position: absolute;
+          width: 40px;
+          height: 40px;
+          background: rgba(255,255,255,0.8);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #1E79F7;
+          font-size: 1.2rem;
+          box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+          backdrop-filter: blur(10px);
+        }
+        .client-logo { top: 20%; left: 10%; }
+        .floating-icon:nth-child(2) { top: 60%; left: 85%; }
+        .floating-icon:nth-child(3) { top: 30%; left: 80%; }
+        .floating-icon:nth-child(4) { top: 80%; left: 15%; }
+        .client-card-content {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2.5rem;
+          padding: 2.5rem 2rem;
+          position: relative;
+          z-index: 2;
+        }
+        .client-card-left {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+        }
+        .client-badge {
+          background: linear-gradient(135deg, #1E79F7, #0D6EFD);
+          color: #fff;
+          padding: 0.8rem 2rem;
+          border-radius: 50px;
+          font-weight: 700;
+          font-size: 0.95rem;
+          margin-bottom: 2rem;
+          box-shadow: 0 8px 25px rgba(30, 121, 247, 0.18);
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          display: inline-block;
+        }
+        .client-title {
+          font-size: 2rem;
+          font-weight: 800;
+          color: #212529;
+          margin-bottom: 1rem;
+        }
+        .client-desc {
+          font-size: 1.15rem;
+          color: #6C757D;
+          margin-bottom: 2rem;
+        }
+        .client-card-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          width: 100%;
+          align-items: flex-start;
+        }
+        .client-btn {
+          background: linear-gradient(135deg, #1E79F7, #0D6EFD);
+          color: #fff;
+          padding: 1.2rem 2rem;
+          border-radius: 50px;
+          font-weight: 700;
+          font-size: 1.1rem;
+          box-shadow: 0 10px 30px rgba(30, 121, 247, 0.18);
+          display: inline-flex;
+          align-items: center;
+          gap: 1rem;
+          justify-content: center;
+          text-decoration: none;
+          transition: background 0.2s;
+        }
+        .client-btn:hover {
+          background: linear-gradient(135deg, #0D6EFD, #1E79F7);
+        }
+        .client-app-note {
+          font-size: 0.95rem;
+          color: #6C757D;
+          opacity: 0.85;
+        }
+        .client-card-right {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .client-feature-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.2rem;
+          width: 100%;
+        }
+        .client-feature-item {
+          background: #fff;
+          border: 1.5px solid #e3eefd;
+          border-radius: 1.2rem;
+          box-shadow: 0 2px 12px rgba(30,121,247,0.07);
+          padding: 1.2rem 0.7rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.7rem;
+          min-width: 120px;
+        }
+        .client-feature-icon {
+          background: linear-gradient(135deg, #1E79F7, #0D6EFD);
+          color: #fff;
+          border-radius: 0.7rem;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.3rem;
+          margin-bottom: 0.3rem;
+        }
+        .client-feature-item span {
+          color: #212529;
+          font-weight: 600;
+          font-size: 1rem;
+          text-align: center;
+        }
+        /* Tablet */
+        @media (max-width: 1024px) {
+          .client-card-main {
+            max-width: 98vw;
+            border-radius: 1.5rem;
+            margin: 2rem auto 2rem auto;
+          }
+          .client-card-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            padding: 2rem 1rem;
+          }
+          .client-card-right {
+            margin-top: 1.5rem;
           }
         }
-        @media (max-width: 480px) {
-          .client-card {
-            max-width: 98vw !important;
-            margin: 1rem auto 2rem !important;
-            border-radius: 1.2rem !important;
+        /* Mobile */
+        @media (max-width: 600px) {
+          .client-card-main {
+            max-width: 99vw;
+            border-radius: 1.1rem;
+            margin: 1rem auto 1.5rem auto;
+            top: 3rem;
           }
-          .card-content {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-            padding: 1.2rem !important;
+          .client-card-content {
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+            padding: 1.2rem 0.5rem;
           }
-          .feature-grid {
-            gap: 1rem !important;
+          .client-title {
+            font-size: 1.3rem;
           }
-          .advantage-badge-modern {
-            font-size: 0.85rem !important;
-            padding: 0.6rem 1.2rem !important;
+          .client-desc {
+            font-size: 1rem;
           }
-          .feature-icon {
-            width: 36px !important;
-            height: 36px !important;
-            font-size: 1rem !important;
+          .client-feature-grid {
+            gap: 0.7rem;
           }
-          h3 {
-            font-size: 1.3rem !important;
+          .client-feature-item {
+            padding: 0.8rem 0.3rem;
+            min-width: 0;
           }
-          p {
-            font-size: 1rem !important;
+          .client-feature-icon {
+            width: 32px;
+            height: 32px;
+            font-size: 1rem;
           }
         }
       `}</style>
