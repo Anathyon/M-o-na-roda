@@ -69,7 +69,7 @@ export default function AdvantagesSection() {
           .advantages-section {
             padding: 2rem 0.5rem;
             border-radius: 1.2rem;
-            margin: 1.2rem 0 2rem 0;
+            margin: 1.2rem 0 4rem 0;
             max-width: 100vw;
           }
           .advantages-container {
