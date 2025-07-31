@@ -89,182 +89,88 @@ export default function TestimonialsSection() {
   return (
     <section
       id="depoimentos"
-      className="py-24 overflow-hidden relative top-[6rem]"
-      style={{
-        background:
-          "linear-gradient(135deg, #E8F5E8 0%, #F0FFF0 50%, #E8F5E8 100%)",
-        marginTop: "3%"
-      }}
+      className="testimonials-section"
     >
       {/* SVG background pattern */}
       <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          opacity: 0.1,
-          background:
-            "url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><defs><pattern id=\"stars-pattern\" width=\"30\" height=\"30\" patternUnits=\"userSpaceOnUse\"><circle cx=\"15\" cy=\"15\" r=\"0.5\" fill=\"%231E79F7\"/><circle cx=\"5\" cy=\"25\" r=\"0.3\" fill=\"%231E79F7\"/><circle cx=\"25\" cy=\"8\" r=\"0.4\" fill=\"%231E79F7\"/></pattern></defs><rect width=\"100\" height=\"100\" fill=\"url(%23stars-pattern)\"/></svg>')",
-        }}
+        className="testimonials-bg-pattern"
       />
-      <div className="w-full mx-auto relative z-10 left-20" style={{ maxWidth: "75rem", padding: "2% 5%" }}>
-        <div className="text-center mb-16 relative z-10">
-          <div
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold mb-6 shadow"
-            style={{
-              background: "linear-gradient(135deg, #1E79F7, #0D6EFD)",
-              color: "white",
-              borderRadius: "2rem",
-              boxShadow: "0 0.5rem 1.5rem rgba(30, 121, 247, 0.3)",
-              border: "2px solid rgba(255,255,255,0.2)",
-              padding: "1%",
-            }}
-          >
-            <i className="fas fa-star text-[1.1rem]"></i>
+      <div className="testimonials-container">
+        <div className="testimonials-header">
+          <div className="testimonials-badge">
+            <i className="fas fa-star"></i>
             <span>Depoimentos Verificados</span>
           </div>
-          <h2
-            className="font-black mb-6"
-            style={{
-              fontSize: "clamp(2rem, 5vw, 3.5rem)",
-              color: "#212529",
-              lineHeight: 1.1,
-            }}
-          >
+          <h2 className="testimonials-title">
             O que nossos{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #1E79F7, #0D6EFD)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
+            <span className="testimonials-title-gradient">
               usuários dizem
             </span>
           </h2>
-          <p
-            className="text-lg mx-auto"
-            style={{
-              color: "#6C757D",
-              marginBottom:"2%",
-            }}
-          >
+          <p className="testimonials-subtitle">
             Mais de 50.000 famílias e profissionais já usam a Mão na Roda para transformar seus lares e suas carreiras.
           </p>
         </div>
-        <div
-          className="grid gap-8 relative z-10"
-          style={{
-            gridTemplateColumns: "repeat(auto-fit, minmax(20rem, 1fr))",
-          }}
-        >
+        <div className="testimonials-grid">
           {testimonials.map((t, idx) => (
             <div
               key={idx}
-              className="testimonial-card relative overflow-hidden transition-all"
-              style={{
-                background: "white",
-                borderRadius: "1.5rem",
-                padding: "2rem",
-                boxShadow: "0 1rem 3rem rgba(0,0,0,0.1)",
-                border: "2px solid rgba(30,121,247,0.1)",
-              }}
+              className="testimonial-card"
             >
               {/* Decorative circle */}
               <div
-                className="absolute"
+                className="testimonial-card-circle"
                 style={{
-                  top: "-1rem",
-                  right: "-1rem",
-                  width: "4rem",
-                  height: "4rem",
                   background: t.cardBg,
-                  borderRadius: "50%",
-                  opacity: 0.1,
                 }}
               />
-              <div className="testimonial-content relative z-10">
+              <div className="testimonial-content">
                 <div
-                  className="quote-icon flex items-center justify-center mb-4 shadow"
+                  className="testimonial-quote-icon"
                   style={{
-                    width: "3rem",
-                    height: "3rem",
                     background: t.quoteIconBg,
-                    borderRadius: "50%",
-                    boxShadow: "0 0.5rem 1rem rgba(30,121,247,0.3)",
                   }}
                 >
-                  <i className="fas fa-quote-left text-white text-lg"></i>
+                  <i className="fas fa-quote-left"></i>
                 </div>
                 <div
-                  className="stars mb-4"
+                  className="testimonial-stars"
                   style={{
                     color: t.starsColor,
-                    fontSize: "1.1rem",
                   }}
                 >
                   {[...Array(5)].map((_, i) => (
                     <i key={i} className="fas fa-star"></i>
                   ))}
                 </div>
-                <p
-                  className="italic mb-6"
-                  style={{
-                    color: "#212529",
-                    fontSize: "1rem",
-                    lineHeight: 1.6,
-                  }}
-                >
+                <p className="testimonial-quote">
                   "{t.quote}"
                 </p>
               </div>
-              <div
-                className="testimonial-author flex items-center gap-4 pt-4 border-t"
-                style={{
-                  borderTop: "2px solid rgba(30,121,247,0.1)",
-                }}
-              >
+              <div className="testimonial-author">
                 <div
-                  className="flex items-center justify-center font-bold"
+                  className="testimonial-avatar"
                   style={{
-                    width: "3rem",
-                    height: "3rem",
                     background: t.cardBg,
-                    borderRadius: "50%",
-                    color: "white",
-                    fontSize: "1.1rem",
                   }}
                 >
                   {t.avatar}
                 </div>
-                <div className="author-info">
-                  <h4
-                    className="font-semibold mb-1"
-                    style={{
-                      color: "#212529",
-                      fontSize: "1.1rem",
-                    }}
-                  >
+                <div className="testimonial-author-info">
+                  <h4 className="testimonial-author-name">
                     {t.name}
                   </h4>
-                  <div className="flex items-center gap-2">
+                  <div className="testimonial-author-badges">
                     <div
-                      className="author-badge flex items-center gap-1 font-semibold w-auto"
+                      className="testimonial-badge"
                       style={{
                         background: t.badgeColor,
                         color: t.badgeTextColor,
-                        padding: "0.25rem 0.75rem",
-                        borderRadius: "1rem",
-                        fontSize: "0.85rem",
                       }}
                     >
-                      <i className={t.badgeIcon} style={{ fontSize: "0.8rem" }}></i>
+                      <i className={t.badgeIcon}></i>
                       <span>{t.service}</span>
-                      <span style={{
-                        fontWeight: 400,
-                        fontSize: "0.8em",
-                        marginLeft: "0.5em",
-                        opacity: 0.7
-                      }}>
+                      <span className="testimonial-badge-type">
                         {t.type === "profissional" ? "Profissional" : "Cliente"}
                       </span>
                     </div>
@@ -276,81 +182,225 @@ export default function TestimonialsSection() {
         </div>
       </div>
       <style>{`
-        @media (max-width: 480px) {    
-                #depoimentos {
-                padding: 2rem 0.5rem !important;
-                margin-top: 1rem !important;
-              }
-              #depoimentos .text-center {
-                padding: 0 0.5rem !important;
-              }
-              #depoimentos h2 {
-                font-size: 2rem !important;
-                margin-bottom: 0.8rem !important;
-              }
-              #depoimentos p {
-                font-size: 1rem !important;
-                margin-bottom: 1rem !important;
-                max-width: 95vw !important;
-              }
-              #depoimentos .grid {
-                gap: 1.2rem !important;
-                grid-template-columns: 1fr !important;
-              }
-              .testimonial-card {
-                padding: 1.2rem !important;
-                min-width: 0 !important;
-                max-width: 98vw !important;
-                margin: 0 auto !important;
-              }
-              .testimonial-author > div {
-                width: 2.2rem !important;
-                height: 2.2rem !important;
-                font-size: 0.95rem !important;
-              }
-              .author-badge {
-                font-size: 0.8rem !important;
-                padding: 0.15rem 0.5rem !important;
-              }
+        .testimonials-section {
+          padding: 5rem 0 4rem 0;
+          overflow: hidden;
+          position: relative;
+          top: 6rem;
+          background: linear-gradient(135deg, #E8F5E8 0%, #F0FFF0 50%, #E8F5E8 100%);
+          margin-top: 3%;
         }
-                  @media (min-width: 481px) and (max-width: 1024px) {                        
-                            #depoimentos {
-                            padding: 2.5rem 1rem !important;
-                            margin-top: 2rem !important;
-                          }
-                          #depoimentos .text-center {
-                            padding: 0 1rem !important;
-                          }
-                          #depoimentos h2 {
-                            font-size: 2.5rem !important;
-                            margin-bottom: 1rem !important;
-                          }
-                          #depoimentos p {
-                            font-size: 1.15rem !important;
-                            margin-bottom: 1.2rem !important;
-                            max-width: 80vw !important;
-                          }
-                          #depoimentos .grid {
-                            gap: 1.5rem !important;
-                            grid-template-columns: repeat(2, 1fr) !important;
-                          }
-                          .testimonial-card {
-                            padding: 1.5rem !important;
-                            min-width: 160px !important;
-                            max-width: 45vw !important;
-                            margin: 0 auto !important;
-                          }
-                          .testimonial-author > div {
-                            width: 2.5rem !important;
-                            height: 2.5rem !important;
-                            font-size: 1rem !important;
-                          }
-                          .author-badge {
-                            font-size: 0.85rem !important;
-                            padding: 0.2rem 0.7rem !important;
-                          }
-                  }  
-        
+        .testimonials-bg-pattern {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          opacity: 0.08;
+          background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars-pattern" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="0.5" fill="%231E79F7"/><circle cx="5" cy="25" r="0.3" fill="%231E79F7"/><circle cx="25" cy="8" r="0.4" fill="%231E79F7"/></pattern></defs><rect width="100" height="100" fill="url(%23stars-pattern)"/></svg>');
+        }
+        .testimonials-container {
+          width: 100%;
+          max-width: 1100px;
+          margin: 0 auto;
+          position: relative;
+          z-index: 10;
+          padding: 0 2rem;
+        }
+        .testimonials-header {
+          text-align: center;
+          margin-bottom: 2.5rem;
+        }
+        .testimonials-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.7rem 1.5rem;
+          border-radius: 2rem;
+          font-weight: bold;
+          margin-bottom: 1.5rem;
+          background: linear-gradient(135deg, #1E79F7, #0D6EFD);
+          color: #fff;
+          box-shadow: 0 0.5rem 1.5rem rgba(30, 121, 247, 0.15);
+          border: 2px solid rgba(255,255,255,0.2);
+          font-size: 1.1rem;
+        }
+        .testimonials-title {
+          font-size: 2.5rem;
+          font-weight: 900;
+          color: #212529;
+          margin-bottom: 1rem;
+          line-height: 1.1;
+        }
+        .testimonials-title-gradient {
+          background: linear-gradient(135deg, #1E79F7, #0D6EFD);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        .testimonials-subtitle {
+          color: #6C757D;
+          font-size: 1.2rem;
+          margin-bottom: 0;
+        }
+        .testimonials-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 2rem;
+          width: 100%;
+        }
+        .testimonial-card {
+          background: #fff;
+          border-radius: 1.5rem;
+          padding: 2rem;
+          box-shadow: 0 1rem 3rem rgba(0,0,0,0.08);
+          border: 2px solid rgba(30,121,247,0.08);
+          position: relative;
+          overflow: hidden;
+          transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .testimonial-card-circle {
+          position: absolute;
+          top: -1rem;
+          right: -1rem;
+          width: 4rem;
+          height: 4rem;
+          border-radius: 50%;
+          opacity: 0.12;
+          z-index: 1;
+        }
+        .testimonial-content {
+          position: relative;
+          z-index: 2;
+        }
+        .testimonial-quote-icon {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 1rem;
+          color: #fff;
+          font-size: 1.3rem;
+          box-shadow: 0 0.5rem 1rem rgba(30,121,247,0.18);
+        }
+        .testimonial-quote-icon i {
+          color: #fff;
+        }
+        .testimonial-stars {
+          margin-bottom: 1rem;
+          font-size: 1.1rem;
+        }
+        .testimonial-quote {
+          color: #212529;
+          font-size: 1.05rem;
+          line-height: 1.6;
+          font-style: italic;
+          margin-bottom: 1.5rem;
+        }
+        .testimonial-author {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          padding-top: 1rem;
+          border-top: 2px solid rgba(30,121,247,0.08);
+        }
+        .testimonial-avatar {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+          color: #fff;
+          font-weight: bold;
+          font-size: 1.1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .testimonial-author-info {
+          display: flex;
+          flex-direction: column;
+        }
+        .testimonial-author-name {
+          font-weight: 600;
+          color: #212529;
+          font-size: 1.1rem;
+          margin-bottom: 0.2rem;
+        }
+        .testimonial-author-badges {
+          display: flex;
+          gap: 0.5rem;
+        }
+        .testimonial-badge {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          border-radius: 1rem;
+          padding: 0.25rem 0.75rem;
+          font-size: 0.9rem;
+          font-weight: 500;
+        }
+        .testimonial-badge-type {
+          font-weight: 400;
+          font-size: 0.8em;
+          margin-left: 0.5em;
+          opacity: 0.7;
+        }
+        /* Tablet */
+        @media (max-width: 1024px) {
+          .testimonials-section {
+            padding: 2.5rem 0.5rem;
+            margin-top: 2rem;
+          }
+          .testimonials-title {
+            font-size: 2rem;
+          }
+          .testimonials-grid {
+            gap: 1.2rem;
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .testimonial-card {
+            padding: 1.2rem;
+            min-width: 0;
+            max-width: 98vw;
+            margin: 0 auto;
+          }
+        }
+        /* Mobile */
+        @media (max-width: 600px) {
+          .testimonials-section {
+            padding: 1.5rem 0.2rem;
+            margin-top: 1rem;
+          }
+          .testimonials-container {
+            padding: 0 0.2rem;
+          }
+          .testimonials-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.7rem;
+          }
+          .testimonials-subtitle {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+          }
+          .testimonials-grid {
+            gap: 1rem;
+            grid-template-columns: 1fr;
+          }
+          .testimonial-card {
+            padding: 1rem;
+            min-width: 0;
+            max-width: 98vw;
+            margin: 0 auto;
+          }
+          .testimonial-avatar {
+            width: 2.2rem;
+            height: 2.2rem;
+            font-size: 0.95rem;
+          }
+          .testimonial-badge {
+            font-size: 0.8rem;
+            padding: 0.15rem 0.5rem;
+          }
+        }
       `}</style>
     </section>
   );

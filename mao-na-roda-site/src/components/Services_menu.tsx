@@ -143,7 +143,7 @@ export default function ServicesMenuGrid() {
       >
         <div className="services-container w-full mx-auto" style={{ maxWidth: "75rem", padding: "2% 5%" }}>
           <div className="services-header text-center mb-10">
-            <h2 className="services-title text-4xl font-extrabold text-gray-900 mb-2">
+            <h2 className="services-title-h2 text-4xl font-extrabold text-gray-900 mb-2">
               Nossos Serviços
             </h2>
             <p className="services-subtitle text-lg text-gray-500 max-w-xl mx-auto" style={{ padding: "1rem 0" }}>
@@ -447,6 +447,26 @@ export default function ServicesMenuGrid() {
             margin-top: 1.2rem !important;
           }
         }
+        @media (min-width: 1025px) {  
+          .services-subtitle{
+            position: relative;
+            left: 28%;
+          }  
+          .services-grid {
+            position: relative;
+            left: 7%;
+          }
+          .services-title-h2 {
+            position: relative;
+            left: 7%;
+          }    
+        }
+        @media (min-width: 481px) and (max-width: 1024px) {
+           .services-subtitle{
+            position: relative;
+            left: 12%;
+          }
+        }  
       `}</style>
     </>
   );
