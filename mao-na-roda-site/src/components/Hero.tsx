@@ -53,7 +53,7 @@ export default function Hero() {
               <span style={{ color: "#1E79F7", fontWeight: 600 }}> clientes</span> que precisam de serviços domésticos com{" "}
               <span
                 style={{
-                  backgroundImage: "linear-gradient(rebeccapurple, steelblue, turquoise)",
+                  backgroundImage: "linear-gradient(#0f172a, #1e3a8a, #3b82f6)",
                   color: "black",
                   backgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -67,7 +67,7 @@ export default function Hero() {
               Solicite serviços de forma rápida e segura.<br />
               <span
                 style={{
-                  backgroundImage: "linear-gradient(rebeccapurple, steelblue, turquoise)",
+                  backgroundImage: "linear-gradient(#0f172a, #1e3a8a, #3b82f6)",
                   color: "black",
                   backgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -93,7 +93,7 @@ export default function Hero() {
                 <span style={{ color: "#1E79F7", fontWeight: 600 }}> App Cliente</span> para quem busca serviços e
                 <span
                   style={{
-                    backgroundImage: "linear-gradient(rebeccapurple, steelblue, turquoise)",
+                    backgroundImage: "linear-gradient(#0f172a, #1e3a8a, #3b82f6)",
                     color: "black",
                     backgroundClip: "text",
                     WebkitTextFillColor: "transparent",

@@ -35,162 +35,240 @@ export default function FAQSection() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section
-      id="faq"
-      className="faq-section py-16 md:py-24 relative overflow-hidden top-[6rem] flex flex-col items-center"
-      style={{
-        background:
-          "linear-gradient(135deg, #F8FAFF 0%, #E3F2FD 50%, #F8FAFF 100%)",
-      }}
-    >
+    <section id="faq" className="faq-section">
       {/* SVG grid background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          opacity: 0.05,
-          background:
-            "url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><defs><pattern id=\"faq-grid\" width=\"20\" height=\"20\" patternUnits=\"userSpaceOnUse\"><circle cx=\"10\" cy=\"10\" r=\"1\" fill=\"%231E79F7\"/></pattern></defs><rect width=\"100\" height=\"100\" fill=\"url(%23faq-grid)\"/></svg>')",
-        }}
-      />
-      <div className="container mx-auto relative z-10 w-full flex flex-col items-center px-4 md:px-[5%]" style={{ maxWidth: "75rem", padding:"1rem" }}>
-        <div className="text-center mb-10 md:mb-16 w-full flex flex-col items-center">
-          <div
-            className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold mb-4 md:mb-6"
-            style={{
-              background: "linear-gradient(135deg, #E8F5FF, #F0F8FF)",
-              color: "#1E79F7",
-              borderRadius: "2rem",
-              border: "2px solid rgba(30,121,247,0.2)",
-              boxShadow: "0 0.5rem 1rem rgba(30,121,247,0.1)",
-              padding:"1%"
-            }}
-          >
-            <i className="fas fa-question-circle text-[1.2rem]"></i>
+      <div className="faq-bg-pattern" />
+      <div className="faq-container">
+        <div className="faq-header">
+          <div className="faq-badge">
+            <i className="fas fa-question-circle"></i>
             <span>Central de Ajuda</span>
           </div>
-          <h2
-            className="font-black mb-2 md:mb-4 leading-tight"
-            style={{
-              fontSize: "clamp(2rem, 5vw, 3.5rem)",
-              color: "#212529",
-              lineHeight: 1.1,
-            }}
-          >
+          <h2 className="faq-title">
             Perguntas{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #1E79F7, #0D6EFD)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Frequentes
-            </span>
+            <span className="faq-title-gradient">Frequentes</span>
           </h2>
-          <p
-            className="text-base md:text-lg mx-auto"
-            style={{
-              color: "#6C757D",
-              maxWidth: "40rem",
-              padding:"1%"
-            }}
-          >
+          <p className="faq-subtitle">
             Tire suas dúvidas sobre como usar o Mão na Roda
           </p>
         </div>
-        <div
-          className="faq-grid grid grid-cols-1 gap-4 md:gap-6 w-full mx-auto relative z-10"
-          style={{ maxWidth: "50rem" }}
-        >
+        <div className="faq-grid">
           {faqs.map((faq, idx) => (
             <div
               key={faq.number}
-              className={`faq-item bg-white rounded-xl shadow-lg border transition-all`}
-              style={{
-                boxShadow: open === idx ? "0 1rem 3rem rgba(30,121,247,0.2)" : "0 0.5rem 2rem rgba(30,121,247,0.1)",
-                border: "1px solid rgba(30,121,247,0.1)",
-                overflow: "hidden",
-              }}
+              className={`faq-item${open === idx ? " faq-item-open" : ""}`}
             >
               <button
-                className={`faq-question w-full flex justify-between items-center px-4 md:px-6 py-4 md:py-6 cursor-pointer transition-all`}
-                style={{
-                  background: "linear-gradient(135deg, #FAFBFF, #F8FAFF)",
-                  border: "none",
-                  outline: "none",
-                  padding:"1.5%"
-                }}
+                className="faq-question"
                 onClick={() => setOpen(open === idx ? null : idx)}
+                aria-expanded={open === idx}
+                aria-controls={`faq-answer-${faq.number}`}
               >
-                <h4 className={`flex items-center gap-3 font-semibold text-gray-900 text-base md:text-lg m-0 ${open === idx ? "text-[#1E79F7]" : ""}`}>
+                <h4 className={`faq-question-title${open === idx ? " open" : ""}`}>
                   <div
-                    style={{
-                      width: "2.5rem",
-                      height: "2.5rem",
-                      background: faq.color,
-                      borderRadius: "50%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "white",
-                      fontSize: "1rem",
-                      fontWeight: 700,
-                    }}
+                    className="faq-number"
+                    style={{ background: faq.color }}
                   >
                     {faq.number}
                   </div>
                   {faq.question}
                 </h4>
                 <i
-                  className={`fas fa-chevron-down transition-transform duration-300 text-[1.1rem]`}
+                  className="fas fa-chevron-down faq-chevron"
                   style={{
-                    color: "#1E79F7",
                     transform: open === idx ? "rotate(180deg)" : "rotate(0deg)",
                   }}
                 ></i>
               </button>
               <div
-                className="faq-answer bg-white transition-all"
+                id={`faq-answer-${faq.number}`}
+                className="faq-answer"
                 style={{
                   maxHeight: open === idx ? "500px" : "0",
-                  overflow: "hidden",
                   padding: open === idx ? "0 1.5rem 1.5rem" : "0 1.5rem 0",
-                  transition: "max-height 0.4s ease, padding 0.4s ease",
                 }}
               >
-                <p
-                  className="text-gray-600 text-sm md:text-base"
-                  style={{
-                    margin: 0,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {faq.answer}
-                </p>
+                <p>{faq.answer}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
       <style>{`
-        @media (max-width: 480px) {
+        .faq-section {
+          padding: 4rem 0 4rem 0;
+          background: linear-gradient(135deg, #F8FAFF 0%, #E3F2FD 50%, #F8FAFF 100%);
+          position: relative;
+          top: 6rem;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .faq-bg-pattern {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          opacity: 0.05;
+          background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="faq-grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%231E79F7"/></pattern></defs><rect width="100" height="100" fill="url(%23faq-grid)"/></svg>');
+        }
+        .faq-container {
+          max-width: 75rem;
+          width: 100%;
+          margin: 0 auto;
+          position: relative;
+          z-index: 10;
+          padding: 0 1rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .faq-header {
+          text-align: center;
+          margin-bottom: 2.5rem;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .faq-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.7rem 1.5rem;
+          border-radius: 2rem;
+          font-weight: 600;
+          background: linear-gradient(135deg, #E8F5FF, #F0F8FF);
+          color: #1E79F7;
+          border: 2px solid rgba(30,121,247,0.2);
+          box-shadow: 0 0.5rem 1rem rgba(30,121,247,0.1);
+          margin-bottom: 1.5rem;
+          font-size: 1rem;
+        }
+        .faq-title {
+          font-size: 2.5rem;
+          font-weight: 900;
+          color: #212529;
+          margin-bottom: 1rem;
+          line-height: 1.1;
+        }
+        .faq-title-gradient {
+          background: linear-gradient(135deg, #1E79F7, #0D6EFD);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        .faq-subtitle {
+          color: #6C757D;
+          font-size: 1.2rem;
+          margin-bottom: 0;
+          max-width: 40rem;
+        }
+        .faq-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+          width: 100%;
+          max-width: 50rem;
+          margin: 0 auto;
+        }
+        .faq-item {
+          background: #fff;
+          border-radius: 1.2rem;
+          box-shadow: 0 0.5rem 2rem rgba(30,121,247,0.1);
+          border: 1px solid rgba(30,121,247,0.1);
+          overflow: hidden;
+          transition: box-shadow 0.3s;
+        }
+        .faq-item-open {
+          box-shadow: 0 1rem 3rem rgba(30,121,247,0.2);
+        }
+        .faq-question {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+          background: linear-gradient(135deg, #FAFBFF, #F8FAFF);
+          border: none;
+          outline: none;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+        .faq-question-title {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          font-weight: 600;
+          color: #212529;
+          font-size: 1.1rem;
+          margin: 0;
+        }
+        .faq-question-title.open {
+          color: #1E79F7;
+        }
+        .faq-number {
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          font-size: 1rem;
+          font-weight: 700;
+        }
+        .faq-chevron {
+          color: #1E79F7;
+          font-size: 1.1rem;
+          transition: transform 0.3s;
+        }
+        .faq-answer {
+          background: #fff;
+          transition: max-height 0.4s ease, padding 0.4s ease;
+          overflow: hidden;
+        }
+        .faq-answer p {
+          color: #6C757D;
+          font-size: 1rem;
+          margin: 0;
+          line-height: 1.6;
+        }
+        /* Tablet */
+        @media (max-width: 1024px) {
+          .faq-title {
+            font-size: 2rem;
+          }
+          .faq-subtitle {
+            font-size: 1.1rem;
+          }
+        }
+        /* Mobile */
+        @media (max-width: 600px) {
           .faq-section {
-            padding-top: 2.5rem !important;
-            padding-bottom: 2.5rem !important;
+            padding: 2.5rem 0.5rem;
+          }
+          .faq-title {
+            font-size: 1.3rem;
+          }
+          .faq-subtitle {
+            font-size: 1rem;
           }
           .faq-grid {
-            gap: 1rem !important;
-            max-width: 98vw !important;
+            gap: 1rem;
+            max-width: 98vw;
           }
           .faq-item {
-            border-radius: 1rem !important;
+            border-radius: 1rem;
           }
           .faq-question {
-            padding: 1rem !important;
+            padding: 1rem;
           }
-          h2 {
-            font-size: 2rem !important;
+          .faq-number {
+            width: 2rem;
+            height: 2rem;
+            font-size: 0.95rem;
+            padding: 1rem;
           }
         }
       `}</style>
