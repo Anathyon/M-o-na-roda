@@ -152,6 +152,7 @@ export default function TestimonialsSection() {
                   className="testimonial-avatar"
                   style={{
                     background: t.cardBg,
+                    padding: "1.3rem",
                   }}
                 >
                   {t.avatar}
