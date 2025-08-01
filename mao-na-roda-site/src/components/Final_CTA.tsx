@@ -1,8 +1,8 @@
 export default function FinalCTASection() {
   return (
-    <section className="final-cta-section relative top-[6rem] w-full overflow-hidden text-white mb-0">
+    <section className="final-cta-section">
       {/* Top Wave SVG */}
-      <div className="final-cta-top-wave w-full relative top-1" style={{ lineHeight: 0 }}>
+      <div className="final-cta-top-wave">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#1E79F7"
@@ -12,119 +12,241 @@ export default function FinalCTASection() {
         </svg>
       </div>
       {/* Content */}
-      <div className="final-cta-content bg-[#1E79F7] relative overflow-hidden py-[60px] md:py-[80px] flex items-center justify-center">
+      <div className="final-cta-content">
         {/* SVG grid background */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><circle cx=\"10\" cy=\"10\" r=\"1.5\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"50\" cy=\"50\" r=\"1.5\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"90\" cy=\"90\" r=\"1.5\" fill=\"%23ffffff\" opacity=\"0.1\"/></svg>') repeat",
-          }}
-        />
-        <div className="container mx-auto max-w-[75rem] px-4 md:px-[5%] relative z-10 flex flex-col md:flex-row items-center justify-center" style={{padding:"1rem"}}>
+        <div className="final-cta-bg-pattern" />
+        <div className="final-cta-container">
           {/* Text */}
-          <div className="final-cta-text relative z-10 w-full md:w-1/2 flex flex-col items-center md:items-start order-1 md:order-1">
-            <h2 className="final-cta-title font-extrabold mb-6 leading-tight text-white text-[2rem] md:text-[2.8rem] lg:text-[3.5rem] text-center md:text-left">
+          <div className="final-cta-text">
+            <h2 className="final-cta-title">
               Duas soluções em um só lugar
             </h2>
-            <p className="final-cta-subtitle text-white/90 mb-8 text-base md:text-lg lg:text-xl leading-relaxed text-center md:text-left">
+            <p className="final-cta-subtitle">
               App Cliente: encontre profissionais qualificados para seu lar<br />
               App Profissional: aumente sua renda prestando serviços
             </p>
-            <div className="final-cta-features grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-8 w-full max-w-[400px] md:max-w-none mx-auto md:mx-0">
-              <div className="final-cta-feature flex items-center gap-3">
-                <i className="fas fa-users text-[#ffffff] text-xl"></i>
-                <span className="text-base font-medium">
-                  Para Clientes: Profissionais verificados ao seu alcance
-                </span>
+            <div className="final-cta-features">
+              <div className="final-cta-feature">
+                <i className="fas fa-users"></i>
+                <span>Para Clientes: Profissionais verificados ao seu alcance</span>
               </div>
-              <div className="final-cta-feature flex items-center gap-3">
-                <i className="fas fa-briefcase text-[#ffffff] text-xl"></i>
-                <span className="text-base font-medium">
-                  Para Profissionais: Mais oportunidades de trabalho
-                </span>
+              <div className="final-cta-feature">
+                <i className="fas fa-briefcase"></i>
+                <span>Para Profissionais: Mais oportunidades de trabalho</span>
               </div>
-              <div className="final-cta-feature flex items-center gap-3">
-                <i className="fas fa-lock text-[#ffffff] text-xl"></i>
-                <span className="text-base font-medium">
-                  Pagamento seguro e garantido para ambos
-                </span>
+              <div className="final-cta-feature">
+                <i className="fas fa-lock"></i>
+                <span>Pagamento seguro e garantido para ambos</span>
               </div>
-              <div className="final-cta-feature flex items-center gap-3">
-                <i className="fas fa-star text-[#ffffff] text-xl"></i>
-                <span className="text-base font-medium">
-                  Sistema de avaliações transparente
-                </span>
+              <div className="final-cta-feature">
+                <i className="fas fa-star"></i>
+                <span>Sistema de avaliações transparente</span>
               </div>
             </div>
-            <div className="final-cta-buttons flex flex-col sm:flex-row gap-4 md:gap-6 flex-wrap md:justify-start items-center md:items-start w-full" style={{marginTop:"2%"}}>
+            <div className="final-cta-buttons">
               <a
                 href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
-                className="final-cta-btn flex items-center gap-3 text-[#ffffff] px-6 py-4 rounded-xl shadow-lg border-2 border-[#fff] transition-all hover:-translate-y-1 hover:shadow-2xl w-full sm:w-auto justify-center"
-                style={{
-                  background:
-                    "linear-gradient(135deg, var(--primary-blue, #1E79F7), #0D6EFD)",
-                    padding:"1%"
-                }}
+                className="final-cta-btn final-cta-btn-client"
               >
-                <i className="fab fa-google-play text-2xl"></i>
-                <div className="cta-btn-text flex flex-col items-start">
-                  <span className="text-xs opacity-80">App Cliente</span>
-                  <strong className="text-base font-bold">Google Play</strong>
+                <i className="fab fa-google-play"></i>
+                <div className="cta-btn-text">
+                  <span>App Cliente</span>
+                  <strong>Google Play</strong>
                 </div>
               </a>
               <a
                 href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodaprofissional&hl=pt_BR"
-                className="final-cta-btn flex items-center gap-3 text-white px-6 py-4 rounded-xl shadow-lg transition-all hover:-translate-y-1 hover:shadow-2xl w-full sm:w-auto justify-center"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #3B82F6, #1E40AF)",
-                    padding:"1%"
-                }}
+                className="final-cta-btn final-cta-btn-prof"
               >
-                <i className="fab fa-google-play text-2xl"></i>
-                <div className="cta-btn-text flex flex-col items-start">
-                  <span className="text-xs opacity-80">App Profissional</span>
-                  <strong className="text-base font-bold">Google Play</strong>
+                <i className="fab fa-google-play"></i>
+                <div className="cta-btn-text">
+                  <span>App Profissional</span>
+                  <strong>Google Play</strong>
                 </div>
               </a>
             </div>
           </div>
           {/* Image */}
-          <div className="final-cta-image relative flex justify-center items-center w-full md:w-1/2 order-2 md:order-2 mb-8 md:mb-0">
+          <div className="final-cta-image">
             <img
               src="App_mao_na_roda.png"
               alt="App Mão na Roda em uso"
-              className="max-w-[340px] md:max-w-[480px] h-auto rounded-3xl shadow-2xl border-[10px] border-white/10 transition-all duration-500 mx-auto animate-cta-img"
-              style={{
-                transform: "rotateY(-15deg)",
-              }}
+              className="final-cta-img"
             />
-            <div
-              className="image-decoration-1 absolute rounded-full bg-white/10 pointer-events-none animate-[float-slow_8s_ease-in-out_infinite]"
-              style={{
-                width: "120px",
-                height: "120px",
-                top: "-20px",
-                right: "-20px",
-                animationDelay: "0s",
-              }}
-            ></div>
-            <div
-              className="image-decoration-2 absolute rounded-full bg-white/10 pointer-events-none animate-[float-slow_8s_ease-in-out_infinite]"
-              style={{
-                width: "80px",
-                height: "80px",
-                bottom: "-16px",
-                left: "-16px",
-                animationDelay: "2s",
-              }}
-            ></div>
+            <div className="image-decoration-1"></div>
+            <div className="image-decoration-2"></div>
           </div>
         </div>
       </div>
-      {/* Animation keyframes for floating decorations and image */}
       <style>{`
+        .final-cta-section {
+          position: relative;
+          top: 6rem;
+          width: 100%;
+          overflow: hidden;
+          text-white;
+          margin-bottom: 0;
+        }
+        .final-cta-top-wave {
+          width: 100%;
+          line-height: 0;
+          position: relative;
+          top: 1px;
+        }
+        .final-cta-content {
+          background: #1E79F7;
+          position: relative;
+          overflow: hidden;
+          padding: 60px 0 80px 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .final-cta-bg-pattern {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1.5" fill="%23ffffff" opacity="0.1"/><circle cx="50" cy="50" r="1.5" fill="%23ffffff" opacity="0.1"/><circle cx="90" cy="90" r="1.5" fill="%23ffffff" opacity="0.1"/></svg>') repeat;
+        }
+        .final-cta-container {
+          max-width: 1200px;
+          width: 100%;
+          margin: 0 auto;
+          padding: 0 2rem;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          gap: 2.5rem;
+          position: relative;
+          z-index: 2;
+        }
+        .final-cta-text {
+          width: 100%;
+          max-width: 520px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          color: #fff;
+        }
+        .final-cta-title {
+          font-weight: 800;
+          margin-bottom: 1.5rem;
+          line-height: 1.1;
+          font-size: 2.8rem;
+          color: #fff;
+        }
+        .final-cta-subtitle {
+          color: #eaf2ff;
+          margin-bottom: 2rem;
+          font-size: 1.2rem;
+          line-height: 1.5;
+        }
+        .final-cta-features {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.2rem 2rem;
+          margin-bottom: 2rem;
+          width: 100%;
+        }
+        .final-cta-feature {
+          display: flex;
+          align-items: center;
+          gap: 0.7rem;
+          font-size: 1rem;
+          color: #fff;
+        }
+        .final-cta-feature i {
+          font-size: 1.3rem;
+          color: #fff;
+        }
+        .final-cta-buttons {
+          display: flex;
+          flex-direction: row;
+          gap: 1.2rem;
+          flex-wrap: wrap;
+          margin-top: 1rem;
+          width: 100%;
+          justify-content: center;
+        }
+        .final-cta-btn {
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
+          padding: 1.1rem 2rem;
+          border-radius: 1rem;
+          font-weight: 700;
+          font-size: 1.1rem;
+          box-shadow: 0 10px 30px rgba(30, 121, 247, 0.18);
+          border: 2px solid #fff;
+          background: linear-gradient(135deg, #1E79F7, #0D6EFD);
+          color: #fff;
+          transition: all 0.2s;
+          text-decoration: none;
+          min-width: 180px;
+          justify-content: center;
+        }
+        .final-cta-btn-prof {
+          background: linear-gradient(135deg, #3B82F6, #1E40AF);
+        }
+        .final-cta-btn:hover {
+          filter: brightness(1.08);
+          transform: translateY(-4px) scale(1.03);
+          box-shadow: 0 16px 40px rgba(30, 121, 247, 0.22);
+        }
+        .cta-btn-text {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .cta-btn-text span {
+          font-size: 0.95rem;
+          opacity: 0.85;
+        }
+        .cta-btn-text strong {
+          font-size: 1.1rem;
+          font-weight: bold;
+        }
+        .final-cta-image {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          max-width: 480px;
+        }
+        .final-cta-img {
+          max-width: 340px;
+          width: 100%;
+          height: auto;
+          border-radius: 1.5rem;
+          box-shadow: 0 12px 40px #0d6efd33;
+          border: 10px solid rgba(255,255,255,0.10);
+          transition: all 0.5s;
+          animation: cta-img-anim 3.5s ease-in-out infinite;
+        }
+        .image-decoration-1,
+        .image-decoration-2 {
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.10);
+          pointer-events: none;
+          animation: float-slow 8s ease-in-out infinite;
+        }
+        .image-decoration-1 {
+          width: 120px;
+          height: 120px;
+          top: -20px;
+          right: -20px;
+          animation-delay: 0s;
+        }
+        .image-decoration-2 {
+          width: 80px;
+          height: 80px;
+          bottom: -16px;
+          left: -16px;
+          animation-delay: 2s;
+        }
         @keyframes float-slow {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-20px); }
@@ -134,45 +256,60 @@ export default function FinalCTASection() {
           50% { transform: scale(1.04) rotateY(-10deg); filter: drop-shadow(0 8px 24px #1E79F7aa); }
           100% { transform: scale(1) rotateY(-15deg); filter: drop-shadow(0 0 0 #1E79F7); }
         }
-        .animate-cta-img {
-          animation: cta-img-anim 3.5s ease-in-out infinite;
-        }
-        @media (max-width: 900px) {
-          .final-cta-content {
-            padding-top: 2.5rem !important;
-            padding-bottom: 2.5rem !important;
-          }
-          .container {
-            flex-direction: column !important;
-            gap: 2rem !important;
-          }
-          .final-cta-image {
-            margin-bottom: 2rem !important;
+        /* Tablet */
+        @media (max-width: 1024px) {
+          .final-cta-container {
+            flex-direction: column;
+            gap: 2rem;
+            padding: 0 1rem;
           }
           .final-cta-text {
-            align-items: center !important;
-            text-align: center !important;
+            align-items: center;
+            text-align: center;
+            max-width: 100vw;
           }
           .final-cta-title {
-            font-size: 2rem !important;
+            font-size: 2rem;
+          }
+          .final-cta-features {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            left: 22%;
+          }
+          .final-cta-image {
+            margin-bottom: 2rem;
+            max-width: 90vw;
+          }
+          .final-cta-img {
+            max-width: 90vw;
           }
         }
+        /* Mobile */
         @media (max-width: 600px) {
           .final-cta-title {
-            font-size: 1.3rem !important;
+            font-size: 1.3rem;
           }
           .final-cta-subtitle {
-            font-size: 1rem !important;
+            font-size: 1rem;
           }
           .final-cta-feature span {
-            font-size: 0.95rem !important;
+            font-size: 0.95rem;
           }
           .final-cta-btn {
-            padding: 1rem 1.2rem !important;
-            font-size: 0.95rem !important;
+            padding: 1rem 1.2rem;
+            font-size: 0.95rem;
+            min-width: 120px;
           }
-          .final-cta-image img {
-            max-width: 90vw !important;
+          .final-cta-img {
+            max-width: 95vw;
+          }
+          .final-cta-features {
+            grid-template-columns: 1fr;
+            gap: 0.7rem;
+            position: relative;
+            left: 0%; 
           }
         }
       `}</style>
