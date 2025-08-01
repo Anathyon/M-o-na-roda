@@ -340,7 +340,7 @@ export default function TestimonialsSection() {
         }
         .testimonial-badge-type {
           font-weight: 400;
-          font-size: 0.8em;
+          font-size: 1em;
           margin-left: 0.5em;
           opacity: 0.7;
         }
