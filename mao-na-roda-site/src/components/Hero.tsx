@@ -307,8 +307,8 @@ export default function Hero() {
           }
           .app-icon,
           .service-icon {
-            width: 1em !important;
-            height: 1em !important;
+            width: 2em !important;
+            height: 2em !important;
             font-size: 0.65em !important;
           }
           .service-card {
