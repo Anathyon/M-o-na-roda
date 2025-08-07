@@ -153,7 +153,7 @@ export default function ServicesMenuGrid() {
           {/* MOBILE CAROUSEL */}
           {isMobile ? (
             <div className="services-carousel-wrapper flex flex-col items-center w-full relative" style={{ minHeight: "370px" }}>
-              <div className="services-carousel-controls flex w-full justify-between items-center mb-4 px-2 relative z-20">
+              <div className="services-carousel-controls flex w-full justify-between items-center mb-4 px-2 relative z-20" style={{paddingBottom:"5%"}}>
                 <button
                   className="services-carousel-btn bg-white rounded-full shadow-lg flex items-center justify-center"
                   style={{

@@ -14,13 +14,13 @@ export default function ProfissionalCard() {
       {/* Floating icons */}
       <div className="prof-card-bg">
         <div className="floating-elements">
-          <div className="floating-icon prof-float1">
+          <div className="floating-icon prof-float1" style={{opacity: "55%"}}>
             <i className="fas fa-chart-line"></i>
           </div>
-          <div className="floating-icon prof-float2">
+          <div className="floating-icon prof-float2" style={{opacity: "55%"}}>
             <i className="fas fa-money-bill-wave"></i>
           </div>
-          <div className="floating-icon prof-float3">
+          <div className="floating-icon prof-float3" style={{opacity: "55%"}}>
             <i className="fas fa-briefcase"></i>
           </div>
         </div>
@@ -153,7 +153,7 @@ export default function ProfissionalCard() {
         }
         .prof-desc {
           font-size: 1.15rem;
-          color: #6C757D;
+          color: #000;
           margin-bottom: 2rem;
         }
         .prof-card-actions {
@@ -261,6 +261,7 @@ export default function ProfissionalCard() {
           }
           .prof-desc {
             font-size: 1rem;
+            color: #000;
           }
           .prof-feature-grid {
             gap: 0.7rem;

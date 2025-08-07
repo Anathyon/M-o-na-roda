@@ -252,6 +252,7 @@ export default function Hero() {
             margin-right: 0 !important;
             width: 100% !important;
             justify-content: center !important;
+            margin-bottom: 2em !important;
           }
           .hero-title {
             width: 100% !important;
@@ -338,6 +339,7 @@ export default function Hero() {
             margin-right: 0 !important;
             width: 80% !important;
             justify-content: flex-start !important;
+            margin-bottom: 1.7em !important;
           }
           .hero-title {
             width: 95% !important;
@@ -420,6 +422,7 @@ export default function Hero() {
             margin-right: 0 !important;
             width: auto !important;
             justify-content: flex-start !important;
+            margin-bottom: 1em !important;
           }
           .hero-title {
             width: 80% !important;

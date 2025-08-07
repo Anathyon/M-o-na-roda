@@ -23,12 +23,13 @@ export default function ClientCard() {
                 height: "100%",
                 objectFit: "contain",
                 animation: "spin 4s linear infinite",
+                opacity: "55%",
               }}
             />
           </div>
-          <div className="floating-icon"><i className="fas fa-tools"></i></div>
-          <div className="floating-icon"><i className="fas fa-star"></i></div>
-          <div className="floating-icon"><i className="fas fa-user"></i></div>
+          <div className="floating-icon" style={{opacity: "55%"}}><i className="fas fa-tools"></i></div>
+          <div className="floating-icon" style={{opacity: "55%"}}><i className="fas fa-star"></i></div>
+          <div className="floating-icon" style={{opacity: "55%"}}><i className="fas fa-user"></i></div>
         </div>
       </div>
       <div className="client-card-content">
@@ -164,7 +165,7 @@ export default function ClientCard() {
         }
         .client-desc {
           font-size: 1.15rem;
-          color: #6C757D;
+          color: #000;
           margin-bottom: 2rem;
         }
         .client-card-actions {
@@ -272,6 +273,7 @@ export default function ClientCard() {
           }
           .client-desc {
             font-size: 1rem;
+            color: #000;
           }
           .client-feature-grid {
             gap: 0.7rem;
