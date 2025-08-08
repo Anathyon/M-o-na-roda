@@ -113,6 +113,7 @@ export default function ServicesMenuGrid() {
   const [modal, setModal] = useState<Service | null>(null);
   const [carouselIndex, setCarouselIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const intervalRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (modal) {
@@ -125,12 +126,35 @@ export default function ServicesMenuGrid() {
     };
   }, [modal]);
 
+  const startAutoPlay = () => {
+    stopAutoPlay(); 
+    intervalRef.current = window.setInterval(() => {
+      setCarouselIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
+    }, 4000); // Passa para o próximo item a cada 4 segundos
+  };
+
+  const stopAutoPlay = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+  };
+
   const isMobile = typeof window !== "undefined" && window.innerWidth <= 480;
 
+  useEffect(() => {
+    if (isMobile) {
+      startAutoPlay();
+    }
+    return () => stopAutoPlay();
+  }, [isMobile]);
+
   const handlePrev = () => {
+    stopAutoPlay();
     setCarouselIndex((prev) => (prev === 0 ? services.length - 1 : prev - 1));
   };
+
   const handleNext = () => {
+    stopAutoPlay();
     setCarouselIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
   };
 
@@ -152,7 +176,14 @@ export default function ServicesMenuGrid() {
           </div>
           {/* MOBILE CAROUSEL */}
           {isMobile ? (
-            <div className="services-carousel-wrapper flex flex-col items-center w-full relative" style={{ minHeight: "370px" }}>
+            <div
+              className="services-carousel-wrapper flex flex-col items-center w-full relative"
+              style={{ minHeight: "370px" }}
+              onMouseEnter={stopAutoPlay}
+              onMouseLeave={startAutoPlay}
+              onTouchStart={stopAutoPlay}
+              onTouchEnd={startAutoPlay}
+            >
               <div className="services-carousel-controls flex w-full justify-between items-center mb-4 px-2 relative z-20" style={{paddingBottom:"5%"}}>
                 <button
                   className="services-carousel-btn bg-white rounded-full shadow-lg flex items-center justify-center"
@@ -462,7 +493,7 @@ export default function ServicesMenuGrid() {
           }    
         }
         @media (min-width: 481px) and (max-width: 1024px) {
-           .services-subtitle{
+            .services-subtitle{
             position: relative;
             left: 12%;
           }
