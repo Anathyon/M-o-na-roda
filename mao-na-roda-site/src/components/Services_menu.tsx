@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 type Service = {
   icon: string;
@@ -126,27 +126,29 @@ export default function ServicesMenuGrid() {
     };
   }, [modal]);
 
-  const startAutoPlay = () => {
-    stopAutoPlay(); 
-    intervalRef.current = window.setInterval(() => {
-      setCarouselIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
-    }, 4000); // Passa para o próximo item a cada 4 segundos
-  };
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 480;
 
-  const stopAutoPlay = () => {
+  // Usa useCallback para memorizar a função stopAutoPlay
+  const stopAutoPlay = useCallback(() => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
-  };
+  }, []);
 
-  const isMobile = typeof window !== "undefined" && window.innerWidth <= 480;
+  // Usa useCallback para memorizar a função startAutoPlay
+  const startAutoPlay = useCallback(() => {
+    stopAutoPlay();
+    intervalRef.current = window.setInterval(() => {
+      setCarouselIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
+    }, 4000); // Passa para o próximo item a cada 4 segundos
+  }, [stopAutoPlay]); // Adiciona stopAutoPlay como dependência
 
   useEffect(() => {
     if (isMobile) {
       startAutoPlay();
     }
     return () => stopAutoPlay();
-  }, [isMobile]);
+  }, [isMobile, startAutoPlay, stopAutoPlay]);
 
   const handlePrev = () => {
     stopAutoPlay();
