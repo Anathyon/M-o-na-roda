@@ -111,53 +111,53 @@ const services: Service[] = [
 
 export default function ServicesMenuGrid() {
   const [modal, setModal] = useState<Service | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const [carouselIndex, setCarouselIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<number | null>(null);
 
-  useEffect(() => {
-    if (modal) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [modal]);
-
-  const isMobile = typeof window !== "undefined" && window.innerWidth <= 480;
-
-  // Usa useCallback para memorizar a função stopAutoPlay
   const stopAutoPlay = useCallback(() => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
+    if (intervalRef.current) clearInterval(intervalRef.current);
   }, []);
 
-  // Usa useCallback para memorizar a função startAutoPlay
   const startAutoPlay = useCallback(() => {
     stopAutoPlay();
     intervalRef.current = window.setInterval(() => {
       setCarouselIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
-    }, 4000); // Passa para o próximo item a cada 4 segundos
-  }, [stopAutoPlay]); // Adiciona stopAutoPlay como dependência
+    }, 4000);
+  }, [stopAutoPlay]);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 767);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     if (isMobile) {
       startAutoPlay();
+    } else {
+      stopAutoPlay();
     }
-    return () => stopAutoPlay();
+    return stopAutoPlay;
   }, [isMobile, startAutoPlay, stopAutoPlay]);
+
+  useEffect(() => {
+    document.body.style.overflow = modal ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [modal]);
 
   const handlePrev = () => {
     stopAutoPlay();
     setCarouselIndex((prev) => (prev === 0 ? services.length - 1 : prev - 1));
+    startAutoPlay();
   };
 
   const handleNext = () => {
     stopAutoPlay();
     setCarouselIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
+    startAutoPlay();
   };
 
   return (
@@ -172,7 +172,7 @@ export default function ServicesMenuGrid() {
             <h2 className="services-title-h2 text-4xl font-extrabold text-gray-900 mb-2">
               Nossos Serviços
             </h2>
-            <p className="services-subtitle text-lg text-gray-500 max-w-xl mx-auto" style={{ padding: "1rem 0" }}>
+            <p className="services-subtitle text-lg text-gray-500 max-w-2xl mx-auto" style={{ padding: "1rem 0" }}>
               Profissionais qualificados para todas as suas necessidades
             </p>
           </div>
@@ -420,86 +420,195 @@ export default function ServicesMenuGrid() {
         </div>
       )}
       <style>{`
+        .services-section {
+          position: relative;
+          top: 6rem;
+          padding: 4rem 1rem;
+          background-color: #f8f9fa;
+        }
+        .services-container {
+          max-width: 1140px;
+          margin: 0 auto;
+        }
+        .services-header {
+          text-align: center;
+          margin-bottom: 3rem;
+        }
+        .services-title-h2 {
+          font-size: 2.5rem;
+          font-weight: 900;
+          color: #212529;
+          margin-bottom: 0.5rem;
+        }
+        .services-subtitle {
+          font-size: 1.125rem;
+          color: #6C757D;
+          max-width: 520px;
+          margin: 0 auto;
+        }
+
+        /* --- Grid (Desktop & Tablet) --- */
         .services-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-          gap: 2.5rem;
-          max-width: 1050px;
-          margin: 0 auto;
-          justify-items: center;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
         }
+        .services-card {
+          background: #fff;
+          border-radius: 1.25rem;
+          padding: 2rem;
+          text-align: center;
+          border: 1px solid #e9ecef;
+          box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+          transition: transform 0.3s, box-shadow 0.3s;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .services-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 35px rgba(30,121,247,0.1);
+        }
+        .services-icon {
+          width: 64px;
+          height: 64px;
+          margin-bottom: 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background: #f1f3f5;
+          font-size: 2rem;
+          transition: background 0.3s, transform 0.3s;
+        }
+        .services-card:hover .services-icon {
+            transform: scale(1.1);
+        }
+        .services-title {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: #212529;
+          margin-bottom: 0.5rem;
+          transition: color 0.3s;
+        }
+        .services-desc {
+          font-size: 1rem;
+          color: #6C757D;
+          line-height: 1.5;
+        }
+
+        /* --- Carousel (Mobile) --- */
+        .services-carousel-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1.5rem;
+        }
+        .services-carousel-controls {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 0.5rem;
+          order: 2; /* Controls below card */
+        }
+        .services-carousel-btn {
+          background-color: #fff;
+          border: 1.5px solid #e0e0e0;
+          border-radius: 50%;
+          width: 54px;
+          height: 54px;
+          font-size: 1.5rem;
+          color: #1E79F7;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+          cursor: pointer;
+        }
+        .services-carousel-card-wrapper {
+          width: 100%;
+          order: 1; /* Card on top */
+        }
+        .services-carousel-card {
+          background: #fff;
+          border-radius: 1.5rem;
+          text-align: center;
+          box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+          padding: 2.2rem 1.2rem;
+          width: 90%;
+          margin: 0 auto;
+          cursor: pointer;
+          overflow: hidden;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .services-carousel-gradient {
+          position: absolute;
+          inset: 0;
+          opacity: 0;
+          transition: opacity 0.3s;
+          z-index: 1;
+        }
+        .group:hover .services-carousel-gradient {
+          opacity: 1;
+        }
+        .services-carousel-icon, .services-carousel-title, .services-carousel-desc {
+          position: relative;
+          z-index: 2;
+        }
+        .services-carousel-icon {
+          width: 60px;
+          height: 60px;
+          background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+          box-shadow: 0 4px 16px rgba(30,121,247,0.08);
+          margin-bottom: 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          font-size: 2rem;
+        }
+        .services-carousel-title {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: #212529;
+          margin-bottom: 0.5rem;
+        }
+        .services-carousel-desc {
+          font-size: 1rem;
+          color: #6C757D;
+        }
+        .services-carousel-indicators {
+          display: flex;
+          justify-content: center;
+          gap: 0.75rem;
+          order: 3; /* Indicators at the bottom */
+        }
+        .indicator-dot {
+          width: 10px; height: 10px; border-radius: 50%; background: #d1d5db;
+          border: none; cursor: pointer; padding: 0; transition: background-color 0.3s;
+        }
+        .indicator-dot.active { background: #1E79F7; }
+        
+        /* --- Modal --- */
+        .modal-icon {
+            width: 72px;
+            height: 72px;
+            font-size: 2.5rem;
+        }
+
+        /* --- Responsive Adjustments --- */
         @media (max-width: 1024px) {
           .services-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            max-width: 98vw;
           }
         }
-        @media (max-width: 600px) {
-          .services-grid {
-            grid-template-columns: 1fr;
-            gap: 1.2rem;
-            max-width: 100vw;
-          }
-          .services-card {
-            min-width: 0 !important;
-            max-width: 95vw !important;
-            padding: 1.5rem 0.7rem !important;
-          }
+        @media (max-width: 767px) {
+          .services-title-h2 { font-size: 2rem; }
+          .services-subtitle { font-size: 1rem; }
+          .services-section { padding: 3rem 1rem; }
         }
-        /* Mantém responsividade e visual dos botões do carrossel mobile */
-        @media (max-width: 480px) {
-          .services-carousel-btn {
-            width: 54px !important;
-            height: 54px !important;
-            font-size: 2rem !important;
-            box-shadow: 0 2px 10px rgba(30,121,247,0.08) !important;
-          }
-          .services-carousel-card {
-            min-width: 90vw !important;
-            max-width: 95vw !important;
-            padding: 2.2rem 1.2rem !important;
-            margin: 0 auto !important;
-            border-radius: 1.2rem !important;
-            font-size: 1rem !important;
-          }
-          .services-carousel-icon {
-            width: 3.2rem !important;
-            height: 3.2rem !important;
-            font-size: 1.5rem !important;
-            margin-bottom: 1rem !important;
-          }
-          .services-carousel-title {
-            font-size: 1.2rem !important;
-            margin-bottom: 0.3rem !important;
-          }
-          .services-carousel-desc {
-            font-size: 1rem !important;
-          }
-          .services-carousel-indicators {
-            margin-top: 1.2rem !important;
-          }
-        }
-        @media (min-width: 1025px) {  
-          .services-subtitle{
-            position: relative;
-            left: 28%;
-          }  
-          .services-grid {
-            position: relative;
-            left: 7%;
-          }
-          .services-title-h2 {
-            position: relative;
-            left: 7%;
-          }    
-        }
-        @media (min-width: 481px) and (max-width: 1024px) {
-            .services-subtitle{
-            position: relative;
-            left: 12%;
-          }
-        }  
       `}</style>
     </>
   );

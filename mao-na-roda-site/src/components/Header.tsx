@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 export default function Header() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
 
-    // Fecha o menu mobile ao navegar para um link interno ou externo
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
         if (href.startsWith("#")) {
             e.preventDefault();
@@ -22,16 +22,7 @@ export default function Header() {
 
     useEffect(() => {
         const onScroll = () => {
-            const header = document.querySelector(".header-main");
-            if (header) {
-                if (window.scrollY > 100) {
-                    (header as HTMLElement).style.background = "linear-gradient(135deg, #1E79F7, #0D6EFD)";
-                    (header as HTMLElement).style.boxShadow = "0 2px 20px rgba(30, 121, 247, 0.3)";
-                } else {
-                    (header as HTMLElement).style.background = "linear-gradient(135deg, #1E79F7, #0D6EFD)";
-                    (header as HTMLElement).style.boxShadow = "0 2px 10px rgba(30, 121, 247, 0.2)";
-                }
-            }
+            setScrolled(window.scrollY > 50);
         };
         window.addEventListener("scroll", onScroll);
         return () => window.removeEventListener("scroll", onScroll);
@@ -39,335 +30,205 @@ export default function Header() {
 
     return (
         <>
-            <header
-                className="header-main fixed top-0 w-full z-[1000] border-b border-white/20"
-                style={{
-                    background: 'linear-gradient(135deg, #1E79F7, #0D6EFD)',
-                    backdropFilter: 'blur(0.625rem)',
-                    padding: '1rem 0'
-                }}
-            >
-                <div
-                    className="header-container flex justify-between items-center w-full mx-auto"
-                    style={{ maxWidth: '75rem', padding: '0 5%' }}
-                >
-                    {/* Logo */}
-                    <div className="header-logo flex items-center gap-3 text-[1.6rem] font-extrabold text-white">
-                        <div
-                            className="header-logo-img flex items-center justify-center rounded-[0.75rem] bg-white shadow-lg"
-                            style={{
-                                width: '2.8rem',
-                                height: '2.8rem',
-                                color: '#1E79F7',
-                                fontSize: '1.3rem',
-                                boxShadow: '0 0.25rem 0.94rem rgba(30,121,247,0.3)',
-                                padding: '0.3rem',
-                                overflow: 'hidden'
-                            }}
-                        >
-                            <img
-                                src="/Mao-na-roda-logo.jpg"
-                                alt="Mão na Roda"
-                                style={{
-                                    width: '2.5rem',
-                                    height: '2.5rem',
-                                    objectFit: 'contain'
-                                }}
-                            />
+            <header className={`header-main ${scrolled ? 'scrolled' : ''}`}>
+                <div className="header-container">
+                    <a href="#home" className="header-logo" onClick={(e) => handleNavClick(e, "#home")}>
+                        <div className="header-logo-img">
+                            <img src="/Mao-na-roda-logo.jpg" alt="Mão na Roda" />
                         </div>
-                        Mão na Roda
-                    </div>
+                        <span>Mão na Roda</span>
+                    </a>
 
-                    {/* Navigation - PC/Tablet */}
-                    <nav className="header-nav flex items-center gap-8 relative">
-                        <div className="header-links md:flex gap-6 order-1 w-full justify-center mt-2 hidden md:flex">
-                            <a
-                                href="#home"
-                                className="header-link text-[0.9rem] py-2 text-white/90 font-medium transition-all relative flex items-center gap-2 hover:text-white"
-                            >
-                                Home
-                            </a>
-                            <a
-                                href="#servicos"
-                                className="header-link text-[0.9rem] py-2 text-white/90 font-medium transition-all relative flex items-center gap-2 hover:text-white"
-                            >
-                                Serviços
-                            </a>
-                            <a
-                                href="#como-funciona"
-                                className="header-link text-[0.9rem] py-2 text-white/90 font-medium transition-all relative flex items-center gap-2 hover:text-white"
-                            >
-                                Como Funciona
-                            </a>
-                        </div>
-                        <div className="header-btns md:flex flex-row gap-4 order-2 justify-center hidden md:flex w-full">
-                            <a
-                                href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
-                                className="header-btn-app flex items-center gap-2 rounded-full border-2 border-gray-300 text-white font-semibold transition-all text-[0.95rem] bg-transparent hover:bg-white/10"
-                                style={{
-                                    boxShadow: '0 0.25rem 0.94rem rgba(30,121,247,0.3)',
-                                    padding: '0.5rem 1.25rem'
-                                }}
-                                target="_blank" rel="noopener noreferrer"
-                            >
-                                <i className="fas fa-mobile-alt text-[1.1rem]"></i>
-                                App Cliente
-                            </a>
-                            <a
-                                href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodaprofissional&hl=pt_BR"
-                                className="header-btn-pro flex items-center gap-2 rounded-full text-white font-semibold transition-all text-[0.95rem]"
-                                style={{
-                                    background: 'linear-gradient(135deg, #3B82F6, #1E40AF)',
-                                    boxShadow: '0 0.25rem 0.94rem rgba(30,121,247,0.3)',
-                                    padding: '0.5rem 1.25rem'
-                                }}
-                                target="_blank" rel="noopener noreferrer"
-                            >
-                                <i className="fas fa-tools text-[1.1rem]"></i>
-                                App Pro
-                            </a>
-                        </div>
+                    <nav className="header-nav">
+                        <a href="#home" className="header-link" onClick={(e) => handleNavClick(e, "#home")}>Home</a>
+                        <a href="#servicos" className="header-link" onClick={(e) => handleNavClick(e, "#servicos")}>Serviços</a>
+                        <a href="#como-funciona" className="header-link" onClick={(e) => handleNavClick(e, "#como-funciona")}>Como Funciona</a>
                     </nav>
 
-                    {/* Mobile menu toggle */}
-                    <div
-                        className="header-menu-toggle md:hidden ml-4 cursor-pointer flex items-center justify-center w-[2.5rem] h-[2.5rem] rounded-full hover:bg-white/10 transition"
-                        onClick={() => setSidebarOpen(true)}
-                    >
-                        <i className="fas fa-bars text-white text-xl"></i>
+                    <div className="header-actions">
+                        <a href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR" className="header-btn-app" target="_blank" rel="noopener noreferrer">
+                            <i className="fas fa-mobile-alt"></i>
+                            <span>App Cliente</span>
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodaprofissional&hl=pt_BR" className="header-btn-pro" target="_blank" rel="noopener noreferrer">
+                            <i className="fas fa-tools"></i>
+                            <span>App Pro</span>
+                        </a>
                     </div>
+
+                    <button className="header-menu-toggle" onClick={() => setSidebarOpen(true)} aria-label="Abrir menu">
+                        <i className="fas fa-bars"></i>
+                    </button>
                 </div>
             </header>
 
-            {/* Sidebar Mobile */}
-            <aside
-                className={`sidebar-mobile fixed top-0 left-0 h-full w-[80vw] max-w-[320px] bg-gradient-to-br from-[#1E79F7] to-[#0D6EFD] shadow-2xl z-[99] transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:hidden`}
-                style={{
-                    borderTopRightRadius: "1.5rem",
-                    borderBottomRightRadius: "1.5rem",
-                    boxShadow: "0 0.5rem 2rem rgba(30,121,247,0.15)",
-                    padding: "0.5rem",
-                    pointerEvents: "auto"
-                }}
-            >
-                <div className="sidebar-content flex flex-col h-full">
-                    <div className="sidebar-header flex items-center justify-between px-6 py-4 border-b border-white/20" style={{ padding: "2%" }}>
-                        <div className="sidebar-logo flex items-center gap-2 font-extrabold text-white text-xl">
-                            <img src="/Mao-na-roda-logo.jpg" alt="Logo" className="w-8 h-8 object-contain rounded-lg bg-white" />
-                            Mão na Roda
-                        </div>
-                        <button
-                            className="sidebar-close text-white text-2xl z-[999999]"
-                            onClick={() => setSidebarOpen(false)}
-                            aria-label="Fechar menu"
-                        >
-                            <i className="fas fa-times"></i>
-                        </button>
+            <div className={`sidebar-overlay ${sidebarOpen ? 'open' : ''}`} onClick={() => setSidebarOpen(false)} />
+            <aside className={`sidebar-mobile ${sidebarOpen ? 'open' : ''}`}>
+                <div className="sidebar-header">
+                    <div className="sidebar-logo">
+                        <img src="/Mao-na-roda-logo.jpg" alt="Logo" />
+                        <span>Mão na Roda</span>
                     </div>
-                    <nav className="sidebar-links flex flex-col gap-2 px-6 py-6" style={{ padding: "5%" }}>
-                        <a
-                            href="#home"
-                            className="sidebar-link text-white font-semibold text-lg py-2 rounded-lg hover:bg-white/10 transition z-[999999]"
-                            onClick={e => handleNavClick(e, "#home")}
-                        >
-                            Home
-                        </a>
-                        <a
-                            href="#servicos"
-                            className="sidebar-link text-white font-semibold text-lg py-2 rounded-lg hover:bg-white/10 transition z-[999999]"
-                            onClick={e => handleNavClick(e, "#servicos")}
-                        >
-                            Serviços
-                        </a>
-                        <a
-                            href="#como-funciona"
-                            className="sidebar-link text-white font-semibold text-lg py-2 rounded-lg hover:bg-white/10 transition z-[999999]"
-                            onClick={e => handleNavClick(e, "#como-funciona")}
-                        >
-                            Como Funciona
-                        </a>
-                    </nav>
-                    <div className="sidebar-btns flex flex-col gap-3 px-6 mt-auto pb-8">
-                        <a
-                            href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
-                            className="sidebar-btn-app flex items-center gap-2 rounded-full border-2 border-white text-white font-semibold transition-all text-base bg-transparent hover:bg-white/10 px-4 py-3 z-[999999]"
-                            style={{ padding: '0.75rem 1.25rem' }}
-                            target="_blank" rel="noopener noreferrer"
-                            onClick={() => setSidebarOpen(false)}
-                        >
-                            <i className="fas fa-mobile-alt text-lg"></i>
-                            App Cliente
-                        </a>
-                        <a
-                            href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodaprofissional&hl=pt_BR"
-                            className="sidebar-btn-pro flex items-center gap-2 rounded-full text-white font-semibold transition-all text-base z-[999999]"
-                            style={{
-                                background: 'linear-gradient(135deg, #3B82F6, #1E40AF)',
-                                boxShadow: '0 0.25rem 0.94rem rgba(30,121,247,0.3)',
-                                padding: '0.75rem 1.25rem'
-                            }}
-                            target="_blank" rel="noopener noreferrer"
-                            onClick={() => setSidebarOpen(false)}
-                        >
-                            <i className="fas fa-tools text-lg"></i>
-                            App Pro
-                        </a>
-                    </div>
+                    <button className="sidebar-close" onClick={() => setSidebarOpen(false)} aria-label="Fechar menu">
+                        <i className="fas fa-times"></i>
+                    </button>
+                </div>
+                <nav className="sidebar-links">
+                    <a href="#home" onClick={e => handleNavClick(e, "#home")}>Home</a>
+                    <a href="#servicos" onClick={e => handleNavClick(e, "#servicos")}>Serviços</a>
+                    <a href="#como-funciona" onClick={e => handleNavClick(e, "#como-funciona")}>Como Funciona</a>
+                </nav>
+                <div className="sidebar-btns">
+                    <a href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR" className="sidebar-btn-app" target="_blank" rel="noopener noreferrer">
+                        <i className="fas fa-mobile-alt"></i>
+                        <span>App Cliente</span>
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodaprofissional&hl=pt_BR" className="sidebar-btn-pro" target="_blank" rel="noopener noreferrer">
+                        <i className="fas fa-tools"></i>
+                        <span>App Pro</span>
+                    </a>
                 </div>
             </aside>
     
             <style>{`
-                /* MOBILE */
-                @media (max-width: 480px) {
-                    .header-main {
-                        padding: 0.7rem 0 !important;
-                    }
-                    .header-container {
-                        padding: 0 2vw !important;
-                        max-width: 100vw !important;
-                    }
-                    .header-logo {
-                        font-size: 1.1rem !important;
-                        gap: 0.7rem !important;
-                    }
-                    .header-logo-img {
-                        width: 2.1rem !important;
-                        height: 2.1rem !important;
-                        padding: 0.15rem !important;
-                    }
-                    .header-nav {
-                        display: none !important;
-                    }
-                    .header-menu-toggle {
-                        margin-left: 0 !important;
-                        width: 2.2rem !important;
-                        height: 2.2rem !important;
-                    }
-                    .sidebar-mobile {
-                        display: block !important;
-                        width: 100vw !important;
-                        max-width: 100vw !important;
-                        border-radius: 0 !important;
-                        padding: 0 !important;
-                        z-index: 2000 !important;
-                    }
-                    .sidebar-header {
-                        padding: 1rem 1.2rem !important;
-                    }
-                    .sidebar-logo {
-                        font-size: 1.1rem !important;
-                        gap: 0.5rem !important;
-                    }
-                    .sidebar-links {
-                        padding: 1.2rem 1.2rem !important;
-                        gap: 0.5rem !important;
-                    }
-                    .sidebar-link {
-                        font-size: 1rem !important;
-                        padding: 0.7rem 0.5rem !important;
-                    }
-                    .sidebar-btns {
-                        gap: 0.7rem !important;
-                        padding-left: 1.2rem !important;
-                        padding-right: 1.2rem !important;
-                        padding-bottom: 1.2rem !important;
-                        z-index: 2001 !important;
-                    }
-                    .sidebar-btn-app, .sidebar-btn-pro {
-                        font-size: 1rem !important;
-                        padding: 0.7rem 1rem !important;
-                        z-index: 2001 !important;
-                    }
+                :root { --header-height: 80px; }
+                .header-main {
+                    position: fixed;
+                    top: 0;
+                    width: 100%;
+                    z-index: 1000;
+                    background: linear-gradient(135deg, #1E79F7, #0D6EFD);
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                    padding: 1rem 0;
+                    transition: all 0.3s ease;
                 }
-                /* TABLET */
-                @media (min-width: 481px) and (max-width: 1024px) {
-                    .header-main {
-                        padding: 0.9rem 0 !important;
-                    }
-                    .header-container {
-                        padding: 0 3vw !important;
-                        max-width: 98vw !important;
-                    }
-                    .header-logo {
-                        font-size: 1.3rem !important;
-                        gap: 1rem !important;
-                    }
-                    .header-logo-img {
-                        width: 2.3rem !important;
-                        height: 2.3rem !important;
-                        padding: 0.2rem !important;
-                    }
-                    .header-nav {
-                        display: flex !important;
-                        gap: 2.5vw !important;
-                    }
-                    .header-links {
-                        gap: 2vw !important;
-                        margin-top: 0 !important;
-                    }
-                    .header-link {
-                        font-size: 1rem !important;
-                        padding: 0.7rem 0.5rem !important;
-                    }
-                    .header-btns {
-                        gap: 1vw !important;
-                    }
-                    .header-btn-app, .header-btn-pro {
-                        font-size: 1rem !important;
-                        padding: 0.6rem 1.1rem !important;
-                    }
-                    .header-menu-toggle {
-                        margin-left: 0.5rem !important;
-                        width: 2.3rem !important;
-                        height: 2.3rem !important;
-                    }
-                    .sidebar-mobile {
-                        display: none !important;
-                    }
+                .header-main.scrolled {
+                    box-shadow: 0 2px 20px rgba(30, 121, 247, 0.3);
+                    padding: 0.8rem 0;
                 }
-                /* DESKTOP */
-                @media (min-width: 1025px) {
-                    .header-main {
-                        padding: 1.1rem 0 !important;
-                    }
-                    .header-container {
-                        padding: 0 5vw !important;
-                        max-width: 75rem !important;
-                    }
-                    .header-logo {
-                        font-size: 1.6rem !important;
-                        gap: 1.2rem !important;
-                    }
-                    .header-logo-img {
-                        width: 2.8rem !important;
-                        height: 2.8rem !important;
-                        padding: 0.3rem !important;
-                    }
-                    .header-nav {
-                        display: flex !important;
-                        gap: 3vw !important;
-                    }
-                    .header-links {
-                        gap: 2vw !important;
-                        margin-top: 0 !important;
-                    }
-                    .header-link {
-                        font-size: 1.1rem !important;
-                        padding: 0.8rem 0.7rem !important;
-                    }
-                    .header-btns {
-                        gap: 1.2vw !important;
-                    }
-                    .header-btn-app, .header-btn-pro {
-                        font-size: 1.05rem !important;
-                        padding: 0.7rem 1.3rem !important;
-                    }
-                    .header-menu-toggle {
-                        display: none !important;
-                    }
-                    .sidebar-mobile {
-                        display: none !important;
-                    }
+                .header-container {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    max-width: 1400px;
+                    margin: 0 auto;
+                    padding: 0 1rem;
+                }
+                .header-logo {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.8rem;
+                    font-size: 1.2rem;
+                    font-weight: 800;
+                    color: #fff;
+                    text-decoration: none;
+                }
+                .header-logo-img {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 0.75rem;
+                    background: #fff;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    padding: 0.2rem;
+                    overflow: hidden;
+                }
+                .header-logo-img img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+                .header-nav { display: none; }
+                .header-actions { display: none; }
+                .header-menu-toggle {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    border-radius: 50%;
+                    background: transparent;
+                    border: none;
+                    color: #fff;
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    transition: background 0.2s;
+                }
+                .header-menu-toggle:hover { background: rgba(255,255,255,0.1); }
+                
+                /* Sidebar */
+                .sidebar-overlay {
+                    position: fixed;
+                    inset: 0;
+                    background: rgba(0,0,0,0.4);
+                    z-index: 1999;
+                    opacity: 0;
+                    pointer-events: none;
+                    transition: opacity 0.3s ease;
+                }
+                .sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+                .sidebar-mobile {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 80vw;
+                    max-width: 300px;
+                    background: linear-gradient(135deg, #1E79F7, #0D6EFD);
+                    box-shadow: 0 0 2rem rgba(0,0,0,0.2);
+                    z-index: 2000;
+                    transform: translateX(-100%);
+                    transition: transform 0.3s ease;
+                    display: flex;
+                    flex-direction: column;
+                }
+                .sidebar-mobile.open { transform: translateX(0); }
+                .sidebar-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 1rem 1.2rem;
+                    border-bottom: 1px solid rgba(255,255,255,0.2);
+                }
+                .sidebar-logo { display: flex; align-items: center; gap: 0.7rem; font-weight: 700; color: #fff; }
+                .sidebar-logo img { width: 2rem; height: 2rem; border-radius: 0.5rem; background: #fff; object-fit: contain; padding: 0.1rem; }
+                .sidebar-close { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+                .sidebar-links { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.2rem; }
+                .sidebar-links a { color: #fff; font-weight: 500; padding: 0.8rem 1rem; border-radius: 0.5rem; text-decoration: none; transition: background 0.2s; }
+                .sidebar-links a:hover { background: rgba(255,255,255,0.1); }
+                .sidebar-btns { display: flex; flex-direction: column; gap: 1rem; padding: 1.2rem; margin-top: auto; }
+                .sidebar-btn-app, .sidebar-btn-pro { display: flex; align-items: center; justify-content: center; gap: 0.7rem; padding: 0.8rem; border-radius: 2rem; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+                .sidebar-btn-app { border: 2px solid #fff; color: #fff; }
+                .sidebar-btn-app:hover { background: #fff; color: #1E79F7; }
+                .sidebar-btn-pro { background: linear-gradient(135deg, #3B82F6, #1E40AF); color: #fff; border: 2px solid transparent; }
+                .sidebar-btn-pro:hover { filter: brightness(1.1); }
+
+                /* Tablet (md) */
+                @media (min-width: 768px) {
+                    .header-container { padding: 0 2rem; }
+                    .header-menu-toggle { display: none; }
+                    .sidebar-mobile, .sidebar-overlay { display: none; }
+                    .header-nav { display: flex; align-items: center; gap: 1rem; }
+                    .header-link { color: rgba(255,255,255,0.9); font-weight: 500; text-decoration: none; padding: 0.5rem; transition: color 0.2s; }
+                    .header-link:hover { color: #fff; }
+                    .header-actions { display: flex; align-items: center; gap: 0.8rem; }
+                    .header-btn-app, .header-btn-pro { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; border-radius: 2rem; font-weight: 600; text-decoration: none; transition: all 0.2s; font-size: 0.9rem; }
+                    .header-btn-app { border: 2px solid rgba(255,255,255,0.8); color: #fff; }
+                    .header-btn-app:hover { background: #fff; color: #1E79F7; }
+                    .header-btn-pro { background: linear-gradient(135deg, #3B82F6, #1E40AF); color: #fff; }
+                    .header-btn-pro:hover { filter: brightness(1.1); }
+                }
+                /* Desktop (lg) */
+                @media (min-width: 992px) {
+                    .header-nav { gap: 1.5rem; }
+                }
+                /* Desktop (xl) */
+                @media (min-width: 1200px) {
+                    .header-container { padding: 0 3rem; }
+                    .header-nav { gap: 2rem; }
+                    .header-link { font-size: 1rem; }
                 }
             `}</style>
         </>

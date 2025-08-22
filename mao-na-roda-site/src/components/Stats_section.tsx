@@ -1,4 +1,4 @@
-import { useEffect, useRef, useMemo } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 
 const stats = [
   {
@@ -19,7 +19,7 @@ const stats = [
     icon: "fas fa-shield-alt",
     number: 98,
     label: "Satisfação",
-    subtitle: "Avaliação 4.8/5 no ReclameAqui e Google",
+    subtitle: "Avaliação 4.8/5 em plataformas",
     suffix: "%",
   },
   {
@@ -31,287 +31,220 @@ const stats = [
   },
 ];
 
-function animateCountUp(
-  ref: React.RefObject<HTMLDivElement | null>,
-  target: number,
-  suffix: string
-) {
+function animateCountUp(el: HTMLElement, target: number, suffix: string) {
   let current = 0;
-  const duration = 1500;
+  const duration = 2000; // 2 seconds for a smoother animation
   const increment = target / (duration / 16);
   let frame: number;
 
-  function animate() {
+  const step = () => {
     current += increment;
-    if (current >= target) current = target;
-    if (ref.current) {
-      if (target >= 1000) {
-        ref.current.textContent = Math.floor(current / 1000) + suffix;
-      } else {
-        ref.current.textContent = Math.floor(current) + suffix;
-      }
+    if (current >= target) {
+      current = target;
     }
-    if (current < target) frame = requestAnimationFrame(animate);
-  }
+    
+    let displayValue: string;
+    if (target >= 1000 && suffix.includes("K")) {
+      displayValue = Math.floor(current / 1000) + suffix;
+    } else {
+      displayValue = Math.floor(current) + suffix;
+    }
+    el.textContent = displayValue;
 
-  animate();
+    if (current < target) {
+      frame = requestAnimationFrame(step);
+    }
+  };
+
+  frame = requestAnimationFrame(step);
   return () => cancelAnimationFrame(frame);
 }
 
 export default function StatsSection() {
-  const ref0 = useRef<HTMLDivElement>(null);
-  const ref1 = useRef<HTMLDivElement>(null);
-  const ref2 = useRef<HTMLDivElement>(null);
-  const ref3 = useRef<HTMLDivElement>(null);
-
-  const refs = useMemo(() => [ref0, ref1, ref2, ref3], []);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  
+  const refs = useMemo(() => Array.from({ length: stats.length }, () => React.createRef<HTMLDivElement>()), []);
 
   useEffect(() => {
-    const cleanups: Array<() => void> = [];
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 } // Trigger when 20% of the section is visible
+    );
 
-    stats.forEach((stat, i) => {
-      const cleanup = animateCountUp(refs[i], stat.number, stat.suffix);
-      cleanups.push(cleanup);
-    });
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
-    return () => cleanups.forEach((fn) => fn && fn());
-  }, [refs]);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isVisible) {
+      const cleanups = stats.map((stat, i) => {
+        const el = refs[i].current;
+        if (el) {
+          return animateCountUp(el, stat.number, stat.suffix);
+        }
+        return () => {};
+      });
+      return () => cleanups.forEach((fn) => fn());
+    }
+  }, [isVisible, refs]);
 
   return (
-    <section
-      className="stats-section-main py-20 relative overflow-hidden top-[6rem] flex justify-center items-center"
-      style={{
-        background: "linear-gradient(135deg, #d1d1d1 0%, #e7e7e7 100%)",
-        padding: "3% 0",
-      }}
-    >
-      <div className="stats-section-container w-full mx-auto" style={{ maxWidth: "75rem", padding: "0 5%" }}>
-        <div className="stats-section-header text-center mb-12">
-          <h2 className="stats-section-title text-[2.5rem] font-extrabold text-shadow-gray-900 text-gray-700 p-4">
-            Números que Impressionam
+    <section ref={sectionRef} className="stats-section">
+      <div className="stats-container">
+        <div className="stats-header">
+          <h2 className="stats-title">
+            Números que <span className="stats-title-highlight">Impressionam</span>
           </h2>
+          <p className="stats-subtitle">Nossa comunidade não para de crescer. Veja nossos resultados.</p>
         </div>
 
-        <div className="stats-section-grid w-auto flex flex-wrap justify-center gap-12 relative z-10" style={{ padding: "1rem 2rem" }}>
+        <div className="stats-grid">
           {stats.map((stat, i) => (
-            <div
-              key={stat.label}
-              className="stats-section-card flex-1 w-auto text-center relative"
-              style={{
-                background: "linear-gradient(135deg, rgba(30, 121, 247, 0.05), rgba(30, 121, 247, 0.1))",
-                padding: "3rem 2rem",
-                borderRadius: "1.25rem",
-                boxShadow: "0 1.25rem 2.5rem rgba(30, 121, 247, 0.15)",
-                minWidth: "220px",
-                maxWidth: "340px",
-                margin: "0 auto",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center"
-              }}
-            >
-              <div
-                className="stats-section-icon mx-auto mb-8 flex items-center justify-center"
-                style={{
-                  width: "6.25rem",
-                  height: "6.25rem",
-                  background: "white",
-                  borderRadius: "50%",
-                  fontSize: "2.5rem",
-                  color: "#1E79F7",
-                  boxShadow: "0 0.9375rem 2.1875rem rgba(30, 121, 247, 0.2)",
-                  marginBottom: "2rem"
-                }}
-              >
+            <div key={stat.label} className="stats-card">
+              <div className="stats-icon">
                 <i className={stat.icon}></i>
               </div>
-              <div className="stats-section-content flex flex-col items-center">
-                <div
-                  ref={refs[i]}
-                  className="stats-section-number"
-                  style={{
-                    fontSize: "4.5rem",
-                    fontWeight: 900,
-                    background: "linear-gradient(135deg, #1E79F7, #0D6EFD)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  0
-                </div>
-                <div
-                  className="stats-section-label"
-                  style={{
-                    fontSize: "1.4rem",
-                    fontWeight: 700,
-                    color: "#212529",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  {stat.label}
-                </div>
-                <div
-                  className="stats-section-subtitle"
-                  style={{
-                    fontSize: "1rem",
-                    color: "#6C757D",
-                  }}
-                >
-                  {stat.subtitle}
-                </div>
+              <div className="stats-content">
+                <div ref={refs[i]} className="stats-number">0</div>
+                <h3 className="stats-label">{stat.label}</h3>
+                <p className="stats-card-subtitle">{stat.subtitle}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
       <style>{`
-        /* MOBILE */
-        @media (max-width: 480px) {
-          .stats-section-main {
-            padding: 2rem 0.5rem !important;
-          }
-          .stats-section-container {
-            padding: 0 0.5rem !important;
-            max-width: 100vw !important;
-          }
-          .stats-section-header {
-            margin-bottom: 2rem !important;
-          }
-          .stats-section-title {
-            font-size: 1.5rem !important;
-            padding: 0.5rem 0 !important;
-          }
-          .stats-section-grid {
-            gap: 1.2rem !important;
-            padding: 0 !important;
-            flex-direction: column !important;
-            align-items: center !important;
-          }
-          .stats-section-card {
-            max-width: 95vw !important;
-            min-width: 0 !important;
-            padding: 1.5rem 0.7rem !important;
-            font-size: 0.95rem !important;
-            margin: 0 auto 0 auto !important;
-            border-radius: 1rem !important;
-          }
-          .stats-section-icon {
-            width: 3.5rem !important;
-            height: 3.5rem !important;
-            font-size: 1.5rem !important;
-            margin-bottom: 1rem !important;
-          }
-          .stats-section-number {
-            font-size: 2.2rem !important;
-            margin-bottom: 0.5rem !important;
-          }
-          .stats-section-label {
-            font-size: 1.1rem !important;
-            margin-bottom: 0.5rem !important;
-          }
-          .stats-section-subtitle {
-            font-size: 0.95rem !important;
+        .stats-section {
+          padding: 5rem 0;
+          position: relative;
+          top: 6rem;
+          background: #f8f9fa;
+          overflow: hidden;
+        }
+        .stats-container {
+          width: 100%;
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 1rem;
+        }
+        .stats-header {
+          text-align: center;
+          margin-bottom: 4rem;
+        }
+        .stats-title {
+          font-size: 2.2rem;
+          font-weight: 900;
+          color: #212529;
+          margin-bottom: 0.5rem;
+        }
+        .stats-title-highlight {
+          background: linear-gradient(135deg, #1E79F7, #0D6EFD);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        .stats-subtitle {
+          font-size: 1.1rem;
+          color: #6C757D;
+          max-width: 600px;
+          margin: 0 auto;
+        }
+        .stats-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        .stats-card {
+          background: #fff;
+          padding: 2rem;
+          border-radius: 1.25rem;
+          box-shadow: 0 1rem 2.5rem rgba(30, 121, 247, 0.08);
+          border: 1px solid #e9ecef;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .stats-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 1.5rem 3rem rgba(30, 121, 247, 0.15);
+        }
+        .stats-icon {
+          width: 5rem;
+          height: 5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, #1E79F7, #0D6EFD);
+          border-radius: 50%;
+          font-size: 2rem;
+          color: #fff;
+          box-shadow: 0 0.5rem 1.5rem rgba(30, 121, 247, 0.25);
+          margin-bottom: 1.5rem;
+        }
+        .stats-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .stats-number {
+          font-size: 3rem;
+          font-weight: 900;
+          color: #2d5ed0;
+          margin-bottom: 0.25rem;
+        }
+        .stats-label {
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: #343a40;
+          margin-bottom: 0.5rem;
+        }
+        .stats-card-subtitle {
+          font-size: 0.95rem;
+          color: #6C757D;
+          line-height: 1.5;
+        }
+
+        /* Small devices (sm) */
+        @media (min-width: 576px) {
+          .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
           }
         }
-        /* TABLET */
-        @media (min-width: 481px) and (max-width: 1024px) {
-          .stats-section-main {
-            padding: 2.5rem 1rem !important;
-          }
-          .stats-section-container {
-            padding: 0 1.5rem !important;
-            max-width: 98vw !important;
-          }
-          .stats-section-header {
-            margin-bottom: 2.5rem !important;
-          }
-          .stats-section-title {
-            font-size: 2rem !important;
-            padding: 0.7rem 0 !important;
-          }
-          .stats-section-grid {
-            gap: 2rem !important;
-            padding: 1rem 0.5rem !important;
-            flex-direction: row !important;
-            flex-wrap: wrap !important;
-            justify-content: center !important;
-          }
-          .stats-section-card {
-            max-width: 45vw !important;
-            min-width: 180px !important;
-            padding: 2.2rem 1.2rem !important;
-            font-size: 1rem !important;
-            margin: 0.5rem !important;
-            border-radius: 1.1rem !important;
-          }
-          .stats-section-icon {
-            width: 4.5rem !important;
-            height: 4.5rem !important;
-            font-size: 2rem !important;
-            margin-bottom: 1.2rem !important;
-          }
-          .stats-section-number {
-            font-size: 3rem !important;
-            margin-bottom: 0.7rem !important;
-          }
-          .stats-section-label {
-            font-size: 1.2rem !important;
-            margin-bottom: 0.7rem !important;
-          }
-          .stats-section-subtitle {
-            font-size: 1rem !important;
-          }
+
+        /* Medium devices (md) */
+        @media (min-width: 768px) {
+          .stats-container { padding: 0 2rem; }
+          .stats-title { font-size: 2.5rem; }
+          .stats-card { padding: 2.5rem; }
         }
-        /* DESKTOP */
-        @media (min-width: 1025px) {
-          .stats-section-main {
-            padding: 3% 0 !important;
+
+        /* Large devices (lg) */
+        @media (min-width: 992px) {
+          .stats-grid {
+            grid-template-columns: repeat(4, 1fr);
           }
-          .stats-section-container {
-            padding: 0 5% !important;
-            max-width: 75rem !important;
-          }
-          .stats-section-header {
-            margin-bottom: 3rem !important;
-          }
-          .stats-section-title {
-            font-size: 2.5rem !important;
-            padding: 1rem 0 !important;
-          }
-          .stats-section-grid {
-            gap: 3rem !important;
-            padding: 1rem 2rem !important;
-            flex-direction: row !important;
-            flex-wrap: wrap !important;
-            justify-content: center !important;
-          }
-          .stats-section-card {
-            max-width: 340px !important;
-            min-width: 220px !important;
-            padding: 3rem 2rem !important;
-            font-size: 1.1rem !important;
-            margin: 1rem !important;
-            border-radius: 1.25rem !important;
-          }
-          .stats-section-icon {
-            width: 6.25rem !important;
-            height: 6.25rem !important;
-            font-size: 2.5rem !important;
-            margin-bottom: 2rem !important;
-          }
-          .stats-section-number {
-            font-size: 4.5rem !important;
-            margin-bottom: 1rem !important;
-          }
-          .stats-section-label {
-            font-size: 1.4rem !important;
-            margin-bottom: 1rem !important;
-          }
-          .stats-section-subtitle {
-            font-size: 1rem !important;
-          }
+          .stats-number { font-size: 3.5rem; }
+        }
+
+        /* Extra large devices (xl) */
+        @media (min-width: 1200px) {
+          .stats-container { padding: 0 3rem; }
+          .stats-title { font-size: 2.8rem; }
+          .stats-grid { gap: 2rem; }
+          .stats-icon { width: 5.5rem; height: 5.5rem; font-size: 2.2rem; }
+          .stats-number { font-size: 4rem; }
         }
       `}</style>
     </section>
