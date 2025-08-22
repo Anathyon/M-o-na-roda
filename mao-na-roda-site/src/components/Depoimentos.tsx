@@ -1,3 +1,5 @@
+import React from "react";
+
 const testimonials = [
   {
     name: "Mariana Silva",
@@ -19,69 +21,69 @@ const testimonials = [
     service: "Elétrica",
     badgeIcon: "fas fa-bolt",
     badgeColor: "linear-gradient(135deg, #FEF3C7, #FDE68A)",
-    badgeTextColor: "#F59E0B",
+    badgeTextColor: "#B45309",
     quote:
       "Contratei um eletricista para instalar um chuveiro elétrico. Chegou no horário, trabalho impecável e preço muito justo. Super recomendo!",
     type: "cliente",
     starsColor: "#F59E0B",
-    cardBg: "linear-gradient(135deg, #17A2B8, #0B8FAA)",
-    quoteIconBg: "#1E79F7",
+    cardBg: "linear-gradient(135deg, #FBBF24, #F59E0B)",
+    quoteIconBg: "linear-gradient(135deg, #FBBF24, #F59E0B)",
   },
   {
     name: "Ana Santos",
     avatar: "A",
     service: "Hidráulica",
     badgeIcon: "fas fa-tint",
-    badgeColor: "linear-gradient(135deg, #4FC3F7, #29B6F6)",
-    badgeTextColor: "#e6e6e6",
+    badgeColor: "linear-gradient(135deg, #C7D2FE, #A5B4FC)",
+    badgeTextColor: "#4338CA",
     quote:
       "Vazamento no banheiro resolvido em 1 hora! O encanador foi muito profissional e deixou tudo funcionando perfeitamente. Serviço de qualidade!",
     type: "cliente",
     starsColor: "#F59E0B",
-    cardBg: "#3d31e4",
-    quoteIconBg: "#1E79F7",
+    cardBg: "linear-gradient(135deg, #6366F1, #4F46E5)",
+    quoteIconBg: "linear-gradient(135deg, #6366F1, #4F46E5)",
   },
   {
     name: "Carlos Oliveira",
     avatar: "C",
     service: "Marcenaria",
     badgeIcon: "fas fa-hammer",
-    badgeColor: "linear-gradient(135deg, #8D6E63, #795548)",
-    badgeTextColor: "#cfcc00",
+    badgeColor: "linear-gradient(135deg, #D1C4E9, #B39DDB)",
+    badgeTextColor: "#512DA8",
     quote:
       "Como profissional, recebi várias oportunidades pelo app. Os clientes são claros nas solicitações e o pagamento é garantido. Recomendo para quem quer aumentar a renda!",
     type: "profissional",
     starsColor: "#F59E0B",
-    cardBg: "#aa700b",
-    quoteIconBg: "#1E79F7",
+    cardBg: "linear-gradient(135deg, #9575CD, #673AB7)",
+    quoteIconBg: "linear-gradient(135deg, #9575CD, #673AB7)",
   },
   {
     name: "Fernanda Lima",
     avatar: "F",
     service: "Carpintaria",
     badgeIcon: "fas fa-tools",
-    badgeColor: "linear-gradient(135deg, #ff5c5c, #f75454)",
-    badgeTextColor: "#ccdae9",
+    badgeColor: "linear-gradient(135deg, #FFCCBC, #FFAB91)",
+    badgeTextColor: "#D84315",
     quote:
       "Sou carpinteira e uso o app para encontrar novos clientes. O sistema facilita o contato e agiliza o serviço. Muito bom para profissionais!",
     type: "profissional",
     starsColor: "#F59E0B",
-    cardBg: "#d35710",
-    quoteIconBg: "#1E79F7",
+    cardBg: "linear-gradient(135deg, #FF8A65, #FF5722)",
+    quoteIconBg: "linear-gradient(135deg, #FF8A65, #FF5722)",
   },
   {
     name: "Pedro Martins",
     avatar: "P",
-    service: "Instalação",
-    badgeIcon: "fas fa-plug",
-    badgeColor: "linear-gradient(135deg, #FFD700, #FFA500)",
-    badgeTextColor: "#d35710",
+    service: "Limpeza",
+    badgeIcon: "fas fa-broom",
+    badgeColor: "linear-gradient(135deg, #A5D6A7, #81C784)",
+    badgeTextColor: "#2E7D32",
     quote:
-      "Encontrei ótimos clientes pelo app e consegui fechar vários serviços de instalação elétrica. Recomendo para quem quer trabalhar com segurança e praticidade.",
+      "Encontrei ótimos clientes pelo app e consegui fechar vários serviços de limpeza pós-obra. Recomendo para quem quer trabalhar com segurança e praticidade.",
     type: "profissional",
     starsColor: "#F59E0B",
-    cardBg: "#c90c0c",
-    quoteIconBg: "#1E79F7",
+    cardBg: "linear-gradient(135deg, #66BB6A, #43A047)",
+    quoteIconBg: "linear-gradient(135deg, #66BB6A, #43A047)",
   },
 ];
 
@@ -161,25 +163,24 @@ export default function TestimonialsSection() {
                   <h4 className="testimonial-author-name">
                     {t.name}
                   </h4>
-                  <div className="testimonial-author-badges">
-                    <div
-                      className="testimonial-badge"
-                      style={{
-                        background: t.badgeColor,
-                        color: t.badgeTextColor,
-                      }}
-                    >
-                      <i className={t.badgeIcon}></i>
-                      <span>{t.service}</span>
-                      <span className="testimonial-badge-type">
-                        {t.type === "profissional" ? "Profissional" : "Cliente"}
-                      </span>
-                    </div>
+                  <div
+                    className="testimonial-service-badge"
+                    style={{
+                      background: t.badgeColor,
+                      color: t.badgeTextColor,
+                    }}
+                  >
+                    <i className={t.badgeIcon}></i>
+                    <span>{t.service}</span>
+                    <span className="testimonial-badge-type">
+                      {t.type === "profissional" ? "Profissional" : "Cliente"}
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
           ))}
+
         </div>
       </div>
       <style>{`
@@ -258,6 +259,10 @@ export default function TestimonialsSection() {
           overflow: hidden;
           transition: box-shadow 0.2s, transform 0.2s;
         }
+        .testimonial-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 1.2rem 3.5rem rgba(30,121,247,0.15);
+        }
         .testimonial-card-circle {
           position: absolute;
           top: -1rem;
@@ -326,24 +331,20 @@ export default function TestimonialsSection() {
           font-size: 1.1rem;
           margin-bottom: 0.2rem;
         }
-        .testimonial-author-badges {
-          display: flex;
-          gap: 0.5rem;
-        }
-        .testimonial-badge {
-          display: flex;
+        .testimonial-service-badge {
+          display: inline-flex;
           align-items: center;
           gap: 0.4rem;
           border-radius: 1rem;
-          padding: 0.25rem 0.75rem;
-          font-size: 0.9rem;
+          padding: 0.3rem 0.75rem;
+          font-size: 0.85rem;
           font-weight: 500;
         }
         .testimonial-badge-type {
           font-weight: 400;
-          font-size: 1em;
+          font-size: 0.9em;
           margin-left: 0.5em;
-          opacity: 0.7;
+          opacity: 0.8;
         }
         /* Tablet */
         @media (max-width: 1024px) {
@@ -397,7 +398,7 @@ export default function TestimonialsSection() {
             height: 2.2rem;
             font-size: 0.95rem;
           }
-          .testimonial-badge {
+          .testimonial-service-badge {
             font-size: 0.8rem;
             padding: 0.15rem 0.5rem;
           }
