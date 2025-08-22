@@ -50,7 +50,7 @@ export default function Hero() {
                     </div>
                     <div className="app-header-text">
                       <strong>Mão na Roda</strong>
-                      <span>Serviços para seu lar</span>
+                      <span className="text-white">Serviços para seu lar</span>
                     </div>
                   </div>
                   <div className="app-services-list">
@@ -127,13 +127,13 @@ export default function Hero() {
         /* Phone Mockup */
         .phone-mockup { width: 12rem; aspect-ratio: 9/19; background: #051a36bd; border-radius: 2rem; padding: 0.7rem; box-shadow: 0 1rem 3rem rgba(0,0,0,0.2); animation: hero-float 6s ease-in-out infinite; }
         .phone-screen { width: 100%; height: 100%; background: #fff; border-radius: 1.5rem; overflow: hidden; }
-        .app-interface { display: flex; flex-direction: column; height: 100%; padding: 0.5rem; gap: 0.5rem; }
+        .app-interface { display: flex; flex-direction: column; height: 100%; padding: 0.5rem; gap: 0.5rem; background: #006dffbd; }
         .app-header { display: flex; align-items: center; gap: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #eee; }
         .app-icon { width: 2.5rem; height: 2.5rem; background: #fff; border-radius: 1.5rem; padding: 0.2rem; border: 1px solid #1E79F7; }
         .app-icon img { width: 100%; height: 100%; object-fit: contain;padding: 0.2rem; }
         .app-header-text { display: flex; flex-direction: column; }
-        .app-header-text strong { font-size: 0.9rem; color: #212529; }
-        .app-header-text span { font-size: 0.7rem; color: #6C757D; }
+        .app-header-text strong { font-size: 0.9rem; color: #fff;}
+        .app-header-text span { font-size: 0.7rem;}
         .app-services-list { display: flex; flex-direction: column; gap: 0.5rem; }
         .service-card { display: flex; align-items: center; gap: 0.7rem; background: #dbdbdb; border-radius: 0.5rem; padding: 0.5rem; }
         .service-icon { width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center; background: #1E79F7; color: #fff; border-radius: 0.5rem; font-size: 0.9rem; }
