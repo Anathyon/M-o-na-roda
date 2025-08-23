@@ -1,202 +1,184 @@
-import { useEffect } from "react";
-
 export default function ClientCard() {
-  useEffect(() => {
-    const icons = document.querySelectorAll(".floating-icon");
-    icons.forEach((icon, idx) => {
-      (icon as HTMLElement).style.animation = `floatY 3s ease-in-out infinite`;
-      (icon as HTMLElement).style.animationDelay = `${idx * 0.7}s`;
-    });
-  }, []);
-
   return (
-    <div className="client-card-main">
-      {/* Floating icons */}
-      <div className="client-card-bg">
-        <div className="floating-elements">
-          <div className="floating-icon client-logo">
-            <img
-              src="/Mao-na-roda-logo.jpg"
-              alt="Mão na Roda"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                animation: "spin 4s linear infinite",
-                opacity: "55%",
-              }}
-            />
-          </div>
-          <div className="floating-icon" style={{opacity: "55%"}}><i className="fas fa-tools"></i></div>
-          <div className="floating-icon" style={{opacity: "55%"}}><i className="fas fa-star"></i></div>
-          <div className="floating-icon" style={{opacity: "55%"}}><i className="fas fa-user"></i></div>
-        </div>
-      </div>
-      <div className="client-card-content">
-        <div className="client-card-left">
-          <div className="client-badge">Para Clientes</div>
-          <h3 className="client-title">Seguro e Confiável</h3>
-          <p className="client-desc">
-            Receba ajuda especializada para todos os reparos e projetos em sua casa. Garanta serviços de qualidade e um lar impecável.
-          </p>
-          <div className="client-card-actions">
-            <a
-              href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
-              className="client-btn"
-            >
-              <i className="fas fa-download"></i>
-              <span>Baixar App Cliente</span>
-            </a>
-            <div className="client-app-note">
-              📱 App exclusivo para quem precisa de serviços
+    <div className="client-card-section">
+      {/* Decorative Bubbles are now positioned relative to the viewport */}
+      <div className="client-card-bubble bubble-1"></div>
+      <div className="client-card-bubble bubble-2"></div>
+      <div className="client-card-bubble bubble-3"></div>
+
+      <div className="client-card-main">
+        <div className="client-card-content">
+          <div className="client-card-left">
+            <div className="client-badge">Para Clientes</div>
+            <h3 className="client-title">Seguro e Confiável</h3>
+            <p className="client-desc">
+              Receba ajuda especializada para todos os reparos e projetos em sua
+              casa. Garanta serviços de qualidade e um lar impecável.
+            </p>
+            <div className="client-card-actions">
+              <a
+                href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
+                className="client-btn"
+              >
+                <i className="fas fa-download"></i>
+                <span>Baixar App Cliente</span>
+              </a>
+              <div className="client-app-note">
+                📱 App exclusivo para quem precisa de serviços
+              </div>
             </div>
           </div>
-        </div>
-        <div className="client-card-right">
-          <div className="client-feature-grid">
-            <div className="client-feature-item">
-              <div className="client-feature-icon">
-                <i className="fas fa-check-circle"></i>
+          <div className="client-card-right">
+            <div className="client-feature-grid">
+              <div className="client-feature-item">
+                <div className="client-feature-icon">
+                  <i className="fas fa-check-circle"></i>
+                </div>
+                <span>Profissionais verificados</span>
               </div>
-              <span>Profissionais verificados</span>
-            </div>
-            <div className="client-feature-item">
-              <div className="client-feature-icon">
-                <i className="fas fa-dollar-sign"></i>
+              <div className="client-feature-item">
+                <div className="client-feature-icon">
+                  <i className="fas fa-dollar-sign"></i>
+                </div>
+                <span>Preços transparentes</span>
               </div>
-              <span>Preços transparentes</span>
-            </div>
-            <div className="client-feature-item">
-              <div className="client-feature-icon">
-                <i className="fas fa-calendar-check"></i>
+              <div className="client-feature-item">
+                <div className="client-feature-icon">
+                  <i className="fas fa-calendar-check"></i>
+                </div>
+                <span>Agendamento fácil</span>
               </div>
-              <span>Agendamento fácil</span>
-            </div>
-            <div className="client-feature-item">
-              <div className="client-feature-icon">
-                <i className="fas fa-lock"></i>
+              <div className="client-feature-item">
+                <div className="client-feature-icon">
+                  <i className="fas fa-lock"></i>
+                </div>
+                <span>Pagamento seguro</span>
               </div>
-              <span>Pagamento seguro</span>
             </div>
           </div>
         </div>
       </div>
       <style>{`
-        @keyframes floatY {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-18px); }
+        @keyframes floatBubble {
+          0% { transform: translateY(0) scale(1); }
+          50% { transform: translateY(-25px) scale(1.05); }
+          100% { transform: translateY(0) scale(1); }
         }
-        @keyframes spin {
-          0% { transform: rotate(0deg);}
-          100% { transform: rotate(360deg);}
+        .client-card-section {
+          position: relative;
+          top: 6rem;
+          padding: 4rem 1rem;
         }
         .client-card-main {
           max-width: 1000px;
-          margin: 4rem auto 4rem auto;
+          margin: 0 auto;
           background: #fff;
-          border-radius: 2rem;
-          box-shadow: 0 20px 60px rgba(0,0,0,0.10);
-          overflow: hidden;
+          border-radius: 1.5rem;
+          box-shadow: 0 16px 48px rgba(30, 121, 247, 0.15);
           position: relative;
-          top: 6rem;
-          transition: all 0.4s;
+          border: 1px solid #e9ecef;
+          z-index: 2; /* Ensures card is above bubbles */
         }
-        .client-card-bg {
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-          z-index: 1;
-        }
-        .floating-elements {
-          width: 100%;
-          height: 100%;
-          position: relative;
-        }
-        .floating-icon {
-          position: absolute;
-          width: 40px;
-          height: 40px;
-          background: rgba(255,255,255,0.8);
+        .client-card-bubble {
+          position: fixed; /* Changed from absolute to fixed */
+          background: linear-gradient(135deg, rgba(30, 121, 247, 0.08), rgba(13, 110, 253, 0.1));
           border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #1E79F7;
-          font-size: 1.2rem;
-          box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-          backdrop-filter: blur(10px);
+          z-index: -1; /* Places bubbles behind all content */
+          pointer-events: none;
+          animation: floatBubble 10s ease-in-out infinite;
         }
-        .client-logo { top: 20%; left: 10%; }
-        .floating-icon:nth-child(2) { top: 60%; left: 85%; }
-        .floating-icon:nth-child(3) { top: 30%; left: 80%; }
-        .floating-icon:nth-child(4) { top: 80%; left: 15%; }
+        .bubble-1 {
+          width: 25vw;
+          height: 25vw;
+          max-width: 300px;
+          max-height: 300px;
+          top: 15vh;
+          left: 5vw;
+          animation-delay: 0s;
+        }
+        .bubble-2 {
+          width: 20vw;
+          height: 20vw;
+          max-width: 250px;
+          max-height: 250px;
+          bottom: 10vh;
+          right: 8vw;
+          animation-delay: 3s;
+        }
+        .bubble-3 {
+          width: 15vw;
+          height: 15vw;
+          max-width: 150px;
+          max-height: 150px;
+          top: 60vh;
+          right: 25vw;
+          animation-delay: 6s;
+          display: none; /* Hiding the third bubble for a cleaner look, can be re-enabled */
+        }
         .client-card-content {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 2.5rem;
-          padding: 2.5rem 2rem;
+          padding: 3rem;
           position: relative;
-          z-index: 2;
         }
         .client-card-left {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          align-items: flex-start;
         }
         .client-badge {
           background: linear-gradient(135deg, #1E79F7, #0D6EFD);
           color: #fff;
-          padding: 0.8rem 2rem;
+          padding: 0.6rem 1.2rem;
           border-radius: 50px;
           font-weight: 700;
-          font-size: 0.95rem;
-          margin-bottom: 2rem;
-          box-shadow: 0 8px 25px rgba(30, 121, 247, 0.18);
+          font-size: 0.9rem;
+          margin-bottom: 1.5rem;
+          box-shadow: 0 8px 20px rgba(30, 121, 247, 0.2);
           text-transform: uppercase;
-          letter-spacing: 1px;
-          display: inline-block;
+          letter-spacing: 0.5px;
+          text-align: center;
         }
         .client-title {
-          font-size: 2rem;
+          font-size: 2.25rem;
           font-weight: 800;
           color: #212529;
           margin-bottom: 1rem;
         }
         .client-desc {
-          font-size: 1.15rem;
-          color: #000;
+          font-size: 1.1rem;
+          color: #495057;
+          line-height: 1.6;
           margin-bottom: 2rem;
         }
         .client-card-actions {
           display: flex;
           flex-direction: column;
           gap: 1rem;
-          width: 100%;
-          align-items: flex-start;
         }
         .client-btn {
           background: linear-gradient(135deg, #1E79F7, #0D6EFD);
           color: #fff;
-          padding: 1.2rem 2rem;
+          padding: 1rem 1.8rem;
           border-radius: 50px;
           font-weight: 700;
-          font-size: 1.1rem;
-          box-shadow: 0 10px 30px rgba(30, 121, 247, 0.18);
+          font-size: 1rem;
+          box-shadow: 0 10px 25px rgba(30, 121, 247, 0.2);
           display: inline-flex;
           align-items: center;
-          gap: 1rem;
-          justify-content: center;
+          gap: 0.8rem;
           text-decoration: none;
-          transition: background 0.2s;
+          transition: transform 0.2s, box-shadow 0.2s;
+          justify-content: center;
         }
         .client-btn:hover {
-          background: linear-gradient(135deg, #0D6EFD, #1E79F7);
+          transform: translateY(-3px);
+          box-shadow: 0 12px 30px rgba(30, 121, 247, 0.3);
         }
         .client-app-note {
-          font-size: 0.95rem;
+          font-size: 0.9rem;
           color: #6C757D;
-          opacity: 0.85;
         }
         .client-card-right {
           display: flex;
@@ -206,86 +188,76 @@ export default function ClientCard() {
         .client-feature-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 1.2rem;
+          gap: 1.5rem;
           width: 100%;
         }
         .client-feature-item {
-          background: #fff;
-          border: 1.5px solid #e3eefd;
-          border-radius: 1.2rem;
-          box-shadow: 0 2px 12px rgba(30,121,247,0.07);
-          padding: 1.2rem 0.7rem;
+          background: #f8f9fa;
+          border: 1px solid #e9ecef;
+          border-radius: 1rem;
+          padding: 1.5rem 1rem;
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 0.7rem;
-          min-width: 120px;
+          text-align: center;
+          gap: 0.8rem;
+          transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .client-feature-item:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 20px rgba(30, 121, 247, 0.1);
         }
         .client-feature-icon {
           background: linear-gradient(135deg, #1E79F7, #0D6EFD);
           color: #fff;
-          border-radius: 0.7rem;
-          width: 40px;
-          height: 40px;
+          border-radius: 0.8rem;
+          width: 44px;
+          height: 44px;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 1.3rem;
-          margin-bottom: 0.3rem;
+          font-size: 1.4rem;
         }
         .client-feature-item span {
-          color: #212529;
+          color: #343a40;
           font-weight: 600;
-          font-size: 1rem;
-          text-align: center;
+          font-size: 0.95rem;
         }
-        /* Tablet */
-        @media (max-width: 1024px) {
-          .client-card-main {
-            max-width: 98vw;
-            border-radius: 1.5rem;
-            margin: 2rem auto 2rem auto;
-          }
+        
+        @media (max-width: 992px) {
           .client-card-content {
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 2.5rem;
+            padding: 2.5rem;
+          }
+          .client-card-left {
+            text-align: center;
+            align-items: center;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .client-card-section {
             padding: 2rem 1rem;
-          }
-          .client-card-right {
-            margin-top: 1.5rem;
-          }
-        }
-        /* Mobile */
-        @media (max-width: 600px) {
-          .client-card-main {
-            max-width: 99vw;
-            border-radius: 1.1rem;
-            margin: 1rem auto 1.5rem auto;
-            top: 3rem;
+            top: 4rem;
           }
           .client-card-content {
-            grid-template-columns: 1fr;
-            gap: 1.2rem;
-            padding: 1.2rem 0.5rem;
+            padding: 2rem 1.5rem;
           }
           .client-title {
-            font-size: 1.3rem;
+            font-size: 1.8rem;
           }
           .client-desc {
             font-size: 1rem;
-            color: #000;
           }
           .client-feature-grid {
-            gap: 0.7rem;
+            gap: 1rem;
           }
           .client-feature-item {
-            padding: 0.8rem 0.3rem;
-            min-width: 0;
+            padding: 1rem 0.5rem;
           }
-          .client-feature-icon {
-            width: 32px;
-            height: 32px;
-            font-size: 1rem;
+          .bubble-1, .bubble-2, .bubble-3 {
+            display: none; /* Hide bubbles on small screens for better readability */
           }
         }
       `}</style>

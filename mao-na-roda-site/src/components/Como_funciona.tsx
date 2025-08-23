@@ -112,7 +112,7 @@ export default function ComoFunciona() {
         .como-funciona-step-icon {
           width: 80px;
           height: 80px;
-          background: linear-gradient(135deg, #d2d2d2, #ccc);
+          background: linear-gradient(135deg, #e8e8e8, #ddd);
           border-radius: 50%;
           display: flex;
           align-items: center;

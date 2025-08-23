@@ -32,11 +32,10 @@ const faqs = [
 ];
 
 export default function FAQSection() {
-  const [open, setOpen] = useState<number | null>(null);
+  const [open, setOpen] = useState<number | null>(0);
 
   return (
     <section id="faq" className="faq-section">
-      {/* SVG grid background */}
       <div className="faq-bg-pattern" />
       <div className="faq-container">
         <div className="faq-header">
@@ -45,8 +44,7 @@ export default function FAQSection() {
             <span>Central de Ajuda</span>
           </div>
           <h2 className="faq-title">
-            Perguntas{" "}
-            <span className="faq-title-gradient">Frequentes</span>
+            Perguntas <span className="faq-title-gradient">Frequentes</span>
           </h2>
           <p className="faq-subtitle">
             Tire suas dúvidas sobre como usar o Mão na Roda
@@ -64,11 +62,10 @@ export default function FAQSection() {
                 aria-expanded={open === idx}
                 aria-controls={`faq-answer-${faq.number}`}
               >
-                <h4 className={`faq-question-title${open === idx ? " open" : ""}`}>
-                  <div
-                    className="faq-number"
-                    style={{ background: faq.color }}
-                  >
+                <h4
+                  className={`faq-question-title${open === idx ? " open" : ""}`}
+                >
+                  <div className="faq-number" style={{ background: faq.color }}>
                     {faq.number}
                   </div>
                   {faq.question}
@@ -84,11 +81,12 @@ export default function FAQSection() {
                 id={`faq-answer-${faq.number}`}
                 className="faq-answer"
                 style={{
-                  maxHeight: open === idx ? "500px" : "0",
-                  padding: open === idx ? "0 1.5rem 1.5rem" : "0 1.5rem 0",
+                  maxHeight: open === idx ? "200px" : "0",
                 }}
               >
-                <p>{faq.answer}</p>
+                <div className="faq-answer-content">
+                  <p>{faq.answer}</p>
+                </div>
               </div>
             </div>
           ))}
@@ -96,61 +94,49 @@ export default function FAQSection() {
       </div>
       <style>{`
         .faq-section {
-          padding: 4rem 0 4rem 0;
-          background: linear-gradient(135deg, #F8FAFF 0%, #E3F2FD 50%, #F8FAFF 100%);
+          padding: 5rem 1rem;
+          background: #f8f9fa;
           position: relative;
           top: 6rem;
           overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
         }
         .faq-bg-pattern {
           position: absolute;
           inset: 0;
           pointer-events: none;
-          opacity: 0.05;
+          opacity: 0.04;
           background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="faq-grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%231E79F7"/></pattern></defs><rect width="100" height="100" fill="url(%23faq-grid)"/></svg>');
         }
         .faq-container {
-          max-width: 75rem;
+          max-width: 800px;
           width: 100%;
           margin: 0 auto;
           position: relative;
           z-index: 10;
-          padding: 0 1rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
         }
         .faq-header {
           text-align: center;
-          margin-bottom: 2.5rem;
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+          margin-bottom: 3rem;
         }
         .faq-badge {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          padding: 0.7rem 1.5rem;
+          padding: 0.6rem 1.2rem;
           border-radius: 2rem;
           font-weight: 600;
-          background: linear-gradient(135deg, #E8F5FF, #F0F8FF);
+          background: #fff;
           color: #1E79F7;
-          border: 2px solid rgba(30,121,247,0.2);
-          box-shadow: 0 0.5rem 1rem rgba(30,121,247,0.1);
+          border: 1px solid #dee2e6;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.05);
           margin-bottom: 1.5rem;
-          font-size: 1rem;
+          font-size: 0.95rem;
         }
         .faq-title {
           font-size: 2.5rem;
           font-weight: 900;
           color: #212529;
           margin-bottom: 1rem;
-          line-height: 1.1;
         }
         .faq-title-gradient {
           background: linear-gradient(135deg, #1E79F7, #0D6EFD);
@@ -160,56 +146,55 @@ export default function FAQSection() {
         }
         .faq-subtitle {
           color: #6C757D;
-          font-size: 1.2rem;
-          margin-bottom: 0;
-          max-width: 40rem;
+          font-size: 1.125rem;
+          margin: 0 auto;
+          max-width: 600px;
         }
         .faq-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 1.5rem;
-          width: 100%;
-          max-width: 50rem;
-          margin: 0 auto;
+          gap: 1rem;
         }
         .faq-item {
           background: #fff;
-          border-radius: 1.2rem;
-          box-shadow: 0 0.5rem 2rem rgba(30,121,247,0.1);
-          border: 1px solid rgba(30,121,247,0.1);
+          border-radius: 1rem;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+          border: 1px solid #e9ecef;
           overflow: hidden;
           transition: box-shadow 0.3s;
         }
         .faq-item-open {
-          box-shadow: 0 1rem 3rem rgba(30,121,247,0.2);
+          box-shadow: 0 8px 24px rgba(30,121,247,0.1);
+          border-color: rgba(30,121,247,0.2);
         }
         .faq-question {
           width: 100%;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 1.5rem 1.5rem 1.5rem 1.5rem;
-          background: linear-gradient(135deg, #FAFBFF, #F8FAFF);
+          padding: 1.25rem 1.5rem;
+          background: none;
           border: none;
           outline: none;
           cursor: pointer;
-          transition: background 0.2s;
+          text-align: left;
         }
         .faq-question-title {
           display: flex;
           align-items: center;
           gap: 1rem;
           font-weight: 600;
-          color: #212529;
+          color: #343a40;
           font-size: 1.1rem;
           margin: 0;
+          transition: color 0.3s;
         }
         .faq-question-title.open {
-          color: #1E79F7;
+          color: #0D6EFD;
         }
         .faq-number {
-          width: 2.5rem;
-          height: 2.5rem;
+          width: 2.25rem;
+          height: 2.25rem;
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -217,58 +202,62 @@ export default function FAQSection() {
           color: #fff;
           font-size: 1rem;
           font-weight: 700;
+          flex-shrink: 0;
         }
         .faq-chevron {
-          color: #1E79F7;
-          font-size: 1.1rem;
-          transition: transform 0.3s;
+          color: #0D6EFD;
+          font-size: 1rem;
+          transition: transform 0.3s ease-in-out;
         }
         .faq-answer {
-          background: #fff;
-          transition: max-height 0.4s ease, padding 0.4s ease;
+          transition: max-height 0.4s ease-in-out;
           overflow: hidden;
         }
+        .faq-answer-content {
+          padding: 0 1.5rem 1.25rem 4.75rem; /* Aligns with question text */
+        }
         .faq-answer p {
-          color: #6C757D;
+          color: #495057;
           font-size: 1rem;
           margin: 0;
           line-height: 1.6;
         }
-        /* Tablet */
-        @media (max-width: 1024px) {
+        
+        @media (max-width: 768px) {
+          .faq-section {
+            padding: 4rem 1rem;
+          }
           .faq-title {
             font-size: 2rem;
           }
           .faq-subtitle {
-            font-size: 1.1rem;
-          }
-        }
-        /* Mobile */
-        @media (max-width: 600px) {
-          .faq-section {
-            padding: 2.5rem 0.5rem;
-          }
-          .faq-title {
-            font-size: 1.3rem;
-          }
-          .faq-subtitle {
             font-size: 1rem;
           }
-          .faq-grid {
-            gap: 1rem;
-            max-width: 98vw;
+          .faq-question-title {
+            font-size: 1rem;
           }
-          .faq-item {
-            border-radius: 1rem;
+          .faq-answer-content {
+            padding: 0 1.25rem 1.25rem 4.25rem;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .faq-section {
+            top: 4rem;
           }
           .faq-question {
             padding: 1rem;
           }
+          .faq-question-title {
+            gap: 0.75rem;
+          }
           .faq-number {
             width: 2rem;
             height: 2rem;
-            font-size: 0.95rem;
-            padding: 1rem;
+            font-size: 0.9rem;
+          }
+          .faq-answer-content {
+            padding: 0 1rem 1rem 3.75rem;
           }
         }
       `}</style>

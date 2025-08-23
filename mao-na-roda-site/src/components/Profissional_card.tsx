@@ -1,190 +1,135 @@
-import { useEffect } from "react";
-
 export default function ProfissionalCard() {
-  useEffect(() => {
-    const icons = document.querySelectorAll(".floating-icon");
-    icons.forEach((icon, idx) => {
-      (icon as HTMLElement).style.animation = `floatY 3s ease-in-out infinite`;
-      (icon as HTMLElement).style.animationDelay = `${idx * 0.7 + 0.5}s`;
-    });
-  }, []);
-
   return (
-    <div className="prof-card-main">
-      {/* Floating icons */}
-      <div className="prof-card-bg">
-        <div className="floating-elements">
-          <div className="floating-icon prof-float1" style={{opacity: "55%"}}>
-            <i className="fas fa-chart-line"></i>
-          </div>
-          <div className="floating-icon prof-float2" style={{opacity: "55%"}}>
-            <i className="fas fa-money-bill-wave"></i>
-          </div>
-          <div className="floating-icon prof-float3" style={{opacity: "55%"}}>
-            <i className="fas fa-briefcase"></i>
-          </div>
-        </div>
-      </div>
-      <div className="prof-card-content">
-        <div className="prof-card-left">
-          <div className="prof-badge">Para Profissionais</div>
-          <h3 className="prof-title">Mais Oportunidades</h3>
-          <p className="prof-desc">
-            Aumente sua renda e conquiste novos clientes. Defina sua agenda, mostre seu talento e destaque-se em sua área.
-          </p>
-          <div className="prof-card-actions">
-            <a
-              href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodaprofissional&hl=pt_BR"
-              className="prof-btn"
-            >
-              <i className="fas fa-download"></i>
-              <span>Baixar App Profissional</span>
-            </a>
-            <div className="prof-app-note">
-              🛠️ App exclusivo para prestadores de serviços
+    <div className="prof-card-section">
+      <div className="prof-card-main">
+        <div className="prof-card-content">
+          <div className="prof-card-left">
+            <div className="prof-badge">Para Profissionais</div>
+            <h3 className="prof-title">Mais Oportunidades</h3>
+            <p className="prof-desc">
+              Aumente sua renda e conquiste novos clientes. Defina sua agenda,
+              mostre seu talento e destaque-se em sua área.
+            </p>
+            <div className="prof-card-actions">
+              <a
+                href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodaprofissional&hl=pt_BR"
+                className="prof-btn"
+              >
+                <i className="fas fa-download"></i>
+                <span>Baixar App Profissional</span>
+              </a>
+              <div className="prof-app-note">
+                🛠️ App exclusivo para prestadores de serviços
+              </div>
             </div>
           </div>
-        </div>
-        <div className="prof-card-right">
-          <div className="prof-feature-grid">
-            <div className="prof-feature-item">
-              <div className="prof-feature-icon">
-                <i className="fas fa-map-marker-alt"></i>
+          <div className="prof-card-right">
+            <div className="prof-feature-grid">
+              <div className="prof-feature-item">
+                <div className="prof-feature-icon">
+                  <i className="fas fa-map-marker-alt"></i>
+                </div>
+                <span>Clientes próximos a você</span>
               </div>
-              <span>Clientes próximos a você</span>
-            </div>
-            <div className="prof-feature-item">
-              <div className="prof-feature-icon">
-                <i className="fas fa-clock"></i>
+              <div className="prof-feature-item">
+                <div className="prof-feature-icon">
+                  <i className="fas fa-clock"></i>
+                </div>
+                <span>Controle total da agenda</span>
               </div>
-              <span>Controle total da agenda</span>
-            </div>
-            <div className="prof-feature-item">
-              <div className="prof-feature-icon">
-                <i className="fas fa-hand-holding-usd"></i>
+              <div className="prof-feature-item">
+                <div className="prof-feature-icon">
+                  <i className="fas fa-hand-holding-usd"></i>
+                </div>
+                <span>Recebimento garantido</span>
               </div>
-              <span>Recebimento garantido</span>
-            </div>
-            <div className="prof-feature-item">
-              <div className="prof-feature-icon">
-                <i className="fas fa-thumbs-up"></i>
+              <div className="prof-feature-item">
+                <div className="prof-feature-icon">
+                  <i className="fas fa-thumbs-up"></i>
+                </div>
+                <span>Avaliações dos clientes</span>
               </div>
-              <span>Avaliações dos clientes</span>
             </div>
           </div>
         </div>
       </div>
       <style>{`
-        @keyframes floatY {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-18px); }
+        .prof-card-section {
+          position: relative;
+          top: 6rem;
+          padding: 4rem 1rem;
         }
         .prof-card-main {
           max-width: 1000px;
-          margin: 4rem auto 4rem auto;
+          margin: 0 auto;
           background: #fff;
-          border-radius: 2rem;
-          box-shadow: 0 20px 60px rgba(0,0,0,0.10);
+          border-radius: 1.5rem;
+          box-shadow: 0 16px 48px rgba(59, 130, 246, 0.15);
           overflow: hidden;
           position: relative;
-          top: 6rem;
-          transition: all 0.4s;
+          border: 1px solid #e2e8f0;
         }
-        .prof-card-bg {
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-          z-index: 1;
-        }
-        .floating-elements {
-          width: 100%;
-          height: 100%;
-          position: relative;
-        }
-        .floating-icon {
-          position: absolute;
-          width: 40px;
-          height: 40px;
-          background: rgba(255,255,255,0.8);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #3B82F6;
-          font-size: 1.2rem;
-          box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-          backdrop-filter: blur(10px);
-        }
-        .prof-float1 { top: 22%; left: 10%; }
-        .prof-float2 { top: 60%; left: 85%; }
-        .prof-float3 { top: 30%; left: 80%; }
         .prof-card-content {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 2.5rem;
-          padding: 2.5rem 2rem;
-          position: relative;
-          z-index: 2;
+          padding: 3rem;
         }
         .prof-card-left {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          align-items: flex-start;
         }
         .prof-badge {
-          background: linear-gradient(135deg, #3B82F6, #1E40AF);
+          background: linear-gradient(135deg, #3B82F6, #1D4ED8);
           color: #fff;
-          padding: 0.8rem 2rem;
+          padding: 0.6rem 1.2rem;
           border-radius: 50px;
           font-weight: 700;
-          font-size: 0.95rem;
-          margin-bottom: 2rem;
-          box-shadow: 0 8px 25px rgba(59, 130, 246, 0.18);
+          font-size: 0.9rem;
+          margin-bottom: 1.5rem;
+          box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
           text-transform: uppercase;
-          letter-spacing: 1px;
-          display: inline-block;
+          letter-spacing: 0.5px;
         }
         .prof-title {
-          font-size: 2rem;
+          font-size: 2.25rem;
           font-weight: 800;
-          color: #212529;
+          color: #1e293b;
           margin-bottom: 1rem;
         }
         .prof-desc {
-          font-size: 1.15rem;
-          color: #000;
+          font-size: 1.1rem;
+          color: #475569;
+          line-height: 1.6;
           margin-bottom: 2rem;
         }
         .prof-card-actions {
           display: flex;
           flex-direction: column;
           gap: 1rem;
-          width: 100%;
-          align-items: flex-start;
         }
         .prof-btn {
-          background: linear-gradient(135deg, #3B82F6, #1E40AF);
+          background: linear-gradient(135deg, #3B82F6, #1D4ED8);
           color: #fff;
-          padding: 1.2rem 2rem;
+          padding: 1rem 1.8rem;
           border-radius: 50px;
           font-weight: 700;
-          font-size: 1.1rem;
-          box-shadow: 0 10px 30px rgba(59, 130, 246, 0.18);
+          font-size: 1rem;
+          box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
           display: inline-flex;
           align-items: center;
-          gap: 1rem;
-          justify-content: center;
+          gap: 0.8rem;
           text-decoration: none;
-          transition: background 0.2s;
+          transition: transform 0.2s, box-shadow 0.2s;
         }
         .prof-btn:hover {
-          background: linear-gradient(135deg, #1E40AF, #3B82F6);
+          transform: translateY(-3px);
+          box-shadow: 0 12px 30px rgba(59, 130, 246, 0.3);
         }
         .prof-app-note {
-          font-size: 0.95rem;
-          color: #6C757D;
-          opacity: 0.85;
+          font-size: 0.9rem;
+          color: #64748b;
         }
         .prof-card-right {
           display: flex;
@@ -194,86 +139,73 @@ export default function ProfissionalCard() {
         .prof-feature-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 1.2rem;
+          gap: 1.5rem;
           width: 100%;
         }
         .prof-feature-item {
-          background: #fff;
-          border: 1.5px solid #e3eefd;
-          border-radius: 1.2rem;
-          box-shadow: 0 2px 12px rgba(30,121,247,0.07);
-          padding: 1.2rem 0.7rem;
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-radius: 1rem;
+          padding: 1.5rem 1rem;
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 0.7rem;
-          min-width: 120px;
+          text-align: center;
+          gap: 0.8rem;
+          transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .prof-feature-item:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 20px rgba(59, 130, 246, 0.1);
         }
         .prof-feature-icon {
-          background: linear-gradient(135deg, #3B82F6, #1E40AF);
+          background: linear-gradient(135deg, #3B82F6, #1D4ED8);
           color: #fff;
-          border-radius: 0.7rem;
-          width: 40px;
-          height: 40px;
+          border-radius: 0.8rem;
+          width: 44px;
+          height: 44px;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 1.3rem;
-          margin-bottom: 0.3rem;
+          font-size: 1.4rem;
         }
         .prof-feature-item span {
-          color: #212529;
+          color: #334155;
           font-weight: 600;
-          font-size: 1rem;
-          text-align: center;
+          font-size: 0.95rem;
         }
-        /* Tablet */
-        @media (max-width: 1024px) {
-          .prof-card-main {
-            max-width: 98vw;
-            border-radius: 1.5rem;
-            margin: 2rem auto 2rem auto;
-          }
+        
+        @media (max-width: 992px) {
           .prof-card-content {
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 2.5rem;
+            padding: 2.5rem;
+          }
+          .prof-card-left {
+            text-align: center;
+            align-items: center;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .prof-card-section {
             padding: 2rem 1rem;
-          }
-          .prof-card-right {
-            margin-top: 1.5rem;
-          }
-        }
-        /* Mobile */
-        @media (max-width: 600px) {
-          .prof-card-main {
-            max-width: 99vw;
-            border-radius: 1.1rem;
-            margin: 1rem auto 1.5rem auto;
-            top: 3rem;
+            top: 4rem;
           }
           .prof-card-content {
-            grid-template-columns: 1fr;
-            gap: 1.2rem;
-            padding: 1.2rem 0.5rem;
+            padding: 2rem 1.5rem;
           }
           .prof-title {
-            font-size: 1.3rem;
+            font-size: 1.8rem;
           }
           .prof-desc {
             font-size: 1rem;
-            color: #000;
           }
           .prof-feature-grid {
-            gap: 0.7rem;
+            gap: 1rem;
           }
           .prof-feature-item {
-            padding: 0.8rem 0.3rem;
-            min-width: 0;
-          }
-          .prof-feature-icon {
-            width: 32px;
-            height: 32px;
-            font-size: 1rem;
+            padding: 1rem 0.5rem;
           }
         }
       `}</style>

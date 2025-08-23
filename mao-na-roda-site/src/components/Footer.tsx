@@ -73,9 +73,6 @@ export default function Footer() {
                 <p>Conectando pessoas a soluções</p>
               </div>
             </div>
-            <div className="footer-download">
-              <h4>Baixe nossos apps e transforme seu lar</h4>
-            </div>
           </div>
           <div className="footer-grid">
             <div className="footer-column">
@@ -140,7 +137,7 @@ export default function Footer() {
       <div className="footer-bottom">
         <div className="footer-bottom-container">
           <div className="footer-copyright">
-            © 2024, Mão na Roda. CNPJ 49.856.962/0001-36 - Todos os direitos reservados.
+            © 2025, Mão na Roda. CNPJ 49.856.962/0001-36 - Todos os direitos reservados.
           </div>
         </div>
       </div>
@@ -163,92 +160,87 @@ export default function Footer() {
           position: relative;
           top: 6rem;
           background: #1E79F7;
+          color: #fff;
         }
         .footer-main {
           width: 100%;
           background: #1E79F7;
-          padding: 1rem 0 0 0;
+          padding: 3rem 0;
         }
         .footer-container {
-          max-width: 75rem;
+          max-width: 1140px;
           margin: 0 auto;
-          padding: 0 5%;
+          padding: 0 1rem;
         }
         .footer-top {
           display: flex;
           flex-direction: row;
-          justify-content: space-between;
+          justify-content: center;
           align-items: center;
           gap: 2rem;
           margin-bottom: 3rem;
+          padding-bottom: 2rem;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
         .footer-logo {
           display: flex;
           align-items: center;
-          gap: 1.2rem;
+          gap: 1rem;
         }
         .logo-icon-large {
           background: #fff;
-          border-radius: 15px;
+          border-radius: 12px;
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 2px 12px rgba(30,121,247,0.10);
-          width: 70px;
-          height: 70px;
-        }
-        .logo-icon-large img {
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
           width: 60px;
           height: 60px;
+          flex-shrink: 0;
+        }
+        .logo-icon-large img {
+          width: 50px;
+          height: 50px;
           object-fit: contain;
         }
         .logo-text h3 {
           font-weight: 800;
-          font-size: 2rem;
-          margin-bottom: 0.2rem;
-          color: #eaf2ff;
+          font-size: 1.75rem;
+          margin: 0 0 0.2rem 0;
+          color: #fff;
         }
         .logo-text p {
           opacity: 0.8;
-          font-size: 1.1rem;
-          color: #eaf2ff;
-        }
-        .footer-download h4 {
-          font-weight: 600;
-          font-size: 1.1rem;
-          color: #eaf2ff;
+          font-size: 1rem;
+          color: #e0f2fe;
           margin: 0;
         }
         .footer-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr 1fr 1fr;
-          gap: 2.5rem;
-          margin-top: 2rem;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 2rem;
         }
         .footer-column h4 {
           font-weight: 700;
-          font-size: 1.1rem;
-          margin-bottom: 1.2rem;
-          border-bottom: 2px solid #fff3;
-          width: fit-content;
+          font-size: 1.05rem;
+          margin-bottom: 1rem;
           color: #fff;
-          padding-bottom: 0.5rem;
         }
         .footer-column ul {
           list-style: none;
           padding: 0;
           margin: 0;
-        }
-        .footer-column li {
-          margin-bottom: 0.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
         }
         .footer-column button {
           background: transparent;
           border: none;
-          color: #eaf2ffcc;
-          font-size: 1rem;
-          padding-left: 0.5rem;
-          width: 100%;
+          color: rgba(255, 255, 255, 0.75);
+          font-size: 0.95rem;
+          padding: 0;
+          width: auto;
           text-align: left;
           cursor: pointer;
           transition: color 0.2s;
@@ -258,19 +250,19 @@ export default function Footer() {
         }
         .footer-bottom {
           background: #0D6EFD;
-          padding: 1.5rem 0;
+          padding: 1.25rem 0;
+          margin-top: 2rem;
         }
         .footer-bottom-container {
-          max-width: 75rem;
+          max-width: 1140px;
           margin: 0 auto;
-          padding: 0 5%;
+          padding: 0 1rem;
           display: flex;
-          flex-direction: column;
-          align-items: center;
+          justify-content: center;
         }
         .footer-copyright {
-          color: #eaf2ffcc;
-          font-size: 0.95rem;
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 0.9rem;
           text-align: center;
         }
         /* Modal */
@@ -281,69 +273,80 @@ export default function Footer() {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: rgba(0,0,0,0.4);
+          background: rgba(0,0,0,0.5);
+          backdrop-filter: blur(4px);
         }
         .footer-modal {
-          background: #2563eb;
-          border-radius: 1.2rem;
-          box-shadow: 0 8px 32px rgba(30,121,247,0.18);
+          background: #fff;
+          border-radius: 1rem;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.1);
           padding: 2rem;
           max-width: 90vw;
-          width: 400px;
-          color: #fff;
+          width: 450px;
+          color: #333;
           position: relative;
         }
         .footer-modal-close {
           position: absolute;
-          top: 1rem;
-          right: 1rem;
-          color: #fff;
-          background: transparent;
+          top: 0.75rem;
+          right: 0.75rem;
+          color: #999;
+          background: #f0f0f0;
           border: none;
-          font-size: 1.5rem;
+          font-size: 1.2rem;
           font-weight: bold;
           cursor: pointer;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          line-height: 32px;
+          text-align: center;
+        }
+        .footer-modal-close:hover {
+          background: #e0e0e0;
+          color: #333;
         }
         .footer-modal h3 {
-          font-weight: 800;
-          font-size: 1.2rem;
+          font-weight: 700;
+          font-size: 1.5rem;
           margin-bottom: 1rem;
+          color: #1E79F7;
         }
         .footer-modal p {
           font-size: 1rem;
+          line-height: 1.6;
+          color: #555;
         }
         /* Tablet */
-        @media (max-width: 900px) {
+        @media (max-width: 992px) {
           .footer-top {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 2rem;
+            text-align: center;
           }
           .footer-grid {
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 2.5rem 1.5rem;
           }
         }
         /* Mobile */
         @media (max-width: 600px) {
+          .footer-main {
+            padding: 2rem 0;
+          }
+          .footer-top {
+            margin-bottom: 2rem;
+          }
           .footer-grid {
             grid-template-columns: 1fr;
-            gap: 1.2rem;
+            gap: 2rem;
           }
           .footer-logo h3 {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
           }
           .footer-logo p {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
           }
           .footer-column h4 {
             font-size: 1rem;
-          }
-          .footer-main {
-            padding: 1rem 0 0 0;
-          }
-          .footer-container {
-            padding: 0 2vw;
           }
         }
       `}</style>

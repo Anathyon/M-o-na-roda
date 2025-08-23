@@ -1,14 +1,9 @@
 export default function AdvantagesSection() {
   return (
-    <section
-      id="sobre"
-      className="advantages-section"
-    >
+    <section id="sobre" className="advantages-section">
       <div className="advantages-container">
         <div className="advantages-header">
-          <h2 className="advantages-title">
-            Uma plataforma, duas soluções
-          </h2>
+          <h2 className="advantages-title">Uma plataforma, duas soluções</h2>
           <p className="advantages-subtitle">
             Conectamos quem precisa com quem sabe fazer
           </p>
@@ -17,45 +12,38 @@ export default function AdvantagesSection() {
       <style>{`
         .advantages-section {
           background: #fff;
-          border-radius: 2rem;
+          border-radius: 1.5rem;
           margin: 2.5rem auto;
-          padding: 3.5rem 0;
+          padding: 3.5rem 2rem;
           position: relative;
           top: 6rem;
-          max-width: 1200px;
-          box-shadow: 0 2px 24px 0 rgba(30,121,247,0.06);
+          max-width: 1140px;
+          box-shadow: 0 4px 24px rgba(30, 120, 247, 0.459);
         }
         .advantages-container {
           width: 100%;
           max-width: 900px;
           margin: 0 auto;
-          padding: 0 2rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        .advantages-header {
-          width: 100%;
           text-align: center;
         }
         .advantages-title {
           font-size: 2.5rem;
           font-weight: 800;
           color: #212529;
-          margin-bottom: 1rem;
+          margin-bottom: 0.75rem;
         }
         .advantages-subtitle {
-          font-size: 1.25rem;
-          color: #6C757D;
+          font-size: 1.2rem;
+          color: #6c757d;
           margin-bottom: 0;
         }
+
         /* Tablet */
-        @media (max-width: 1024px) {
+        @media (max-width: 992px) {
           .advantages-section {
-            padding: 2.5rem 0.5rem;
-            border-radius: 2rem;
-            margin: 2rem 0 3rem 0;
-            max-width: 98vw;
+            margin: 2rem 1rem;
+            padding: 2.5rem 1.5rem;
+            top: 4rem;
           }
           .advantages-title {
             font-size: 2rem;
@@ -64,24 +52,18 @@ export default function AdvantagesSection() {
             font-size: 1.1rem;
           }
         }
+
         /* Mobile */
-        @media (max-width: 600px) {
+        @media (max-width: 576px) {
           .advantages-section {
-            padding: 2rem 0.5rem;
-            border-radius: 1.2rem;
-            margin: 1.2rem 0 4rem 0;
-            max-width: 100vw;
-          }
-          .advantages-container {
-            padding: 0 0.5rem;
+            padding: 2rem 1rem;
+            margin-top: 1.5rem;
           }
           .advantages-title {
-            font-size: 1.4rem;
-            margin-bottom: 0.7rem;
+            font-size: 1.5rem;
           }
           .advantages-subtitle {
             font-size: 1rem;
-            margin-bottom: 0.5rem;
           }
         }
       `}</style>
