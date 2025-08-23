@@ -74,7 +74,7 @@ export default function ClientCard() {
           margin: 0 auto;
           background: #fff;
           border-radius: 1.5rem;
-          box-shadow: 0 16px 48px rgba(30, 121, 247, 0.15);
+          box-shadow: 0 16px 48px rgba(30, 120, 247, 0.616);
           position: relative;
           border: 1px solid #e9ecef;
           z-index: 2; /* Ensures card is above bubbles */

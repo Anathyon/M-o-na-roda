@@ -64,7 +64,7 @@ export default function ProfissionalCard() {
           margin: 0 auto;
           background: #fff;
           border-radius: 1.5rem;
-          box-shadow: 0 16px 48px rgba(59, 130, 246, 0.15);
+          box-shadow: 0 16px 48px rgba(30, 120, 247, 0.616);
           overflow: hidden;
           position: relative;
           border: 1px solid #e2e8f0;
