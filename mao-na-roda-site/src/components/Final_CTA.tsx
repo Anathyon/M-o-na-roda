@@ -294,6 +294,11 @@ export default function FinalCTASection() {
           .final-cta-feature {
             justify-content: flex-start; /* Aligns items to the left within the centered container */
           }
+          .final-cta-feature span {
+            display: flex-block;
+            text-align: left;
+            justify-content: flex-start;
+          }  
           .final-cta-buttons {
             flex-direction: column;
             align-items: center;
