@@ -57,7 +57,7 @@ export default function AdvantagesSection() {
         @media (max-width: 576px) {
           .advantages-section {
             padding: 2rem 1rem;
-            margin-top: 1.5rem;
+            margin-top: 5rem;
           }
           .advantages-title {
             font-size: 1.5rem;
