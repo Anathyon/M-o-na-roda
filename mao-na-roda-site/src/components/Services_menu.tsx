@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Service = {
   icon: string;
@@ -113,8 +114,18 @@ export default function ServicesMenuGrid() {
   const [modal, setModal] = useState<Service | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [carouselIndex, setCarouselIndex] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (modal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [modal]);
 
   const stopAutoPlay = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
@@ -143,11 +154,6 @@ export default function ServicesMenuGrid() {
     return stopAutoPlay;
   }, [isMobile, startAutoPlay, stopAutoPlay]);
 
-  useEffect(() => {
-    document.body.style.overflow = modal ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [modal]);
-
   const handlePrev = () => {
     stopAutoPlay();
     setCarouselIndex((prev) => (prev === 0 ? services.length - 1 : prev - 1));
@@ -162,283 +168,275 @@ export default function ServicesMenuGrid() {
 
   return (
     <>
-      <section
+      <motion.section
         id="servicos"
-        className="services-section bg-gradient-to-br from-[#fafbff] via-[#f8f9fa] to-white relative top-[6rem]"
-        style={{ margin: "2% 0" }}
+        className="services-section"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8 }}
       >
-        <div className="services-container w-full mx-auto" style={{ maxWidth: "75rem", padding: "2% 5%" }}>
-          <div className="services-header text-center mb-10">
-            <h2 className="services-title-h2 text-4xl font-extrabold text-gray-900 mb-2">
+        <div className="services-container">
+          <motion.div 
+            className="services-header"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            <motion.h2 
+              className="services-title-h2"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
               Nossos Serviços
-            </h2>
-            <p className="services-subtitle text-lg text-gray-500 max-w-2xl mx-auto" style={{ padding: "1rem 0" }}>
+            </motion.h2>
+            <motion.p 
+              className="services-subtitle"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
               Profissionais qualificados para todas as suas necessidades
-            </p>
-          </div>
-          {/* MOBILE CAROUSEL */}
+            </motion.p>
+          </motion.div>
           {isMobile ? (
-            <div
-              className="services-carousel-wrapper flex flex-col items-center w-full relative"
-              style={{ minHeight: "370px" }}
+            <motion.div
+              className="services-carousel-wrapper"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 0.6 }}
               onMouseEnter={stopAutoPlay}
               onMouseLeave={startAutoPlay}
               onTouchStart={stopAutoPlay}
               onTouchEnd={startAutoPlay}
             >
-              <div className="services-carousel-controls flex w-full justify-between items-center mb-4 px-2 relative z-20" style={{paddingBottom:"5%"}}>
-                <button
-                  className="services-carousel-btn bg-white rounded-full shadow-lg flex items-center justify-center"
-                  style={{
-                    width: 54,
-                    height: 54,
-                    fontSize: "2rem",
-                    border: "1.5px solid #e0e0e0",
-                    marginRight: "0.5rem",
-                  }}
+              <div className="services-carousel-controls">
+                <motion.button
+                  className="services-carousel-btn"
                   onClick={handlePrev}
                   aria-label="Anterior"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                 >
-                  <i className="fas fa-chevron-left text-[#1E79F7]"></i>
-                </button>
-                <button
-                  className="services-carousel-btn bg-white rounded-full shadow-lg flex items-center justify-center"
-                  style={{
-                    width: 54,
-                    height: 54,
-                    fontSize: "2rem",
-                    border: "1.5px solid #e0e0e0",
-                    marginLeft: "0.5rem",
-                  }}
+                  <i className="fas fa-chevron-left"></i>
+                </motion.button>
+                <motion.button
+                  className="services-carousel-btn"
                   onClick={handleNext}
                   aria-label="Próximo"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                 >
-                  <i className="fas fa-chevron-right text-[#1E79F7]"></i>
-                </button>
+                  <i className="fas fa-chevron-right"></i>
+                </motion.button>
               </div>
-              <div className="services-carousel-card-wrapper flex justify-center w-full relative z-10" ref={carouselRef}>
-                <button
+              <AnimatePresence mode="wait">
+                <motion.button
                   key={services[carouselIndex].category}
-                  className="services-carousel-card bg-white rounded-2xl text-center shadow-lg border-2 border-transparent transition-all duration-300 cursor-pointer overflow-hidden group flex flex-col items-center"
-                  style={{
-                    boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
-                    minWidth: "90vw",
-                    maxWidth: "95vw",
-                    padding: "2.2rem 1.2rem",
-                  }}
+                  className="services-carousel-card"
                   onClick={() => setModal(services[carouselIndex])}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.3 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <div
-                    className="services-carousel-gradient absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                    style={{
-                      background: services[carouselIndex].gradient,
-                      zIndex: 1,
-                    }}
-                  />
-                  <div
-                    className="services-carousel-icon mx-auto mb-6 flex items-center justify-center rounded-full transition-all duration-300 relative z-10"
-                    style={{
-                      width: 60,
-                      height: 60,
-                      background: "linear-gradient(135deg, #f8f9fa, #e9ecef)",
-                      boxShadow: "0 4px 16px rgba(30,121,247,0.08)",
-                    }}
+                  <motion.div 
+                    className="services-carousel-icon"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2, type: "spring" }}
                   >
                     <i
-                      className={`${services[carouselIndex].icon} text-[2rem] transition-all duration-300`}
-                      style={{
-                        color: services[carouselIndex].color,
-                      }}
+                      className={services[carouselIndex].icon}
+                      style={{ color: services[carouselIndex].color }}
                     />
-                  </div>
-                  <h3 className="services-carousel-title text-xl font-bold text-gray-900 mb-2 relative z-10 group-hover:text-[#1E79F7] transition-colors duration-300">
+                  </motion.div>
+                  <motion.h3 
+                    className="services-carousel-title"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
                     {services[carouselIndex].title}
-                  </h3>
-                  <p className="services-carousel-desc text-gray-500 text-base relative z-10 group-hover:text-gray-800 transition-colors duration-300">
+                  </motion.h3>
+                  <motion.p 
+                    className="services-carousel-desc"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
                     {services[carouselIndex].desc}
-                  </p>
-                </button>
-              </div>
-              {/* Indicadores */}
-              <div className="services-carousel-indicators flex justify-center gap-2 mt-5">
+                  </motion.p>
+                </motion.button>
+              </AnimatePresence>
+              <div className="services-carousel-indicators">
                 {services.map((_, idx) => (
-                  <span
+                  <motion.span
                     key={idx}
-                    className={`block w-3 h-3 rounded-full ${carouselIndex === idx ? "bg-[#1E79F7]" : "bg-gray-300"}`}
-                    style={{ transition: "background 0.3s" }}
+                    className={`indicator-dot ${carouselIndex === idx ? 'active' : ''}`}
+                    whileHover={{ scale: 1.2 }}
+                    onClick={() => setCarouselIndex(idx)}
                   />
                 ))}
               </div>
-            </div>
+            </motion.div>
           ) : (
-            // DESKTOP/TABLET GRID
             <div className="services-grid">
-              {services.map((service) => (
-                <button
+              {services.map((service, i) => (
+                <motion.button
                   key={service.category}
-                  className="services-card group"
+                  className="services-card"
                   onClick={() => setModal(service)}
-                  style={{
-                    background: "#fff",
-                    borderRadius: "1.5rem",
-                    boxShadow: "0 8px 30px rgba(30,121,247,0.08)",
-                    padding: "2.2rem 1.2rem",
-                    minWidth: 220,
-                    maxWidth: 340,
-                    width: "100%",
-                    margin: 0,
-                    border: "none",
-                    cursor: "pointer",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    transition: "box-shadow 0.2s",
-                    position: "relative",
-                  }}
+                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 + 0.5, duration: 0.6 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <div
+                  <motion.div 
                     className="services-icon"
-                    style={{
-                      width: 64,
-                      height: 64,
-                      borderRadius: "50%",
-                      background: "#f8f9fa",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      marginBottom: "1.5rem",
-                      fontSize: "2.2rem",
-                      boxShadow: "0 4px 16px rgba(30,121,247,0.08)",
-                      transition: "background 0.2s, transform 0.2s",
-                    }}
+                    style={{ background: service.gradient }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
                   >
                     <i
                       className={service.icon}
-                      style={{
-                        color: service.color,
-                        fontSize: "2rem",
-                        transition: "color 0.2s",
-                      }}
+                      style={{ color: service.color }}
                     />
-                  </div>
-                  <h3
-                    className="services-title"
-                    style={{
-                      fontWeight: 700,
-                      fontSize: "1.25rem",
-                      color: "#212529",
-                      marginBottom: "0.5rem",
-                      transition: "color 0.2s",
-                    }}
-                  >
-                    {service.title}
-                  </h3>
-                  <p
-                    className="services-desc"
-                    style={{
-                      color: "#6C757D",
-                      fontSize: "1rem",
-                      margin: 0,
-                    }}
-                  >
-                    {service.desc}
-                  </p>
-                  <style>{`
-                    .services-card:hover .services-icon {
-                      background: ${service.gradient};
-                      transform: scale(1.08);
-                    }
-                    .services-card:hover .services-title {
-                      color: ${service.color};
-                    }
-                    .services-card:hover .services-icon i {
-                      color: ${service.color};
-                    }
-                  `}</style>
-                </button>
+                  </motion.div>
+                  <h3 className="services-title">{service.title}</h3>
+                  <p className="services-desc">{service.desc}</p>
+                </motion.button>
               ))}
             </div>
           )}
         </div>
-      </section>
-      {/* Modal */}
-      {modal && (
-        <div
-          className="fixed inset-0 z-[3000] flex items-center justify-center bg-black/40"
-          onClick={() => setModal(null)}
-        >
-          <div
-            className="bg-white rounded-2xl shadow-2xl max-w-[95vw] w-[350px] sm:w-[420px] relative"
-            style={{
-              boxShadow: "0 8px 32px rgba(30,121,247,0.18)",
-              border: `2px solid ${modal.color}`,
-              padding: "1rem"
-            }}
-            onClick={e => e.stopPropagation()}
+      </motion.section>
+      <AnimatePresence>
+        {modal && (
+          <motion.div
+            className="modal-overlay"
+            onClick={() => setModal(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center justify-center w-full">
-                <h2 className="font-bold text-xl text-gray-900">{modal.title}</h2>
-              </div>
-              <button
-                className="text-gray-500 text-xl font-bold"
-                onClick={() => setModal(null)}
-                aria-label="Fechar"
-              >
-                ×
-              </button>
-            </div>
-            <p className="text-gray-600 mb-4 flex justify-center">{modal.desc}</p>
-            <h4 className="font-semibold text-gray-800 mb-2 flex justify-center">Serviços Inclusos:</h4>
-            <ul className="flex flex-col items-center" style={{ gap: "0.5rem", paddingBottom:"2%" }}>
-              {modal.services.map((item: string) => (
-                <li
-                  key={item}
-                  className="flex items-center gap-2 mb-2 p-2 bg-[#f8f9fa] rounded-lg"
-                >
-                  <i
-                    className="fas fa-check-circle"
-                    style={{ color: modal.color, fontSize: "1rem" }}
-                  />
-                  <span className="text-gray-800 font-medium text-sm">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <a
-              href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-auto text-center bg-[#1E79F7] text-white font-bold py-3 rounded-lg text-base mt-2 transition hover:bg-[#0D6EFD]"
-              style={{
-                padding: "3% 0"
-              }}
+            <motion.div
+              className="modal-content"
+              style={{ border: `2px solid ${modal.color}` }}
+              onClick={e => e.stopPropagation()}
+              initial={{ opacity: 0, scale: 0.8, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 50 }}
+              transition={{ duration: 0.3, type: "spring" }}
             >
-              <i className="fas fa-mobile-alt" style={{marginRight:"2%"}}></i>
-              Solicitar Serviço
-            </a>
-          </div>
-        </div>
-      )}
+              <div className="modal-header">
+                <motion.h2 
+                  className="modal-title"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                >
+                  {modal.title}
+                </motion.h2>
+                <motion.button
+                  className="modal-close"
+                  onClick={() => setModal(null)}
+                  aria-label="Fechar"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  ×
+                </motion.button>
+              </div>
+              <motion.p 
+                className="modal-desc"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                {modal.desc}
+              </motion.p>
+              <motion.h4 
+                className="modal-services-title"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                Serviços Inclusos:
+              </motion.h4>
+              <motion.ul 
+                className="modal-services-list"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                {modal.services.map((item: string, i: number) => (
+                  <motion.li
+                    key={item}
+                    className="modal-service-item"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 + i * 0.1 }}
+                  >
+                    <i
+                      className="fas fa-check-circle"
+                      style={{ color: modal.color }}
+                    />
+                    <span>{item}</span>
+                  </motion.li>
+                ))}
+              </motion.ul>
+              <motion.a
+                href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="modal-cta-btn"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <i className="fas fa-mobile-alt"></i>
+                Solicitar Serviço
+              </motion.a>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <style>{`
         .services-section {
           position: relative;
           top: 6rem;
-          padding: 4rem 1rem;
           background-color: #f8f9fa;
+          padding: 5rem 0;
         }
         .services-container {
           max-width: 1140px;
           margin: 0 auto;
+          padding: 0 2rem;
         }
         .services-header {
           text-align: center;
-          margin-bottom: 3rem;
+          margin-bottom: 4rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
         }
         .services-title-h2 {
           font-size: 2.5rem;
           font-weight: 900;
           color: #212529;
-          margin-bottom: 0.5rem;
+          margin: 0;
         }
         .services-subtitle {
           font-size: 1.125rem;
@@ -447,7 +445,6 @@ export default function ServicesMenuGrid() {
           margin: 0 auto;
         }
 
-        /* --- Grid (Desktop & Tablet) --- */
         .services-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -456,62 +453,53 @@ export default function ServicesMenuGrid() {
         .services-card {
           background: #fff;
           border-radius: 1.25rem;
-          padding: 2rem;
           text-align: center;
           border: 1px solid #e9ecef;
           box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-          transition: transform 0.3s, box-shadow 0.3s;
           cursor: pointer;
           display: flex;
           flex-direction: column;
           align-items: center;
-        }
-        .services-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 12px 35px rgba(30,121,247,0.1);
+          gap: 1.5rem;
+          padding: 2.5rem 1.5rem;
+          transition: transform 0.3s, box-shadow 0.3s;
         }
         .services-icon {
           width: 64px;
           height: 64px;
-          margin-bottom: 1.5rem;
           display: flex;
           align-items: center;
           justify-content: center;
           border-radius: 50%;
-          background: #f1f3f5;
           font-size: 2rem;
-          transition: background 0.3s, transform 0.3s;
-        }
-        .services-card:hover .services-icon {
-            transform: scale(1.1);
         }
         .services-title {
           font-size: 1.25rem;
           font-weight: 700;
           color: #212529;
-          margin-bottom: 0.5rem;
-          transition: color 0.3s;
+          margin: 0;
         }
         .services-desc {
           font-size: 1rem;
           color: #6C757D;
           line-height: 1.5;
+          margin: 0;
         }
 
-        /* --- Carousel (Mobile) --- */
         .services-carousel-wrapper {
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 1.5rem;
+          padding: 0 1rem;
         }
         .services-carousel-controls {
           display: flex;
           width: 100%;
           justify-content: space-between;
           align-items: center;
-          padding: 0 0.5rem;
-          order: 2; /* Controls below card */
+          order: 2;
+          padding: 0 1rem;
         }
         .services-carousel-btn {
           background-color: #fff;
@@ -523,46 +511,32 @@ export default function ServicesMenuGrid() {
           color: #1E79F7;
           box-shadow: 0 4px 12px rgba(0,0,0,0.08);
           cursor: pointer;
-        }
-        .services-carousel-card-wrapper {
-          width: 100%;
-          order: 1; /* Card on top */
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .services-carousel-card {
           background: #fff;
           border-radius: 1.5rem;
           text-align: center;
           box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-          padding: 2.2rem 1.2rem;
-          width: 90%;
+          width: 100%;
+          max-width: 320px;
           margin: 0 auto;
           cursor: pointer;
-          overflow: hidden;
-          position: relative;
           display: flex;
           flex-direction: column;
           align-items: center;
-        }
-        .services-carousel-gradient {
-          position: absolute;
-          inset: 0;
-          opacity: 0;
-          transition: opacity 0.3s;
-          z-index: 1;
-        }
-        .group:hover .services-carousel-gradient {
-          opacity: 1;
-        }
-        .services-carousel-icon, .services-carousel-title, .services-carousel-desc {
-          position: relative;
-          z-index: 2;
+          order: 1;
+          padding: 2rem 1.5rem;
+          gap: 1.5rem;
+          border: 1px solid #e9ecef;
         }
         .services-carousel-icon {
           width: 60px;
           height: 60px;
           background: linear-gradient(135deg, #f8f9fa, #e9ecef);
           box-shadow: 0 4px 16px rgba(30,121,247,0.08);
-          margin-bottom: 1.5rem;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -573,41 +547,181 @@ export default function ServicesMenuGrid() {
           font-size: 1.25rem;
           font-weight: 700;
           color: #212529;
-          margin-bottom: 0.5rem;
+          margin: 0;
         }
         .services-carousel-desc {
           font-size: 1rem;
           color: #6C757D;
+          margin: 0;
+          line-height: 1.5;
         }
         .services-carousel-indicators {
           display: flex;
           justify-content: center;
-          gap: 0.75rem;
-          order: 3; /* Indicators at the bottom */
+          order: 3;
+          gap: 0.5rem;
+          padding: 0.5rem;
         }
         .indicator-dot {
-          width: 10px; height: 10px; border-radius: 50%; background: #d1d5db;
-          border: none; cursor: pointer; padding: 0; transition: background-color 0.3s;
+          width: 12px; 
+          height: 12px; 
+          border-radius: 50%; 
+          background: #d1d5db;
+          border: none; 
+          cursor: pointer; 
+          transition: all 0.3s;
         }
-        .indicator-dot.active { background: #1E79F7; }
+        .indicator-dot.active { 
+          background: #1E79F7;
+          transform: scale(1.2);
+        }
         
-        /* --- Modal --- */
-        .modal-icon {
-            width: 72px;
-            height: 72px;
-            font-size: 2.5rem;
+        .modal-overlay {
+          position: fixed;
+          inset: 0;
+          z-index: 3000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(0,0,0,0.4);
+          padding: 1rem;
+          overflow-y: auto;
+        }
+        .modal-content {
+          background: white;
+          border-radius: 1rem;
+          box-shadow: 0 8px 32px rgba(30,121,247,0.18);
+          max-width: 90vw;
+          max-height: 90vh;
+          width: 420px;
+          position: relative;
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          overflow-y: auto;
+        }
+        .modal-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 0.5rem;
+        }
+        .modal-title {
+          font-weight: bold;
+          font-size: 1.5rem;
+          color: #212529;
+          margin: 0;
+          text-align: center;
+          flex: 1;
+        }
+        .modal-close {
+          color: #6c757d;
+          font-size: 1.5rem;
+          font-weight: bold;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0.5rem;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .modal-desc {
+          color: #6c757d;
+          text-align: center;
+          font-size: 1rem;
+          margin: 0;
+          line-height: 1.5;
+        }
+        .modal-services-title {
+          font-weight: 600;
+          color: #343a40;
+          text-align: center;
+          font-size: 1.1rem;
+          margin: 0;
+        }
+        .modal-services-list {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+          width: 100%;
+        }
+        .modal-service-item {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          background: #f8f9fa;
+          border-radius: 0.75rem;
+          padding: 1rem;
+          border: 1px solid #e9ecef;
+        }
+        .modal-service-item i {
+          font-size: 1rem;
+          flex-shrink: 0;
+        }
+        .modal-service-item span {
+          color: #343a40;
+          font-weight: 500;
+          font-size: 0.9rem;
+          line-height: 1.4;
+        }
+        .modal-cta-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.75rem;
+          width: 100%;
+          background: #1E79F7;
+          color: white;
+          font-weight: bold;
+          font-size: 1rem;
+          border-radius: 0.75rem;
+          text-decoration: none;
+          transition: background 0.2s;
+          padding: 1rem 1.5rem;
+          margin-top: 0.5rem;
+        }
+        .modal-cta-btn:hover {
+          background: #0D6EFD;
+        }
+        .modal-cta-btn i {
+          color: white;
+          font-size: 1.1rem;
         }
 
-        /* --- Responsive Adjustments --- */
         @media (max-width: 1024px) {
           .services-grid {
             grid-template-columns: repeat(2, 1fr);
           }
         }
         @media (max-width: 767px) {
+          .services-section { padding: 3rem 0; }
+          .services-container { padding: 0 1rem; }
+          .services-header { margin-bottom: 2.5rem; }
           .services-title-h2 { font-size: 2rem; }
           .services-subtitle { font-size: 1rem; }
-          .services-section { padding: 3rem 1rem; }
+          .services-grid { 
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+          }
+          .services-card { padding: 2rem 1rem; }
+          .modal-content {
+            width: 85vw;
+            max-width: 380px;
+            padding: 1.25rem;
+            gap: 1rem;
+            max-height: 85vh;
+          }
+          .modal-title {
+            font-size: 1.25rem;
+          }
+          .modal-service-item {
+            padding: 0.75rem;
+          }
         }
       `}</style>
     </>

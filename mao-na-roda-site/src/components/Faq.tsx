@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
   {
@@ -35,66 +36,118 @@ export default function FAQSection() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="faq-section">
+    <motion.section 
+      id="faq" 
+      className="faq-section"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8 }}
+    >
       <div className="faq-bg-pattern" />
       <div className="faq-container">
-        <div className="faq-header">
-          <div className="faq-badge">
+        <motion.div 
+          className="faq-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
+          <motion.div 
+            className="faq-badge"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
             <i className="fas fa-question-circle"></i>
             <span>Central de Ajuda</span>
-          </div>
-          <h2 className="faq-title">
+          </motion.div>
+          <motion.h2 
+            className="faq-title"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
             Perguntas <span className="faq-title-gradient">Frequentes</span>
-          </h2>
-          <p className="faq-subtitle">
+          </motion.h2>
+          <motion.p 
+            className="faq-subtitle"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          >
             Tire suas dúvidas sobre como usar o Mão na Roda
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
         <div className="faq-grid">
           {faqs.map((faq, idx) => (
-            <div
+            <motion.div
               key={faq.number}
               className={`faq-item${open === idx ? " faq-item-open" : ""}`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 + 0.6, duration: 0.5 }}
+              whileHover={{ scale: 1.02 }}
             >
-              <button
+              <motion.button
                 className="faq-question"
                 onClick={() => setOpen(open === idx ? null : idx)}
                 aria-expanded={open === idx}
                 aria-controls={`faq-answer-${faq.number}`}
+                whileHover={{ backgroundColor: "rgba(30, 121, 247, 0.02)" }}
+                whileTap={{ scale: 0.98 }}
               >
-                <h4
-                  className={`faq-question-title${open === idx ? " open" : ""}`}
-                >
-                  <div className="faq-number" style={{ background: faq.color }}>
+                <h4 className={`faq-question-title${open === idx ? " open" : ""}`}>
+                  <motion.div 
+                    className="faq-number" 
+                    style={{ background: faq.color }}
+                    whileHover={{ scale: 1.1 }}
+                  >
                     {faq.number}
-                  </div>
+                  </motion.div>
                   {faq.question}
                 </h4>
-                <i
+                <motion.i
                   className="fas fa-chevron-down faq-chevron"
-                  style={{
-                    transform: open === idx ? "rotate(180deg)" : "rotate(0deg)",
+                  animate={{
+                    rotate: open === idx ? 180 : 0,
                   }}
-                ></i>
-              </button>
-              <div
-                id={`faq-answer-${faq.number}`}
-                className="faq-answer"
-                style={{
-                  maxHeight: open === idx ? "200px" : "0",
-                }}
-              >
-                <div className="faq-answer-content">
-                  <p>{faq.answer}</p>
-                </div>
-              </div>
-            </div>
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
+              <AnimatePresence>
+                {open === idx && (
+                  <motion.div
+                    id={`faq-answer-${faq.number}`}
+                    className="faq-answer"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <motion.div 
+                      className="faq-answer-content"
+                      initial={{ y: -10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -10, opacity: 0 }}
+                      transition={{ delay: 0.1, duration: 0.2 }}
+                    >
+                      <p>{faq.answer}</p>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
         </div>
       </div>
       <style>{`
         .faq-section {
-          padding: 5rem 1rem;
+          padding: 5rem 0;
           background: #f8f9fa;
           position: relative;
           top: 6rem;
@@ -113,14 +166,19 @@ export default function FAQSection() {
           margin: 0 auto;
           position: relative;
           z-index: 10;
+          padding: 0 2rem;
         }
         .faq-header {
           text-align: center;
           margin-bottom: 3rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
         }
         .faq-badge {
           display: inline-flex;
           align-items: center;
+          justify-content: center;
           gap: 0.5rem;
           padding: 0.6rem 1.2rem;
           border-radius: 2rem;
@@ -129,14 +187,13 @@ export default function FAQSection() {
           color: #1E79F7;
           border: 1px solid #dee2e6;
           box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-          margin-bottom: 1.5rem;
           font-size: 0.95rem;
         }
         .faq-title {
           font-size: 2.5rem;
           font-weight: 900;
           color: #212529;
-          margin-bottom: 1rem;
+          margin: 0;
         }
         .faq-title-gradient {
           background: linear-gradient(135deg, #1E79F7, #0D6EFD);
@@ -188,6 +245,7 @@ export default function FAQSection() {
           font-size: 1.1rem;
           margin: 0;
           transition: color 0.3s;
+          flex: 1;
         }
         .faq-question-title.open {
           color: #0D6EFD;
@@ -225,7 +283,10 @@ export default function FAQSection() {
         
         @media (max-width: 768px) {
           .faq-section {
-            padding: 4rem 1rem;
+            padding: 4rem 0;
+          }
+          .faq-container {
+            padding: 0 1.5rem;
           }
           .faq-title {
             font-size: 2rem;
@@ -244,6 +305,10 @@ export default function FAQSection() {
         @media (max-width: 576px) {
           .faq-section {
             top: 4rem;
+            padding: 3rem 0;
+          }
+          .faq-container {
+            padding: 0 1rem;
           }
           .faq-question {
             padding: 1rem;
@@ -261,6 +326,6 @@ export default function FAQSection() {
           }
         }
       `}</style>
-    </section>
+    </motion.section>
   );
 }

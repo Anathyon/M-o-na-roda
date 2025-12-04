@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const testimonials = [
   {
     name: "Mariana Silva",
@@ -87,73 +89,120 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section
+    <motion.section
       id="depoimentos"
       className="testimonials-section"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8 }}
     >
-      {/* SVG background pattern */}
-      <div
-        className="testimonials-bg-pattern"
-      />
+      <div className="testimonials-bg-pattern" />
       <div className="testimonials-container">
-        <div className="testimonials-header">
-          <div className="testimonials-badge">
+        <motion.div 
+          className="testimonials-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
+          <motion.div 
+            className="testimonials-badge"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
             <i className="fas fa-star"></i>
             <span>Depoimentos Verificados</span>
-          </div>
-          <h2 className="testimonials-title">
+          </motion.div>
+          <motion.h2 
+            className="testimonials-title"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
             O que nossos{" "}
             <span className="testimonials-title-gradient">
               usuários dizem
             </span>
-          </h2>
-          <p className="testimonials-subtitle">
+          </motion.h2>
+          <motion.p 
+            className="testimonials-subtitle"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          >
             Mais de 50.000 famílias e profissionais já usam a Mão na Roda para transformar seus lares e suas carreiras.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
         <div className="testimonials-grid">
           {testimonials.map((t, idx) => (
-            <div
+            <motion.div
               key={idx}
               className="testimonial-card"
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 + 0.6, duration: 0.6 }}
+              whileHover={{ y: -5, scale: 1.02 }}
             >
-              {/* Decorative circle */}
               <div
                 className="testimonial-card-circle"
-                style={{
-                  background: t.cardBg,
-                }}
+                style={{ background: t.cardBg }}
               />
               <div className="testimonial-content">
-                <div
+                <motion.div
                   className="testimonial-quote-icon"
-                  style={{
-                    background: t.quoteIconBg,
-                  }}
+                  style={{ background: t.quoteIconBg }}
+                  initial={{ scale: 0, rotate: -180 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 + 0.8, duration: 0.6, type: "spring" }}
                 >
                   <i className="fas fa-quote-left"></i>
-                </div>
-                <div
+                </motion.div>
+                <motion.div
                   className="testimonial-stars"
-                  style={{
-                    color: t.starsColor,
-                  }}
+                  style={{ color: t.starsColor }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 + 1, duration: 0.5 }}
                 >
                   {[...Array(5)].map((_, i) => (
-                    <i key={i} className="fas fa-star"></i>
+                    <motion.i 
+                      key={i} 
+                      className="fas fa-star"
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.1 + 1.2 + i * 0.1, duration: 0.3 }}
+                    />
                   ))}
-                </div>
-                <p className="testimonial-quote">
+                </motion.div>
+                <motion.p 
+                  className="testimonial-quote"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 + 1.5, duration: 0.6 }}
+                >
                   "{t.quote}"
-                </p>
+                </motion.p>
               </div>
-              <div className="testimonial-author">
+              <motion.div 
+                className="testimonial-author"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 + 1.8, duration: 0.5 }}
+              >
                 <div
                   className="testimonial-avatar"
-                  style={{
-                    background: t.cardBg,
-                    padding: "1.3rem",
-                  }}
+                  style={{ background: t.cardBg }}
                 >
                   {t.avatar}
                 </div>
@@ -175,10 +224,9 @@ export default function TestimonialsSection() {
                     </span>
                   </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
-
         </div>
       </div>
       <style>{`
@@ -207,16 +255,19 @@ export default function TestimonialsSection() {
         }
         .testimonials-header {
           text-align: center;
-          margin-bottom: 2.5rem;
+          margin-bottom: 3rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
         }
         .testimonials-badge {
           display: inline-flex;
           align-items: center;
+          justify-content: center;
           gap: 0.5rem;
           padding: 0.7rem 1.5rem;
           border-radius: 2rem;
           font-weight: bold;
-          margin-bottom: 1.5rem;
           background: linear-gradient(135deg, #1E79F7, #0D6EFD);
           color: #fff;
           box-shadow: 0 0.5rem 1.5rem rgba(30, 121, 247, 0.15);
@@ -227,7 +278,7 @@ export default function TestimonialsSection() {
           font-size: 2.5rem;
           font-weight: 900;
           color: #212529;
-          margin-bottom: 1rem;
+          margin: 0;
           line-height: 1.1;
         }
         .testimonials-title-gradient {
@@ -239,7 +290,7 @@ export default function TestimonialsSection() {
         .testimonials-subtitle {
           color: #6C757D;
           font-size: 1.2rem;
-          margin-bottom: 0;
+          margin: 0;
         }
         .testimonials-grid {
           display: grid;
@@ -256,6 +307,9 @@ export default function TestimonialsSection() {
           position: relative;
           overflow: hidden;
           transition: box-shadow 0.2s, transform 0.2s;
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
         }
         .testimonial-card:hover {
           transform: translateY(-5px);
@@ -274,6 +328,9 @@ export default function TestimonialsSection() {
         .testimonial-content {
           position: relative;
           z-index: 2;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
         }
         .testimonial-quote-icon {
           width: 3rem;
@@ -282,7 +339,6 @@ export default function TestimonialsSection() {
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 1rem;
           color: #fff;
           font-size: 1.3rem;
           box-shadow: 0 0.5rem 1rem rgba(30,121,247,0.18);
@@ -291,21 +347,22 @@ export default function TestimonialsSection() {
           color: #fff;
         }
         .testimonial-stars {
-          margin-bottom: 1rem;
           font-size: 1.1rem;
+          display: flex;
+          gap: 0.25rem;
         }
         .testimonial-quote {
           color: #212529;
           font-size: 1.05rem;
           line-height: 1.6;
           font-style: italic;
-          margin-bottom: 1.5rem;
+          margin: 0;
         }
         .testimonial-author {
           display: flex;
           align-items: center;
           gap: 1rem;
-          padding-top: 1rem;
+          padding-top: 1.5rem;
           border-top: 2px solid rgba(30,121,247,0.08);
         }
         .testimonial-avatar {
@@ -322,12 +379,13 @@ export default function TestimonialsSection() {
         .testimonial-author-info {
           display: flex;
           flex-direction: column;
+          gap: 0.5rem;
         }
         .testimonial-author-name {
           font-weight: 600;
           color: #212529;
           font-size: 1.1rem;
-          margin-bottom: 0.2rem;
+          margin: 0;
         }
         .testimonial-service-badge {
           display: inline-flex;
@@ -402,6 +460,6 @@ export default function TestimonialsSection() {
           }
         }
       `}</style>
-    </section>
+    </motion.section>
   );
 }

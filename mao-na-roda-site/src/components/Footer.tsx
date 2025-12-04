@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const modals = {
   "Sobre Nós": {
@@ -47,6 +48,25 @@ const modals = {
   },
 };
 
+const footerColumns = [
+  {
+    title: "A Empresa",
+    items: ["Sobre Nós", "Nossa História", "Trabalhe Conosco"]
+  },
+  {
+    title: "Para Clientes",
+    items: ["Como Funciona", "Categorias de Serviços", "Avaliações"]
+  },
+  {
+    title: "Para Profissionais",
+    items: ["Cadastre-se", "Como Funciona", "Dicas de Sucesso"]
+  },
+  {
+    title: "Suporte",
+    items: ["Central de Ajuda", "Política de Privacidade", "Termos de Uso"]
+  }
+];
+
 export default function Footer() {
   const [modal, setModal] = useState<{ title: string; content: string } | null>(null);
 
@@ -55,104 +75,151 @@ export default function Footer() {
       setModal((modals as Record<string, { title: string; content: string }>)[item]);
     }
   }
-  function handleClose() {
-    setModal(null);
-  }
 
   return (
-    <footer className="footer-section">
+    <motion.footer 
+      className="footer-section"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8 }}
+    >
       <div className="footer-main">
         <div className="footer-container">
-          <div className="footer-top">
-            <div className="footer-logo">
-              <div className="logo-icon-large">
+          <motion.div 
+            className="footer-top"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            <motion.div 
+              className="footer-logo"
+              whileHover={{ scale: 1.05 }}
+            >
+              <motion.div 
+                className="logo-icon-large"
+                initial={{ scale: 0, rotate: -180 }}
+                whileInView={{ scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.6, type: "spring" }}
+              >
                 <img src="/Mao-na-roda-logo.jpg" alt="Mão na Roda" />
-              </div>
+              </motion.div>
               <div className="logo-text">
-                <h3>Mão na Roda</h3>
-                <p>Conectando pessoas a soluções</p>
+                <motion.h3
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                >
+                  Mão na Roda
+                </motion.h3>
+                <motion.p
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                >
+                  Conectando pessoas a soluções
+                </motion.p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           <div className="footer-grid">
-            <div className="footer-column">
-              <h4>A Empresa</h4>
-              <ul>
-                <li>
-                  <button type="button" onClick={() => handleOpen("Sobre Nós")}>Sobre Nós</button>
-                </li>
-                <li>
-                  <button type="button" onClick={() => handleOpen("Nossa História")}>Nossa História</button>
-                </li>
-                <li>
-                  <button type="button" onClick={() => handleOpen("Trabalhe Conosco")}>Trabalhe Conosco</button>
-                </li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <h4>Para Clientes</h4>
-              <ul>
-                <li>
-                  <button type="button" onClick={() => handleOpen("Como Funciona")}>Como Funciona</button>
-                </li>
-                <li>
-                  <button type="button" onClick={() => handleOpen("Categorias de Serviços")}>Categorias de Serviços</button>
-                </li>
-                <li>
-                  <button type="button" onClick={() => handleOpen("Avaliações")}>Avaliações</button>
-                </li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <h4>Para Profissionais</h4>
-              <ul>
-                <li>
-                  <button type="button" onClick={() => handleOpen("Cadastre-se")}>Cadastre-se</button>
-                </li>
-                <li>
-                  <button type="button" onClick={() => handleOpen("Como Funciona")}>Como Funciona</button>
-                </li>
-                <li>
-                  <button type="button" onClick={() => handleOpen("Dicas de Sucesso")}>Dicas de Sucesso</button>
-                </li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <h4>Suporte</h4>
-              <ul>
-                <li>
-                  <button type="button" onClick={() => handleOpen("Central de Ajuda")}>Central de Ajuda</button>
-                </li>
-                <li>
-                  <button type="button" onClick={() => handleOpen("Política de Privacidade")}>Política de Privacidade</button>
-                </li>
-                <li>
-                  <button type="button" onClick={() => handleOpen("Termos de Uso")}>Termos de Uso</button>
-                </li>
-              </ul>
-            </div>
+            {footerColumns.map((column, colIndex) => (
+              <motion.div 
+                key={column.title}
+                className="footer-column"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6 + colIndex * 0.1, duration: 0.5 }}
+              >
+                <h4>{column.title}</h4>
+                <ul>
+                  {column.items.map((item, itemIndex) => (
+                    <motion.li 
+                      key={item}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.7 + colIndex * 0.1 + itemIndex * 0.05, duration: 0.4 }}
+                    >
+                      <motion.button 
+                        type="button" 
+                        onClick={() => handleOpen(item)}
+                        whileHover={{ x: 5, color: "#fff" }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {item}
+                      </motion.button>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
-      <div className="footer-bottom">
+      <motion.div 
+        className="footer-bottom"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 1, duration: 0.5 }}
+      >
         <div className="footer-bottom-container">
           <div className="footer-copyright">
             © 2025, Mão na Roda. CNPJ 49.856.962/0001-36 - Todos os direitos reservados.
           </div>
         </div>
-      </div>
-      {/* Modal */}
-      {modal && (
-        <div className="footer-modal-bg" onClick={handleClose}>
-          <div className="footer-modal" onClick={e => e.stopPropagation()}>
-            <button className="footer-modal-close" onClick={handleClose} aria-label="Fechar">
-              &times;
-            </button>
-            <h3>{modal.title}</h3>
-            <p>{modal.content}</p>
-          </div>
-        </div>
-      )}
+      </motion.div>
+      <AnimatePresence>
+        {modal && (
+          <motion.div 
+            className="footer-modal-bg" 
+            onClick={() => setModal(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div 
+              className="footer-modal" 
+              onClick={e => e.stopPropagation()}
+              initial={{ opacity: 0, scale: 0.8, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 50 }}
+              transition={{ duration: 0.3, type: "spring" }}
+            >
+              <motion.button 
+                className="footer-modal-close" 
+                onClick={() => setModal(null)} 
+                aria-label="Fechar"
+                whileHover={{ scale: 1.1, backgroundColor: "#e0e0e0" }}
+                whileTap={{ scale: 0.9 }}
+              >
+                &times;
+              </motion.button>
+              <motion.h3
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+              >
+                {modal.title}
+              </motion.h3>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                {modal.content}
+              </motion.p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <style>{`
         .footer-section {
           width: 100%;
@@ -165,12 +232,12 @@ export default function Footer() {
         .footer-main {
           width: 100%;
           background: #1E79F7;
-          padding: 3rem 0;
+          padding: 4rem 0;
         }
         .footer-container {
           max-width: 1140px;
           margin: 0 auto;
-          padding: 0 1rem;
+          padding: 0 2rem;
         }
         .footer-top {
           display: flex;
@@ -218,12 +285,12 @@ export default function Footer() {
         .footer-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 2rem;
+          gap: 3rem;
         }
         .footer-column h4 {
           font-weight: 700;
           font-size: 1.05rem;
-          margin-bottom: 1rem;
+          margin-bottom: 1.5rem;
           color: #fff;
         }
         .footer-column ul {
@@ -232,7 +299,7 @@ export default function Footer() {
           margin: 0;
           display: flex;
           flex-direction: column;
-          gap: 0.5rem;
+          gap: 0.75rem;
         }
         .footer-column button {
           background: transparent;
@@ -330,14 +397,17 @@ export default function Footer() {
         /* Mobile */
         @media (max-width: 600px) {
           .footer-main {
-            padding: 2rem 0;
+            padding: 3rem 0;
+          }
+          .footer-container {
+            padding: 0 1rem;
           }
           .footer-top {
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
           }
           .footer-grid {
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 2.5rem;
           }
           .footer-logo h3 {
             font-size: 1.5rem;
@@ -350,6 +420,6 @@ export default function Footer() {
           }
         }
       `}</style>
-    </footer>
+    </motion.footer>
   );
 }

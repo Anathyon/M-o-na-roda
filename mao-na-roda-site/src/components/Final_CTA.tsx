@@ -1,8 +1,28 @@
+import { motion } from "framer-motion";
+
 export default function FinalCTASection() {
+  const features = [
+    { icon: "fas fa-users", text: "Para Clientes: Profissionais verificados" },
+    { icon: "fas fa-briefcase", text: "Para Profissionais: Mais oportunidades" },
+    { icon: "fas fa-lock", text: "Pagamento seguro e garantido" },
+    { icon: "fas fa-star", text: "Sistema de avaliações transparente" },
+  ];
+
   return (
-    <section className="final-cta-section">
-      {/* Top Wave SVG */}
-      <div className="final-cta-top-wave">
+    <motion.section 
+      className="final-cta-section"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8 }}
+    >
+      <motion.div 
+        className="final-cta-top-wave"
+        initial={{ y: 50, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#1E79F7"
@@ -10,70 +30,138 @@ export default function FinalCTASection() {
             d="M0,192L48,176C96,160,192,128,288,117.3C384,107,480,117,576,144C672,171,768,213,864,213.3C960,213,1056,171,1152,160C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
           />
         </svg>
-      </div>
-      {/* Content */}
+      </motion.div>
       <div className="final-cta-content">
         <div className="final-cta-bg-pattern" />
         <div className="final-cta-container">
-          {/* Text */}
-          <div className="final-cta-text">
-            <h2 className="final-cta-title">Duas soluções em um só lugar</h2>
-            <p className="final-cta-subtitle">
+          <motion.div 
+            className="final-cta-text"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            <motion.h2 
+              className="final-cta-title"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            >
+              Duas soluções em um só lugar
+            </motion.h2>
+            <motion.p 
+              className="final-cta-subtitle"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
               App Cliente: encontre profissionais qualificados para seu lar
               <br />
               App Profissional: aumente sua renda prestando serviços
-            </p>
+            </motion.p>
             <div className="final-cta-features">
-              <div className="final-cta-feature">
-                <i className="fas fa-users"></i>
-                <span>Para Clientes: Profissionais verificados</span>
-              </div>
-              <div className="final-cta-feature">
-                <i className="fas fa-briefcase"></i>
-                <span>Para Profissionais: Mais oportunidades</span>
-              </div>
-              <div className="final-cta-feature">
-                <i className="fas fa-lock"></i>
-                <span>Pagamento seguro e garantido</span>
-              </div>
-              <div className="final-cta-feature">
-                <i className="fas fa-star"></i>
-                <span>Sistema de avaliações transparente</span>
-              </div>
+              {features.map((feature, i) => (
+                <motion.div 
+                  key={feature.text}
+                  className="final-cta-feature"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6 + i * 0.1, duration: 0.5 }}
+                  whileHover={{ x: 5 }}
+                >
+                  <motion.i 
+                    className={feature.icon}
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.7 + i * 0.1, duration: 0.3, type: "spring" }}
+                  />
+                  <span>{feature.text}</span>
+                </motion.div>
+              ))}
             </div>
-            <div className="final-cta-buttons">
-              <a
+            <motion.div 
+              className="final-cta-buttons"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 1, duration: 0.6 }}
+            >
+              <motion.a
                 href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
                 className="final-cta-btn final-cta-btn-client"
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <i className="fab fa-google-play"></i>
                 <div className="cta-btn-text">
                   <span>App Cliente</span>
                   <strong>Google Play</strong>
                 </div>
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodaprofissional&hl=pt_BR"
                 className="final-cta-btn final-cta-btn-prof"
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <i className="fab fa-google-play"></i>
                 <div className="cta-btn-text">
                   <span>App Profissional</span>
                   <strong>Google Play</strong>
                 </div>
-              </a>
-            </div>
-          </div>
-          {/* Image */}
-          <div className="final-cta-image">
-            <img
+              </motion.a>
+            </motion.div>
+          </motion.div>
+          <motion.div 
+            className="final-cta-image"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            <motion.img
               src="App_mao_na_roda.png"
               alt="App Mão na Roda em uso"
               className="final-cta-img"
+              animate={{ 
+                y: [0, -15, 0]
+              }}
+              transition={{ 
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
             />
-            <div className="image-decoration-1"></div>
-            <div className="image-decoration-2"></div>
-          </div>
+            <motion.div 
+              className="image-decoration-1"
+              animate={{ 
+                y: [0, -15, 0],
+                scale: [1, 1.05, 1]
+              }}
+              transition={{ 
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <motion.div 
+              className="image-decoration-2"
+              animate={{ 
+                y: [0, -15, 0],
+                scale: [1, 1.05, 1]
+              }}
+              transition={{ 
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 2
+              }}
+            />
+          </motion.div>
         </div>
       </div>
       <style>{`
@@ -105,11 +193,11 @@ export default function FinalCTASection() {
           max-width: 1140px;
           width: 100%;
           margin: 0 auto;
-          padding: 0 1rem;
+          padding: 0 2rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 3rem;
+          gap: 4rem;
           position: relative;
           z-index: 2;
         }
@@ -117,25 +205,27 @@ export default function FinalCTASection() {
           flex: 1;
           max-width: 550px;
           color: #fff;
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
         }
         .final-cta-title {
           font-weight: 800;
-          margin-bottom: 1rem;
+          margin: 0;
           line-height: 1.2;
           font-size: 2.5rem;
           color: #fff;
         }
         .final-cta-subtitle {
           color: #e0f2fe;
-          margin-bottom: 2rem;
+          margin: 0;
           font-size: 1.1rem;
           line-height: 1.6;
         }
         .final-cta-features {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 1rem 1.5rem;
-          margin-bottom: 2.5rem;
+          gap: 1.5rem;
         }
         .final-cta-feature {
           display: flex;
@@ -257,6 +347,7 @@ export default function FinalCTASection() {
             flex-direction: column;
             text-align: center;
             gap: 3rem;
+            padding: 0 1.5rem;
           }
           .final-cta-text {
             align-items: center;
@@ -279,6 +370,9 @@ export default function FinalCTASection() {
           .final-cta-content {
             padding: 3rem 0;
           }
+          .final-cta-container {
+            padding: 0 1rem;
+          }
           .final-cta-title {
             font-size: 1.8rem;
           }
@@ -289,10 +383,10 @@ export default function FinalCTASection() {
             grid-template-columns: 1fr;
             gap: 1rem;
             width: 100%;
-            max-width: 300px; /* Ensures single column items don't stretch too wide */
+            max-width: 300px;
           }
           .final-cta-feature {
-            justify-content: flex-start; /* Aligns items to the left within the centered container */
+            justify-content: flex-start;
           }
           .final-cta-feature span {
             display: flex-block;
@@ -311,6 +405,6 @@ export default function FinalCTASection() {
           }
         }
       `}</style>
-    </section>
+    </motion.section>
   );
 }

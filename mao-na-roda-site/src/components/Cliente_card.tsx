@@ -1,73 +1,156 @@
-export default function ClientCard() {
-  return (
-    <div className="client-card-section">
-      {/* Decorative Bubbles are now positioned relative to the viewport */}
-      <div className="client-card-bubble bubble-1"></div>
-      <div className="client-card-bubble bubble-2"></div>
-      <div className="client-card-bubble bubble-3"></div>
+import { motion } from "framer-motion";
 
-      <div className="client-card-main">
+export default function ClientCard() {
+  const features = [
+    { icon: "fas fa-check-circle", text: "Profissionais verificados" },
+    { icon: "fas fa-dollar-sign", text: "Preços transparentes" },
+    { icon: "fas fa-calendar-check", text: "Agendamento fácil" },
+    { icon: "fas fa-lock", text: "Pagamento seguro" },
+  ];
+
+  return (
+    <motion.div 
+      className="client-card-section"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8 }}
+    >
+      <motion.div 
+        className="client-card-bubble bubble-1"
+        animate={{ 
+          y: [0, -25, 0],
+          scale: [1, 1.05, 1]
+        }}
+        transition={{ 
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div 
+        className="client-card-bubble bubble-2"
+        animate={{ 
+          y: [0, -25, 0],
+          scale: [1, 1.05, 1]
+        }}
+        transition={{ 
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 3
+        }}
+      />
+
+      <motion.div 
+        className="client-card-main"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.3, duration: 0.8 }}
+      >
         <div className="client-card-content">
-          <div className="client-card-left">
-            <div className="client-badge">Para Clientes</div>
-            <h3 className="client-title">Seguro e Confiável</h3>
-            <p className="client-desc">
+          <motion.div 
+            className="client-card-left"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          >
+            <motion.div 
+              className="client-badge"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+            >
+              Para Clientes
+            </motion.div>
+            <motion.h3 
+              className="client-title"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+            >
+              Seguro e Confiável
+            </motion.h3>
+            <motion.p 
+              className="client-desc"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+            >
               Receba ajuda especializada para todos os reparos e projetos em sua
               casa. Garanta serviços de qualidade e um lar impecável.
-            </p>
-            <div className="client-card-actions">
-              <a
+            </motion.p>
+            <motion.div 
+              className="client-card-actions"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.9, duration: 0.6 }}
+            >
+              <motion.a
                 href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
                 className="client-btn"
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <i className="fas fa-download"></i>
                 <span>Baixar App Cliente</span>
-              </a>
-              <div className="client-app-note">
+              </motion.a>
+              <motion.div 
+                className="client-app-note"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 1.1, duration: 0.5 }}
+              >
                 📱 App exclusivo para quem precisa de serviços
-              </div>
-            </div>
-          </div>
-          <div className="client-card-right">
+              </motion.div>
+            </motion.div>
+          </motion.div>
+          <motion.div 
+            className="client-card-right"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          >
             <div className="client-feature-grid">
-              <div className="client-feature-item">
-                <div className="client-feature-icon">
-                  <i className="fas fa-check-circle"></i>
-                </div>
-                <span>Profissionais verificados</span>
-              </div>
-              <div className="client-feature-item">
-                <div className="client-feature-icon">
-                  <i className="fas fa-dollar-sign"></i>
-                </div>
-                <span>Preços transparentes</span>
-              </div>
-              <div className="client-feature-item">
-                <div className="client-feature-icon">
-                  <i className="fas fa-calendar-check"></i>
-                </div>
-                <span>Agendamento fácil</span>
-              </div>
-              <div className="client-feature-item">
-                <div className="client-feature-icon">
-                  <i className="fas fa-lock"></i>
-                </div>
-                <span>Pagamento seguro</span>
-              </div>
+              {features.map((feature, i) => (
+                <motion.div 
+                  key={feature.text}
+                  className="client-feature-item"
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.7 + i * 0.1, duration: 0.5 }}
+                  whileHover={{ y: -5, scale: 1.05 }}
+                >
+                  <motion.div 
+                    className="client-feature-icon"
+                    initial={{ scale: 0, rotate: -180 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.8 + i * 0.1, duration: 0.6, type: "spring" }}
+                  >
+                    <i className={feature.icon}></i>
+                  </motion.div>
+                  <span>{feature.text}</span>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
       <style>{`
-        @keyframes floatBubble {
-          0% { transform: translateY(0) scale(1); }
-          50% { transform: translateY(-25px) scale(1.05); }
-          100% { transform: translateY(0) scale(1); }
-        }
         .client-card-section {
           position: relative;
           top: 6rem;
-          padding: 4rem 1rem;
+          padding: 3rem 0;
         }
         .client-card-main {
           max-width: 1000px;
@@ -77,15 +160,14 @@ export default function ClientCard() {
           box-shadow: 0 16px 48px rgba(30, 120, 247, 0.616);
           position: relative;
           border: 1px solid #e9ecef;
-          z-index: 2; /* Ensures card is above bubbles */
+          z-index: 2;
         }
         .client-card-bubble {
-          position: fixed; /* Changed from absolute to fixed */
+          position: fixed;
           background: linear-gradient(135deg, rgba(30, 121, 247, 0.08), rgba(13, 110, 253, 0.1));
           border-radius: 50%;
-          z-index: -1; /* Places bubbles behind all content */
+          z-index: -1;
           pointer-events: none;
-          animation: floatBubble 10s ease-in-out infinite;
         }
         .bubble-1 {
           width: 25vw;
@@ -94,7 +176,6 @@ export default function ClientCard() {
           max-height: 300px;
           top: 15vh;
           left: 5vw;
-          animation-delay: 0s;
         }
         .bubble-2 {
           width: 20vw;
@@ -103,54 +184,44 @@ export default function ClientCard() {
           max-height: 250px;
           bottom: 10vh;
           right: 8vw;
-          animation-delay: 3s;
-        }
-        .bubble-3 {
-          width: 15vw;
-          height: 15vw;
-          max-width: 150px;
-          max-height: 150px;
-          top: 60vh;
-          right: 25vw;
-          animation-delay: 6s;
-          display: none; /* Hiding the third bubble for a cleaner look, can be re-enabled */
         }
         .client-card-content {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 2.5rem;
-          padding: 3rem;
           position: relative;
+          gap: 3rem;
+          padding: 3rem;
         }
         .client-card-left {
           display: flex;
           flex-direction: column;
           justify-content: center;
+          gap: 1.5rem;
         }
         .client-badge {
           background: linear-gradient(135deg, #1E79F7, #0D6EFD);
           color: #fff;
-          padding: 0.6rem 1.2rem;
           border-radius: 50px;
           font-weight: 700;
           font-size: 0.9rem;
-          margin-bottom: 1.5rem;
           box-shadow: 0 8px 20px rgba(30, 121, 247, 0.2);
           text-transform: uppercase;
           letter-spacing: 0.5px;
           text-align: center;
+          padding: 0.75rem 1.5rem;
+          display: inline-block;
         }
         .client-title {
           font-size: 2.25rem;
           font-weight: 800;
           color: #212529;
-          margin-bottom: 1rem;
+          margin: 0;
         }
         .client-desc {
           font-size: 1.1rem;
           color: #495057;
           line-height: 1.6;
-          margin-bottom: 2rem;
+          margin: 0;
         }
         .client-card-actions {
           display: flex;
@@ -160,25 +231,21 @@ export default function ClientCard() {
         .client-btn {
           background: linear-gradient(135deg, #1E79F7, #0D6EFD);
           color: #fff;
-          padding: 1rem 1.8rem;
           border-radius: 50px;
           font-weight: 700;
           font-size: 1rem;
           box-shadow: 0 10px 25px rgba(30, 121, 247, 0.2);
           display: inline-flex;
           align-items: center;
-          gap: 0.8rem;
           text-decoration: none;
-          transition: transform 0.2s, box-shadow 0.2s;
           justify-content: center;
-        }
-        .client-btn:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 12px 30px rgba(30, 121, 247, 0.3);
+          gap: 0.75rem;
+          padding: 1rem 2rem;
         }
         .client-app-note {
           font-size: 0.9rem;
           color: #6C757D;
+          margin: 0;
         }
         .client-card-right {
           display: flex;
@@ -188,24 +255,19 @@ export default function ClientCard() {
         .client-feature-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 1.5rem;
           width: 100%;
+          gap: 1rem;
         }
         .client-feature-item {
           background: #f8f9fa;
           border: 1px solid #e9ecef;
           border-radius: 1rem;
-          padding: 1.5rem 1rem;
           display: flex;
           flex-direction: column;
           align-items: center;
           text-align: center;
-          gap: 0.8rem;
-          transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .client-feature-item:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 8px 20px rgba(30, 121, 247, 0.1);
+          gap: 1rem;
+          padding: 1.5rem 1rem;
         }
         .client-feature-icon {
           background: linear-gradient(135deg, #1E79F7, #0D6EFD);
@@ -222,13 +284,13 @@ export default function ClientCard() {
           color: #343a40;
           font-weight: 600;
           font-size: 0.95rem;
+          margin: 0;
         }
         
         @media (max-width: 992px) {
           .client-card-content {
             grid-template-columns: 1fr;
-            gap: 2.5rem;
-            padding: 2.5rem;
+            padding: 2rem;
           }
           .client-card-left {
             text-align: center;
@@ -238,11 +300,11 @@ export default function ClientCard() {
 
         @media (max-width: 576px) {
           .client-card-section {
-            padding: 2rem 1rem;
             top: 4rem;
+            padding: 2rem 0;
           }
           .client-card-content {
-            padding: 2rem 1.5rem;
+            padding: 1.5rem;
           }
           .client-title {
             font-size: 1.8rem;
@@ -250,17 +312,11 @@ export default function ClientCard() {
           .client-desc {
             font-size: 1rem;
           }
-          .client-feature-grid {
-            gap: 1rem;
-          }
-          .client-feature-item {
-            padding: 1rem 0.5rem;
-          }
-          .bubble-1, .bubble-2, .bubble-3 {
-            display: none; /* Hide bubbles on small screens for better readability */
+          .bubble-1, .bubble-2 {
+            display: none;
           }
         }
       `}</style>
-    </div>
+    </motion.div>
   );
 }

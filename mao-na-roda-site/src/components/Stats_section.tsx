@@ -1,16 +1,17 @@
-import React, { useEffect, useRef, useState, useMemo } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const stats = [
   {
     icon: "fas fa-users",
-    number: 30000,
+    number: 30,
     label: "Clientes Atendidos",
     subtitle: "Famílias em todo o Brasil",
     suffix: "K+",
   },
   {
     icon: "fas fa-user-check",
-    number: 10000,
+    number: 10,
     label: "Profissionais",
     subtitle: "Com antecedentes e referências verificadas",
     suffix: "K+",
@@ -31,120 +32,120 @@ const stats = [
   },
 ];
 
-function animateCountUp(el: HTMLElement, target: number, suffix: string) {
-  let current = 0;
-  const duration = 2000; // 2 seconds for a smoother animation
-  const increment = target / (duration / 16);
-  let frame: number;
-
-  const step = () => {
-    current += increment;
-    if (current >= target) {
-      current = target;
-    }
-    
-    let displayValue: string;
-    if (target >= 1000 && suffix.includes("K")) {
-      displayValue = Math.floor(current / 1000) + suffix;
-    } else {
-      displayValue = Math.floor(current) + suffix;
-    }
-    el.textContent = displayValue;
-
-    if (current < target) {
-      frame = requestAnimationFrame(step);
-    }
-  };
-
-  frame = requestAnimationFrame(step);
-  return () => cancelAnimationFrame(frame);
-}
-
 export default function StatsSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  
-  const refs = useMemo(() => Array.from({ length: stats.length }, () => React.createRef<HTMLDivElement>()), []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 } // Trigger when 20% of the section is visible
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (isVisible) {
-      const cleanups = stats.map((stat, i) => {
-        const el = refs[i].current;
-        if (el) {
-          return animateCountUp(el, stat.number, stat.suffix);
-        }
-        return () => {};
-      });
-      return () => cleanups.forEach((fn) => fn());
-    }
-  }, [isVisible, refs]);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={sectionRef} className="stats-section">
+    <motion.section 
+      ref={ref} 
+      className="stats-section"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8 }}
+    >
       <div className="stats-container">
-        <div className="stats-header">
+        <motion.div 
+          className="stats-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
           <h2 className="stats-title">
             Números que <span className="stats-title-highlight">Impressionam</span>
           </h2>
           <p className="stats-subtitle">Nossa comunidade não para de crescer. Veja nossos resultados.</p>
-        </div>
+        </motion.div>
 
         <div className="stats-grid">
           {stats.map((stat, i) => (
-            <div key={stat.label} className="stats-card">
-              <div className="stats-icon">
+            <motion.div 
+              key={stat.label} 
+              className="stats-card"
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 + 0.4, duration: 0.6 }}
+              whileHover={{ y: -10, scale: 1.05 }}
+            >
+              <motion.div 
+                className="stats-icon"
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 + 0.6, duration: 0.5, type: "spring" }}
+              >
                 <i className={stat.icon}></i>
-              </div>
+              </motion.div>
               <div className="stats-content">
-                <div ref={refs[i]} className="stats-number">0</div>
-                <h3 className="stats-label">{stat.label}</h3>
-                <p className="stats-card-subtitle">{stat.subtitle}</p>
+                <motion.div 
+                  className="stats-number"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 + 0.8, duration: 0.5 }}
+                >
+                  {isInView && (
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 2, ease: "easeOut" }}
+                    >
+                      {stat.number}{stat.suffix}
+                    </motion.span>
+                  )}
+                </motion.div>
+                <motion.h3 
+                  className="stats-label"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 + 1, duration: 0.4 }}
+                >
+                  {stat.label}
+                </motion.h3>
+                <motion.p 
+                  className="stats-card-subtitle"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 + 1.2, duration: 0.4 }}
+                >
+                  {stat.subtitle}
+                </motion.p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
       <style>{`
         .stats-section {
-          padding: 5rem 0;
           position: relative;
           top: 6rem;
           background: #f8f9fa;
           overflow: hidden;
+          padding: 5rem 0;
         }
         .stats-container {
           width: 100%;
           max-width: 1400px;
           margin: 0 auto;
-          padding: 0 1rem;
+          padding: 0 2rem;
         }
         .stats-header {
           text-align: center;
           margin-bottom: 4rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
         }
         .stats-title {
           font-size: 2.2rem;
           font-weight: 900;
           color: #212529;
-          margin-bottom: 0.5rem;
+          margin: 0;
         }
         .stats-title-highlight {
           background: linear-gradient(135deg, #1E79F7, #0D6EFD);
@@ -161,11 +162,10 @@ export default function StatsSection() {
         .stats-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 1.5rem;
+          gap: 2rem;
         }
         .stats-card {
           background: #fff;
-          padding: 2rem;
           border-radius: 1.25rem;
           box-shadow: 0 1rem 2.5rem rgba(30, 121, 247, 0.08);
           border: 1px solid #e9ecef;
@@ -173,11 +173,9 @@ export default function StatsSection() {
           display: flex;
           flex-direction: column;
           align-items: center;
+          gap: 1.5rem;
+          padding: 2.5rem 1.5rem;
           transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .stats-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 1.5rem 3rem rgba(30, 121, 247, 0.15);
         }
         .stats-icon {
           width: 5rem;
@@ -190,47 +188,49 @@ export default function StatsSection() {
           font-size: 2rem;
           color: #fff;
           box-shadow: 0 0.5rem 1.5rem rgba(30, 121, 247, 0.25);
-          margin-bottom: 1.5rem;
         }
         .stats-content {
           display: flex;
           flex-direction: column;
           align-items: center;
+          gap: 0.5rem;
         }
         .stats-number {
           font-size: 3rem;
           font-weight: 900;
           color: #2d5ed0;
-          margin-bottom: 0.25rem;
+          margin: 0;
         }
         .stats-label {
           font-size: 1.2rem;
           font-weight: 700;
           color: #343a40;
-          margin-bottom: 0.5rem;
+          margin: 0;
         }
         .stats-card-subtitle {
           font-size: 0.95rem;
           color: #6C757D;
           line-height: 1.5;
+          margin: 0;
         }
 
-        /* Small devices (sm) */
+        @media (max-width: 576px) {
+          .stats-section { padding: 3rem 0; }
+          .stats-container { padding: 0 1rem; }
+          .stats-header { margin-bottom: 2.5rem; }
+          .stats-card { padding: 2rem 1rem; }
+        }
+
         @media (min-width: 576px) {
           .stats-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
           }
         }
 
-        /* Medium devices (md) */
         @media (min-width: 768px) {
-          .stats-container { padding: 0 2rem; }
           .stats-title { font-size: 2.5rem; }
-          .stats-card { padding: 2.5rem; }
         }
 
-        /* Large devices (lg) */
         @media (min-width: 992px) {
           .stats-grid {
             grid-template-columns: repeat(4, 1fr);
@@ -238,15 +238,12 @@ export default function StatsSection() {
           .stats-number { font-size: 3.5rem; }
         }
 
-        /* Extra large devices (xl) */
         @media (min-width: 1200px) {
-          .stats-container { padding: 0 3rem; }
           .stats-title { font-size: 2.8rem; }
-          .stats-grid { gap: 2rem; }
           .stats-icon { width: 5.5rem; height: 5.5rem; font-size: 2.2rem; }
           .stats-number { font-size: 4rem; }
         }
       `}</style>
-    </section>
+    </motion.section>
   );
 }
