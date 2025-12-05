@@ -29,7 +29,7 @@ export default function ComoFunciona() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
     >
       <div className="como-funciona-container">
         <motion.div 
@@ -37,14 +37,14 @@ export default function ComoFunciona() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6 }}
+          transition={{ delay: 0.1, duration: 0.3, ease: "easeOut" }}
         >
           <motion.div 
             className="como-funciona-badge"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+            transition={{ delay: 0.15, duration: 0.25, ease: "easeOut" }}
           >
             <i className="fas fa-cogs"></i>
             Como Funciona
@@ -54,7 +54,7 @@ export default function ComoFunciona() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.6 }}
+            transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
           >
             Simples, Rápido e Eficiente
           </motion.h2>
@@ -63,7 +63,7 @@ export default function ComoFunciona() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.6 }}
+            transition={{ delay: 0.25, duration: 0.3, ease: "easeOut" }}
           >
             Encontre o profissional ideal em apenas 3 passos
           </motion.p>
@@ -76,7 +76,7 @@ export default function ComoFunciona() {
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.2 + 0.6, duration: 0.6 }}
+                transition={{ delay: i * 0.1 + 0.3, duration: 0.3, ease: "easeOut" }}
                 whileHover={{ y: -10 }}
               >
                 <motion.div 
@@ -84,7 +84,7 @@ export default function ComoFunciona() {
                   initial={{ scale: 0, rotate: -180 }}
                   whileInView={{ scale: 1, rotate: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.2 + 0.8, duration: 0.6, type: "spring" }}
+                  transition={{ delay: i * 0.1 + 0.4, duration: 0.3, type: "spring", ease: "easeOut" }}
                 >
                   <i className={step.icon}></i>
                   <span className="como-funciona-step-number">{step.number}</span>
@@ -94,7 +94,7 @@ export default function ComoFunciona() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.2 + 1, duration: 0.5 }}
+                  transition={{ delay: i * 0.1 + 0.5, duration: 0.25, ease: "easeOut" }}
                 >
                   <h3>{step.title}</h3>
                   <p>{step.desc}</p>
@@ -106,7 +106,7 @@ export default function ComoFunciona() {
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.2 + 1.2, duration: 0.8 }}
+                  transition={{ delay: i * 0.1 + 0.6, duration: 0.4, ease: "easeOut" }}
                 />
               )}
             </motion.div>

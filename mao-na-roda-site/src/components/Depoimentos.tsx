@@ -95,7 +95,7 @@ export default function TestimonialsSection() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
     >
       <div className="testimonials-bg-pattern" />
       <div className="testimonials-container">
@@ -104,14 +104,14 @@ export default function TestimonialsSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6 }}
+          transition={{ delay: 0.1, duration: 0.3, ease: "easeOut" }}
         >
           <motion.div 
             className="testimonials-badge"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+            transition={{ delay: 0.15, duration: 0.25, ease: "easeOut" }}
           >
             <i className="fas fa-star"></i>
             <span>Depoimentos Verificados</span>
@@ -121,7 +121,7 @@ export default function TestimonialsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.6 }}
+            transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
           >
             O que nossos{" "}
             <span className="testimonials-title-gradient">
@@ -133,7 +133,7 @@ export default function TestimonialsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.6 }}
+            transition={{ delay: 0.25, duration: 0.3, ease: "easeOut" }}
           >
             Mais de 50.000 famílias e profissionais já usam a Mão na Roda para transformar seus lares e suas carreiras.
           </motion.p>
@@ -146,7 +146,7 @@ export default function TestimonialsSection() {
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 + 0.6, duration: 0.6 }}
+              transition={{ delay: idx * 0.05 + 0.3, duration: 0.3, ease: "easeOut" }}
               whileHover={{ y: -5, scale: 1.02 }}
             >
               <div
@@ -160,7 +160,7 @@ export default function TestimonialsSection() {
                   initial={{ scale: 0, rotate: -180 }}
                   whileInView={{ scale: 1, rotate: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 + 0.8, duration: 0.6, type: "spring" }}
+                  transition={{ delay: idx * 0.05 + 0.4, duration: 0.3, type: "spring", ease: "easeOut" }}
                 >
                   <i className="fas fa-quote-left"></i>
                 </motion.div>
@@ -170,7 +170,7 @@ export default function TestimonialsSection() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 + 1, duration: 0.5 }}
+                  transition={{ delay: idx * 0.05 + 0.5, duration: 0.25, ease: "easeOut" }}
                 >
                   {[...Array(5)].map((_, i) => (
                     <motion.i 
@@ -179,7 +179,7 @@ export default function TestimonialsSection() {
                       initial={{ opacity: 0, scale: 0 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1 + 1.2 + i * 0.1, duration: 0.3 }}
+                      transition={{ delay: idx * 0.05 + 0.6 + i * 0.05, duration: 0.15, ease: "easeOut" }}
                     />
                   ))}
                 </motion.div>
@@ -188,7 +188,7 @@ export default function TestimonialsSection() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 + 1.5, duration: 0.6 }}
+                  transition={{ delay: idx * 0.05 + 0.75, duration: 0.3, ease: "easeOut" }}
                 >
                   "{t.quote}"
                 </motion.p>
@@ -198,7 +198,7 @@ export default function TestimonialsSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 + 1.8, duration: 0.5 }}
+                transition={{ delay: idx * 0.05 + 0.9, duration: 0.25, ease: "easeOut" }}
               >
                 <div
                   className="testimonial-avatar"

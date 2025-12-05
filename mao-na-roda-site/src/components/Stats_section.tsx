@@ -43,7 +43,7 @@ export default function StatsSection() {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
     >
       <div className="stats-container">
         <motion.div 
@@ -51,7 +51,7 @@ export default function StatsSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6 }}
+          transition={{ delay: 0.1, duration: 0.3, ease: "easeOut" }}
         >
           <h2 className="stats-title">
             Números que <span className="stats-title-highlight">Impressionam</span>
@@ -67,7 +67,7 @@ export default function StatsSection() {
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 + 0.4, duration: 0.6 }}
+              transition={{ delay: i * 0.05 + 0.2, duration: 0.3, ease: "easeOut" }}
               whileHover={{ y: -10, scale: 1.05 }}
             >
               <motion.div 
@@ -75,7 +75,7 @@ export default function StatsSection() {
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 + 0.6, duration: 0.5, type: "spring" }}
+                transition={{ delay: i * 0.05 + 0.3, duration: 0.25, type: "spring", ease: "easeOut" }}
               >
                 <i className={stat.icon}></i>
               </motion.div>
@@ -85,13 +85,13 @@ export default function StatsSection() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 + 0.8, duration: 0.5 }}
+                  transition={{ delay: i * 0.05 + 0.4, duration: 0.25, ease: "easeOut" }}
                 >
                   {isInView && (
                     <motion.span
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      transition={{ duration: 2, ease: "easeOut" }}
+                      transition={{ duration: 1, ease: "easeOut" }}
                     >
                       {stat.number}{stat.suffix}
                     </motion.span>
@@ -102,7 +102,7 @@ export default function StatsSection() {
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 + 1, duration: 0.4 }}
+                  transition={{ delay: i * 0.05 + 0.5, duration: 0.2, ease: "easeOut" }}
                 >
                   {stat.label}
                 </motion.h3>
@@ -111,7 +111,7 @@ export default function StatsSection() {
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 + 1.2, duration: 0.4 }}
+                  transition={{ delay: i * 0.05 + 0.6, duration: 0.2, ease: "easeOut" }}
                 >
                   {stat.subtitle}
                 </motion.p>

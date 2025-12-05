@@ -82,7 +82,7 @@ export default function Footer() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
     >
       <div className="footer-main">
         <div className="footer-container">
@@ -91,7 +91,7 @@ export default function Footer() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
+            transition={{ delay: 0.1, duration: 0.3, ease: "easeOut" }}
           >
             <motion.div 
               className="footer-logo"
@@ -102,7 +102,7 @@ export default function Footer() {
                 initial={{ scale: 0, rotate: -180 }}
                 whileInView={{ scale: 1, rotate: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 0.6, type: "spring" }}
+                transition={{ delay: 0.15, duration: 0.3, type: "spring", ease: "easeOut" }}
               >
                 <img src="/Mao-na-roda-logo.jpg" alt="Mão na Roda" />
               </motion.div>
@@ -111,7 +111,7 @@ export default function Footer() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.4, duration: 0.5 }}
+                  transition={{ delay: 0.2, duration: 0.25, ease: "easeOut" }}
                 >
                   Mão na Roda
                 </motion.h3>
@@ -119,7 +119,7 @@ export default function Footer() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
+                  transition={{ delay: 0.25, duration: 0.25, ease: "easeOut" }}
                 >
                   Conectando pessoas a soluções
                 </motion.p>
@@ -134,7 +134,7 @@ export default function Footer() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.6 + colIndex * 0.1, duration: 0.5 }}
+                transition={{ delay: 0.3 + colIndex * 0.05, duration: 0.25, ease: "easeOut" }}
               >
                 <h4>{column.title}</h4>
                 <ul>
@@ -144,7 +144,7 @@ export default function Footer() {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: 0.7 + colIndex * 0.1 + itemIndex * 0.05, duration: 0.4 }}
+                      transition={{ delay: 0.35 + colIndex * 0.05 + itemIndex * 0.025, duration: 0.2, ease: "easeOut" }}
                     >
                       <motion.button 
                         type="button" 
@@ -167,7 +167,7 @@ export default function Footer() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ delay: 1, duration: 0.5 }}
+        transition={{ delay: 0.5, duration: 0.25, ease: "easeOut" }}
       >
         <div className="footer-bottom-container">
           <div className="footer-copyright">
@@ -183,7 +183,7 @@ export default function Footer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
           >
             <motion.div 
               className="footer-modal" 
@@ -191,7 +191,7 @@ export default function Footer() {
               initial={{ opacity: 0, scale: 0.8, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 50 }}
-              transition={{ duration: 0.3, type: "spring" }}
+              transition={{ duration: 0.15, type: "spring", ease: "easeOut" }}
             >
               <motion.button 
                 className="footer-modal-close" 
@@ -205,14 +205,14 @@ export default function Footer() {
               <motion.h3
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
+                transition={{ delay: 0.05, ease: "easeOut" }}
               >
                 {modal.title}
               </motion.h3>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.1, ease: "easeOut" }}
               >
                 {modal.content}
               </motion.p>

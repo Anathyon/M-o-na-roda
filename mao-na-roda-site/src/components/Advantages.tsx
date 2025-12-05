@@ -8,7 +8,7 @@ export default function AdvantagesSection() {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
     >
       <div className="advantages-container">
         <motion.div 
@@ -16,14 +16,14 @@ export default function AdvantagesSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6 }}
+          transition={{ delay: 0.1, duration: 0.3, ease: "easeOut" }}
         >
           <motion.h2 
             className="advantages-title"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.5 }}
+            transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
           >
             Uma plataforma, duas soluções
           </motion.h2>
@@ -32,7 +32,7 @@ export default function AdvantagesSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 0.5 }}
+            transition={{ delay: 0.3, duration: 0.25, ease: "easeOut" }}
           >
             Conectamos quem precisa com quem sabe fazer
           </motion.p>

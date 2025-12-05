@@ -174,7 +174,7 @@ export default function ServicesMenuGrid() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
       >
         <div className="services-container">
           <motion.div 
@@ -182,14 +182,14 @@ export default function ServicesMenuGrid() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
+            transition={{ delay: 0.1, duration: 0.3, ease: "easeOut" }}
           >
             <motion.h2 
               className="services-title-h2"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.5 }}
+              transition={{ delay: 0.15, duration: 0.25, ease: "easeOut" }}
             >
               Nossos Serviços
             </motion.h2>
@@ -198,7 +198,7 @@ export default function ServicesMenuGrid() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.5 }}
+              transition={{ delay: 0.2, duration: 0.25, ease: "easeOut" }}
             >
               Profissionais qualificados para todas as suas necessidades
             </motion.p>
@@ -209,7 +209,7 @@ export default function ServicesMenuGrid() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.6 }}
+              transition={{ delay: 0.25, duration: 0.3, ease: "easeOut" }}
               onMouseEnter={stopAutoPlay}
               onMouseLeave={startAutoPlay}
               onTouchStart={stopAutoPlay}
@@ -243,7 +243,7 @@ export default function ServicesMenuGrid() {
                   initial={{ opacity: 0, x: 100 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.15, ease: "easeOut" }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -251,7 +251,7 @@ export default function ServicesMenuGrid() {
                     className="services-carousel-icon"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    transition={{ delay: 0.2, type: "spring" }}
+                    transition={{ delay: 0.1, type: "spring", ease: "easeOut" }}
                   >
                     <i
                       className={services[carouselIndex].icon}
@@ -297,7 +297,7 @@ export default function ServicesMenuGrid() {
                   initial={{ opacity: 0, y: 50, scale: 0.9 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 + 0.5, duration: 0.6 }}
+                  transition={{ delay: i * 0.05 + 0.25, duration: 0.3, ease: "easeOut" }}
                   whileHover={{ y: -8, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -327,7 +327,7 @@ export default function ServicesMenuGrid() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
           >
             <motion.div
               className="modal-content"
@@ -336,7 +336,7 @@ export default function ServicesMenuGrid() {
               initial={{ opacity: 0, scale: 0.8, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 50 }}
-              transition={{ duration: 0.3, type: "spring" }}
+              transition={{ duration: 0.15, type: "spring", ease: "easeOut" }}
             >
               <div className="modal-header">
                 <motion.h2 

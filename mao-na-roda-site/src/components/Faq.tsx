@@ -42,7 +42,7 @@ export default function FAQSection() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
     >
       <div className="faq-bg-pattern" />
       <div className="faq-container">
@@ -51,14 +51,14 @@ export default function FAQSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6 }}
+          transition={{ delay: 0.1, duration: 0.3, ease: "easeOut" }}
         >
           <motion.div 
             className="faq-badge"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+            transition={{ delay: 0.15, duration: 0.25, ease: "easeOut" }}
           >
             <i className="fas fa-question-circle"></i>
             <span>Central de Ajuda</span>
@@ -68,7 +68,7 @@ export default function FAQSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.6 }}
+            transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
           >
             Perguntas <span className="faq-title-gradient">Frequentes</span>
           </motion.h2>
@@ -77,7 +77,7 @@ export default function FAQSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.6 }}
+            transition={{ delay: 0.25, duration: 0.3, ease: "easeOut" }}
           >
             Tire suas dúvidas sobre como usar o Mão na Roda
           </motion.p>
@@ -90,7 +90,7 @@ export default function FAQSection() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 + 0.6, duration: 0.5 }}
+              transition={{ delay: idx * 0.05 + 0.3, duration: 0.25, ease: "easeOut" }}
               whileHover={{ scale: 1.02 }}
             >
               <motion.button
@@ -116,7 +116,7 @@ export default function FAQSection() {
                   animate={{
                     rotate: open === idx ? 180 : 0,
                   }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.15, ease: "easeOut" }}
                 />
               </motion.button>
               <AnimatePresence>
@@ -127,14 +127,14 @@ export default function FAQSection() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.15, ease: "easeOut" }}
                   >
                     <motion.div 
                       className="faq-answer-content"
                       initial={{ y: -10, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -10, opacity: 0 }}
-                      transition={{ delay: 0.1, duration: 0.2 }}
+                      transition={{ delay: 0.05, duration: 0.1, ease: "easeOut" }}
                     >
                       <p>{faq.answer}</p>
                     </motion.div>

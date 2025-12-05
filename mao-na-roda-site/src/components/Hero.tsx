@@ -16,13 +16,13 @@ export default function Hero() {
             className="hero-text"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <motion.div 
               className="hero-badge"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
+              transition={{ delay: 0.1, duration: 0.3, ease: "easeOut" }}
             >
               <i className="fas fa-shield-alt"></i>
               <span>Profissionais 100% Verificados e Qualificados</span>
@@ -31,7 +31,7 @@ export default function Hero() {
               className="hero-title"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
+              transition={{ delay: 0.2, duration: 0.4, ease: "easeOut" }}
             >
               Encontre ou ofereça serviços com facilidade{" "}
               <span className="hero-title-highlight">AGORA!</span>
@@ -40,7 +40,7 @@ export default function Hero() {
               className="hero-desc"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
+              transition={{ delay: 0.3, duration: 0.3, ease: "easeOut" }}
             >
               <strong className="text-brand">Mão na Roda</strong> conecta
               <span className="text-client"> clientes</span> que precisam de serviços domésticos com{" "}
@@ -54,7 +54,7 @@ export default function Hero() {
               className="hero-solution-box"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8, duration: 0.5 }}
+              transition={{ delay: 0.4, duration: 0.25, ease: "easeOut" }}
             >
               <p>
                 <strong>📱 Dois apps, duas soluções:</strong>
@@ -66,7 +66,7 @@ export default function Hero() {
               className="hero-buttons"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.6 }}
+              transition={{ delay: 0.5, duration: 0.3, ease: "easeOut" }}
             >
               <motion.a 
                 href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR" 
@@ -93,7 +93,7 @@ export default function Hero() {
             className="hero-visual"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            transition={{ delay: 0.25, duration: 0.4, ease: "easeOut" }}
           >
             <motion.div 
               className="phone-mockup"
@@ -125,7 +125,7 @@ export default function Hero() {
                         className="service-card"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 1.2 + i * 0.1, duration: 0.4 }}
+                        transition={{ delay: 0.6 + i * 0.05, duration: 0.2, ease: "easeOut" }}
                       >
                         <div className="service-icon"><i className={service.icon}></i></div>
                         <div className="service-info">

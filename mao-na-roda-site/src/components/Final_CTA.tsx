@@ -14,14 +14,14 @@ export default function FinalCTASection() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
     >
       <motion.div 
         className="final-cta-top-wave"
         initial={{ y: 50, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
@@ -39,14 +39,14 @@ export default function FinalCTASection() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.8 }}
+            transition={{ delay: 0.15, duration: 0.4, ease: "easeOut" }}
           >
             <motion.h2 
               className="final-cta-title"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.6 }}
+              transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
             >
               Duas soluções em um só lugar
             </motion.h2>
@@ -55,7 +55,7 @@ export default function FinalCTASection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.6 }}
+              transition={{ delay: 0.25, duration: 0.3, ease: "easeOut" }}
             >
               App Cliente: encontre profissionais qualificados para seu lar
               <br />
@@ -69,7 +69,7 @@ export default function FinalCTASection() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.6 + i * 0.1, duration: 0.5 }}
+                  transition={{ delay: 0.3 + i * 0.05, duration: 0.25, ease: "easeOut" }}
                   whileHover={{ x: 5 }}
                 >
                   <motion.i 
@@ -77,7 +77,7 @@ export default function FinalCTASection() {
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.7 + i * 0.1, duration: 0.3, type: "spring" }}
+                    transition={{ delay: 0.35 + i * 0.05, duration: 0.15, type: "spring", ease: "easeOut" }}
                   />
                   <span>{feature.text}</span>
                 </motion.div>
@@ -88,7 +88,7 @@ export default function FinalCTASection() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 1, duration: 0.6 }}
+              transition={{ delay: 0.5, duration: 0.3, ease: "easeOut" }}
             >
               <motion.a
                 href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
@@ -121,7 +121,7 @@ export default function FinalCTASection() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.8 }}
+            transition={{ delay: 0.15, duration: 0.4, ease: "easeOut" }}
           >
             <motion.img
               src="App_mao_na_roda.png"

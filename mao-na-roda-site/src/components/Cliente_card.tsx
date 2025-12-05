@@ -14,7 +14,7 @@ export default function ClientCard() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
     >
       <motion.div 
         className="client-card-bubble bubble-1"
@@ -47,7 +47,7 @@ export default function ClientCard() {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ delay: 0.3, duration: 0.8 }}
+        transition={{ delay: 0.15, duration: 0.4, ease: "easeOut" }}
       >
         <div className="client-card-content">
           <motion.div 
@@ -55,14 +55,14 @@ export default function ClientCard() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.6 }}
+            transition={{ delay: 0.25, duration: 0.3, ease: "easeOut" }}
           >
             <motion.div 
               className="client-badge"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.6, duration: 0.5 }}
+              transition={{ delay: 0.3, duration: 0.25, ease: "easeOut" }}
             >
               Para Clientes
             </motion.div>
@@ -71,7 +71,7 @@ export default function ClientCard() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.7, duration: 0.6 }}
+              transition={{ delay: 0.35, duration: 0.3, ease: "easeOut" }}
             >
               Seguro e Confiável
             </motion.h3>
@@ -80,7 +80,7 @@ export default function ClientCard() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.8, duration: 0.6 }}
+              transition={{ delay: 0.4, duration: 0.3, ease: "easeOut" }}
             >
               Receba ajuda especializada para todos os reparos e projetos em sua
               casa. Garanta serviços de qualidade e um lar impecável.
@@ -90,7 +90,7 @@ export default function ClientCard() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.9, duration: 0.6 }}
+              transition={{ delay: 0.45, duration: 0.3, ease: "easeOut" }}
             >
               <motion.a
                 href="https://play.google.com/store/apps/details?id=digital.inovasoft.maonarodacliente&hl=pt_BR"
@@ -106,7 +106,7 @@ export default function ClientCard() {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 1.1, duration: 0.5 }}
+                transition={{ delay: 0.55, duration: 0.25, ease: "easeOut" }}
               >
                 📱 App exclusivo para quem precisa de serviços
               </motion.div>
@@ -117,7 +117,7 @@ export default function ClientCard() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.6 }}
+            transition={{ delay: 0.25, duration: 0.3, ease: "easeOut" }}
           >
             <div className="client-feature-grid">
               {features.map((feature, i) => (
@@ -127,7 +127,7 @@ export default function ClientCard() {
                   initial={{ opacity: 0, y: 30, scale: 0.9 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.7 + i * 0.1, duration: 0.5 }}
+                  transition={{ delay: 0.35 + i * 0.05, duration: 0.25, ease: "easeOut" }}
                   whileHover={{ y: -5, scale: 1.05 }}
                 >
                   <motion.div 
@@ -135,7 +135,7 @@ export default function ClientCard() {
                     initial={{ scale: 0, rotate: -180 }}
                     whileInView={{ scale: 1, rotate: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.8 + i * 0.1, duration: 0.6, type: "spring" }}
+                    transition={{ delay: 0.4 + i * 0.05, duration: 0.3, type: "spring", ease: "easeOut" }}
                   >
                     <i className={feature.icon}></i>
                   </motion.div>

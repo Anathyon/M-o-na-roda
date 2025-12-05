@@ -33,7 +33,7 @@ export default function Header() {
                 className={`header-main ${scrolled ? 'scrolled' : ''}`}
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
             >
                 <div className="header-container">
                     <motion.a 
@@ -58,7 +58,7 @@ export default function Header() {
                                 onClick={(e) => handleNavClick(e, `#${item === "Home" ? "home" : item === "Serviços" ? "servicos" : "como-funciona"}`)}
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: i * 0.1 + 0.3 }}
+                                transition={{ delay: i * 0.05 + 0.15, ease: "easeOut" }}
                                 whileHover={{ y: -2 }}
                             >
                                 {item}
@@ -112,14 +112,14 @@ export default function Header() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            transition={{ duration: 0.3 }}
+                            transition={{ duration: 0.15, ease: "easeOut" }}
                         />
                         <motion.aside 
                             className="sidebar-mobile"
                             initial={{ x: "-100%" }}
                             animate={{ x: 0 }}
                             exit={{ x: "-100%" }}
-                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                            transition={{ type: "spring", damping: 30, stiffness: 300, ease: "easeOut" }}
                         >
                             <div className="sidebar-header">
                                 <div className="sidebar-logo">
@@ -144,7 +144,7 @@ export default function Header() {
                                         onClick={e => handleNavClick(e, `#${item === "Home" ? "home" : item === "Serviços" ? "servicos" : "como-funciona"}`)}
                                         initial={{ opacity: 0, x: -20 }}
                                         animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: i * 0.1 + 0.2 }}
+                                        transition={{ delay: i * 0.05 + 0.1, ease: "easeOut" }}
                                         whileHover={{ x: 10 }}
                                     >
                                         {item}
@@ -159,7 +159,7 @@ export default function Header() {
                                     rel="noopener noreferrer"
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.5 }}
+                                    transition={{ delay: 0.25, ease: "easeOut" }}
                                     whileHover={{ scale: 1.05 }}
                                 >
                                     <i className="fas fa-mobile-alt"></i>
@@ -172,7 +172,7 @@ export default function Header() {
                                     rel="noopener noreferrer"
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.6 }}
+                                    transition={{ delay: 0.3, ease: "easeOut" }}
                                     whileHover={{ scale: 1.05 }}
                                 >
                                     <i className="fas fa-tools"></i>
